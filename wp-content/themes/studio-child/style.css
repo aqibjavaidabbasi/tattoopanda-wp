@@ -2796,3 +2796,489 @@ body.page-id-397 { /* Gear page */
 }
 
 
+
+
+/* ===============================================================
+   MOBILE LUXURY DARK THEME & SECTION SLIDER (Panda Tattoo)
+   =============================================================== */
+@media (max-width: 991px) {
+    html, body {
+        overflow: hidden !important;
+        height: 100% !important;
+        height: 100dvh !important;
+        width: 100% !important;
+        position: fixed !important;
+        top: 0;
+        left: 0;
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    body.page-template-templates-home-dev,
+    body.page-template-home-dev,
+    body.page-template-templateshome-dev-php,
+    body.home {
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    /* Solid Black Header Bar */
+    header {
+        background: #000000 !important;
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 64px !important;
+        z-index: 10000 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        padding: 0 20px !important;
+        box-sizing: border-box !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .site-content,
+    .main_layout {
+        height: 100% !important;
+        height: 100dvh !important;
+        width: 100vw !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        position: relative !important;
+        background: #000000 !important;
+    }
+
+    /* Fixed Mobile Header: Center White Logo + Right Menu */
+    .logo_wrap {
+        position: fixed !important;
+        top: 12px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 44px !important;
+        height: 44px !important;
+        max-width: 44px !important;
+        max-height: 44px !important;
+        z-index: 10001 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        overflow: hidden !important;
+        background: transparent !important;
+        mix-blend-mode: normal !important;
+    }
+
+    .logo_wrap a,
+    .logo_wrap .mbm-diff {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        width: 100% !important;
+        height: 100% !important;
+        mix-blend-mode: normal !important;
+    }
+
+    .logo_wrap img,
+    .logo_wrap .logo__et,
+    .mbm-diff img {
+        width: 38px !important;
+        height: 38px !important;
+        max-width: 38px !important;
+        max-height: 38px !important;
+        object-fit: contain !important;
+        display: block !important;
+        filter: brightness(0) invert(1) !important; /* Pure white panda on black bg */
+        mix-blend-mode: normal !important;
+    }
+
+    #menu-toggle {
+        position: fixed !important;
+        top: 12px !important;
+        right: 20px !important;
+        width: 44px !important;
+        height: 44px !important;
+        padding: 6px !important;
+        border: none !important;
+        cursor: pointer !important;
+        background: transparent !important;
+        z-index: 10001 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        color: #ffffff !important;
+    }
+
+    #menu-toggle svg {
+        width: 26px !important;
+        height: 26px !important;
+        display: block !important;
+        stroke: #ffffff !important;
+    }
+
+    #menu-toggle svg path {
+        stroke: #ffffff !important;
+    }
+
+    /* Main Horizontal Slider */
+    .main_slider {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scroll-snap-type: x mandatory !important;
+        -webkit-overflow-scrolling: touch !important;
+        scrollbar-width: none !important;
+        height: 100% !important;
+        height: 100dvh !important;
+        width: 100vw !important;
+        scroll-behavior: smooth !important;
+        background: #000000 !important;
+    }
+
+    .main_slider::-webkit-scrollbar {
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+    }
+
+    /* Every Section is a Slide in Pure Black */
+    .main_slider > section,
+    .section_1,
+    .section_2,
+    .section_3,
+    .section_4,
+    .section_5,
+    .section_6,
+    .section_7,
+    .hd-section,
+    .awards_wrp,
+    .hd-final-cta,
+    .full_image_section,
+    .single_video,
+    .post_scriptum {
+        flex: 0 0 100vw !important;
+        width: 100vw !important;
+        min-width: 100vw !important;
+        max-width: 100vw !important;
+        height: 100% !important;
+        height: 100dvh !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        scroll-snap-align: start !important;
+        scroll-snap-stop: always !important;
+        box-sizing: border-box !important;
+        padding: 72px 20px 14px !important;
+        position: relative !important;
+        top: 0 !important;
+        left: 0 !important;
+        margin: 0 !important;
+        background: #000000 !important;
+        color: #ffffff !important;
+    }
+
+    .main-navigation {
+        display: none !important;
+    }
+
+    .main_slider > section.hd-hero-section,
+    .main_slider > section.section_1,
+    .hd-hero-section {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        box-sizing: border-box !important;
+        padding: 72px 20px 14px !important;
+        height: 100% !important;
+        height: 100dvh !important;
+        min-height: 100dvh !important;
+        overflow-y: auto !important;
+    }
+
+    .hd-section-inner,
+    .section_1 .cmn_container,
+    .section_1 .intro_section {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: space-between !important;
+        flex: 1 !important;
+        height: 100% !important;
+        min-height: calc(100dvh - 88px) !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 auto !important;
+        padding-bottom: 0 !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Section 1 Hero Typography & Elements */
+    .hd-hero-top-headline {
+        text-align: center !important;
+        margin: 0 auto 14px !important;
+    }
+
+    .hd-tagline,
+    .section_1 h2,
+    .section_1 h3 {
+        color: #ffffff !important;
+        font-size: 20px !important;
+        font-weight: 500 !important;
+        text-transform: uppercase !important;
+        line-height: 1.35 !important;
+        letter-spacing: 0.08em !important;
+        margin: 0 auto 14px !important;
+        text-align: center !important;
+    }
+
+    .studio-status-bar {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        margin: 0 auto 20px !important;
+        padding: 10px 0 0 0 !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+        border-bottom: none !important;
+    }
+
+    .studio-time {
+        color: #ffffff !important;
+        font-size: 15px !important;
+        font-weight: 400 !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    .studio-status {
+        color: #ffffff !important;
+        font-size: 12px !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.08em !important;
+        font-weight: 600 !important;
+    }
+
+    .studio-status .open {
+        color: #22c55e !important;
+        font-weight: 700 !important;
+    }
+
+    .studio-status .closed {
+        color: #ff3b30 !important;
+        font-weight: 700 !important;
+    }
+
+    .hd-logotype {
+        display: flex !important;
+        justify-content: center !important;
+        margin: 0 auto 14px !important;
+    }
+
+    .hd-logotype img {
+        height: 38px !important;
+        max-height: 38px !important;
+        width: auto !important;
+        max-width: 100% !important;
+        display: block !important;
+        filter: brightness(0) invert(1) !important; /* Pure white logotype */
+    }
+
+    .hd-hero-content {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .hd-hero-headline,
+    .hd-hero-sub {
+        color: rgba(255, 255, 255, 0.85) !important;
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+        font-weight: 400 !important;
+        margin: 0 auto 16px !important;
+        max-width: 280px !important;
+        text-align: center !important;
+    }
+
+    /* Solid White Luxury CTA Button — High Contrast */
+    .button.hd-hero-cta,
+    .button.hd-artists-cta,
+    .button.hd-cta-btn,
+    .hd-hero-cta,
+    .hd-artists-cta,
+    .hd-cta-btn,
+    .ghl-booking-btn,
+    .button {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #ffffff !important;
+        background-color: #ffffff !important;
+        color: #000000 !important;
+        border: 1.5px solid #ffffff !important;
+        border-radius: 999px !important;
+        padding: 12px 32px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25) !important;
+        margin: 10px auto 0 !important;
+        min-width: auto !important;
+        cursor: pointer !important;
+        line-height: 1 !important;
+        text-decoration: none !important;
+        transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
+
+    .button.hd-hero-cta .button-content,
+    .button.hd-artists-cta .button-content,
+    .button.hd-cta-btn .button-content,
+    .ghl-booking-btn .button-content,
+    .hd-hero-cta span,
+    .hd-artists-cta span,
+    .hd-cta-btn span,
+    .button span {
+        color: #000000 !important;
+        font-weight: 700 !important;
+    }
+
+    .button:hover,
+    .button.hd-hero-cta:hover,
+    .button.hd-artists-cta:hover,
+    .button.hd-cta-btn:hover,
+    .ghl-booking-btn:hover {
+        background: #f0ece6 !important;
+        color: #000000 !important;
+        transform: translateY(-1px) !important;
+    }
+
+    /* Sticky Bottom Brand Card / Footer */
+    .hd-mobile-brand-card {
+        display: block !important;
+        background: #f6f2ee !important;
+        border-radius: 4px !important;
+        padding: 16px 20px 12px !important;
+        margin: auto auto 4px !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        text-align: center !important;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+        box-sizing: border-box !important;
+        flex-shrink: 0 !important;
+    }
+
+    .hd-brand-card-logo {
+        height: 28px !important;
+        width: auto !important;
+        margin: 0 auto 8px !important;
+        display: block !important;
+        filter: brightness(0) !important; /* Solid black logo on cream card */
+    }
+
+    .hd-brand-card-copy {
+        color: #090d11 !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.05em !important;
+    }
+
+    /* Ink for Icons / Awards Section */
+    section.awards_wrp,
+    .awards_wrp {
+        background: #000000 !important;
+        color: #ffffff !important;
+        padding: 80px 20px 60px !important;
+    }
+
+    .awards_wrp .main_head h2,
+    .awards_wrp .main_head h3,
+    .awards_wrp .text-white,
+    section.awards_wrp .text-white,
+    .awards_wrp .fs_20 {
+        color: #ffffff !important;
+    }
+
+    .awards_wrp .main_head h2 {
+        font-size: 26px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        margin-bottom: 12px !important;
+        letter-spacing: -0.01em !important;
+    }
+
+    .awards_wrp .main_head h3 {
+        font-size: 14px !important;
+        line-height: 1.45 !important;
+        color: rgba(255, 255, 255, 0.8) !important;
+        margin-bottom: 28px !important;
+    }
+
+    .awards_wrp .award_list ul {
+        list-style: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    .awards_wrp .award_list ul li {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.18) !important;
+        padding: 12px 0 !important;
+    }
+
+    .awards_wrp .award_list ul li a {
+        color: #ffffff !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        width: 100% !important;
+        text-decoration: none !important;
+        gap: 12px !important;
+    }
+
+    .awards_wrp .award_list ul li a .title {
+        color: #ffffff !important;
+        font-size: 15px !important;
+        font-weight: 600 !important;
+        flex: 1 !important;
+        text-align: left !important;
+    }
+
+    .awards_wrp .award_list ul li a .award,
+    .awards_wrp .award_list ul li a .award span {
+        color: rgba(255, 255, 255, 0.8) !important;
+        font-size: 13px !important;
+        text-align: right !important;
+    }
+
+    .awards_wrp .award_list ul li a .year {
+        color: rgba(255, 255, 255, 0.6) !important;
+        font-size: 12px !important;
+        display: block !important;
+        text-align: right !important;
+        min-width: 40px !important;
+    }
+
+    /* Other Sections Typography in Dark Mode */
+    .hd-section-title,
+    .hd-artists-intro,
+    .artist-name,
+    .studio_content,
+    .service_content {
+        color: #ffffff !important;
+    }
+
+    /* Hide Videos on Mobile as requested */
+    .media__video,
+    .single_video {
+        display: none !important;
+    }
+
+    /* Disabled Slider Dots */
+    .mobile-slider-nav,
+    #mobileSliderNav {
+        display: none !important;
+    }
+}

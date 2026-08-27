@@ -368,44 +368,60 @@ get_header();
                 $is_open = ($hours >= $open_hour && $hours < $close_hour);
                 $studio_status = $is_open ? 'OPEN' : 'CLOSED';
                 ?>
-                <section class="section_1">
-					<div class="intro_section">
-						<div class="cmn_container">
-							<div class="content_wrap">
-								<?php if ($title): ?>
-									<h3><?php echo $title; ?></h3>
-								<?php endif; ?>
-								
-								<?php if ($content): ?>
-									<div class="content fs_20">
-										<?php echo $content; ?>
-									</div>
-								<?php endif; ?>
+                <section class="section_1 hd-section hd-hero-section">
+                    <div class="hd-section-inner">
+                        <div class="hd-hero-top-wrap">
+                            <!-- Top Headline / Tagline -->
+                            <div class="hd-hero-top-headline">
+                                <?php if ($content): ?>
+                                    <h2 class="hd-tagline"><?php echo strip_tags($content, "<br>"); ?></h2>
+                                <?php else: ?>
+                                    <h2 class="hd-tagline">Skin Art<br>For Those Who<br>Only Accept The<br>Best In Life</h2>
+                                <?php endif; ?>
+                            </div>
 
-							</div>
-							
-							<div class="content_wrap">
-								<!-- Studio Status Bar -->
-								<div class="studio-status-bar">
-									<div class="studio-time"><?php echo $current_time; ?></div>
-									<div class="studio-status">Studio: <span class="<?php echo strtolower($studio_status); ?>"><?php echo $studio_status; ?></span></div>
-								</div>
-							</div>
-						
-						<?php if ($video): ?>
-							<video autoplay="autoplay" preload="auto" playsinline="" loop="loop" muted="muted" class="media__video">
-								<source src="<?php echo $video; ?>" type="video/mp4">
-							</video>
-						<?php endif; ?>
-						</div>
+                            <!-- Studio Status Bar -->
+                            <div class="studio-status-bar">
+                                <div class="studio-time"><?php echo esc_html($current_time); ?></div>
+                                <div class="studio-status">
+                                    Studio: <span class="<?php echo strtolower($studio_status); ?>"><?php echo esc_html($studio_status); ?></span>
+                                </div>
+                            </div>
 
-					</div>
-					
-                    <?php if ($logo): ?>
-                        <div class="studio_logo">
-                            <?php echo $logo; ?>
+                            <!-- Logotype -->
+                            <div class="hd-logotype">
+                                <img
+                                    src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png"
+                                    alt="Tatu Panda"
+                                    loading="eager"
+                                >
+                            </div>
+
+                            <div class="hd-hero-body">
+                                <div class="hd-hero-content">
+                                    <!-- Main Headline / Subtitle -->
+                                    <?php if ($title): ?>
+                                        <p class="hd-hero-sub"><?php echo esc_html($title); ?></p>
+                                    <?php else: ?>
+                                        <p class="hd-hero-sub">We are currently accepting new clients</p>
+                                    <?php endif; ?>
+
+                                    <!-- Primary CTA -->
+                                    <div x-data>
+                                        <button @click="$dispatch('open-booking-modal')" class="button hd-hero-cta ghl-booking-btn" aria-label="Book a tattoo appointment at Tatu Panda">
+                                            <span class="button-content">Book Appointment</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    <?php endif; ?>
+
+                        <!-- Mobile bottom branding card / sticky footer -->
+                        <div class="hd-mobile-brand-card">
+                            <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Panda" class="hd-brand-card-logo">
+                            <div class="hd-brand-card-copy">&copy; <?php echo date("Y"); ?></div>
+                        </div>
+                    </div>
                 </section>
             <?php endwhile; ?>
         <?php endif; ?>
