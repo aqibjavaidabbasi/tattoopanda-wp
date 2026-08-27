@@ -417,9 +417,21 @@ get_header();
                         </div>
 
                         <!-- Mobile bottom branding card / sticky footer -->
-                        <div class="hd-mobile-brand-card">
-                            <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Panda" class="hd-brand-card-logo">
-                            <div class="hd-brand-card-copy">&copy; <?php echo date("Y"); ?></div>
+                        <div class="hd-mobile-footer-wrap">
+                            <div class="hd-mobile-brand-card">
+                                <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Panda" class="hd-brand-card-logo">
+                                <div class="hd-brand-card-copy">&copy; <?php echo date("Y"); ?></div>
+                            </div>
+
+                            <!-- Section Slider Pagination Dots -->
+                            <div class="pagination-indicator-row mobile-slider-dots" id="mobileSliderDots" role="tablist" aria-label="Section Slider Navigation">
+                                <span class="page-dot is-active" data-index="0"></span>
+                                <span class="page-dot" data-index="1"></span>
+                                <span class="page-dot" data-index="2"></span>
+                                <span class="page-dot" data-index="3"></span>
+                                <span class="page-dot" data-index="4"></span>
+                                <span class="page-dot" data-index="5"></span>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -895,6 +907,53 @@ get_template_part('template-parts/booking-modal');
     }
 
     animate();
+</script>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        if (window.innerWidth < 991) {
+            const slider = document.querySelector('.main_slider');
+            const dotsContainer = document.getElementById('mobileSliderDots');
+            if (!slider || !dotsContainer) return;
+
+            const sections = slider.querySelectorAll(':scope > section');
+            if (!sections.length) return;
+
+            // Dynamically render dots for sections
+            dotsContainer.innerHTML = '';
+            sections.forEach((section, index) => {
+                const dot = document.createElement('span');
+                dot.className = 'page-dot' + (index === 0 ? ' is-active' : '');
+                dot.setAttribute('data-index', index);
+                dot.setAttribute('role', 'tab');
+                dot.setAttribute('aria-label', 'Slide ' + (index + 1));
+                dot.addEventListener('click', function () {
+                    section.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                });
+                dotsContainer.appendChild(dot);
+            });
+
+            const dots = dotsContainer.querySelectorAll('.page-dot');
+
+            // Sync active dot on horizontal scroll
+            let scrollTimer;
+            slider.addEventListener('scroll', function () {
+                window.clearTimeout(scrollTimer);
+                scrollTimer = setTimeout(function () {
+                    const scrollLeft = slider.scrollLeft;
+                    const width = window.innerWidth || document.documentElement.clientWidth;
+                    const activeIndex = Math.min(sections.length - 1, Math.max(0, Math.round(scrollLeft / width)));
+                    dots.forEach((d, i) => {
+                        if (i === activeIndex) {
+                            d.classList.add('is-active');
+                        } else {
+                            d.classList.remove('is-active');
+                        }
+                    });
+                }, 30);
+            }, { passive: true });
+        }
+    });
 </script>
 
 <?php
