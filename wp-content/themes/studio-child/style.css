@@ -2798,6 +2798,10 @@ body.page-id-397 { /* Gear page */
 
 
 
+.hd-mobile-brand-card {
+    display: none;
+}
+
 /* ===============================================================
    MOBILE LUXURY DARK THEME & SECTION SLIDER (Panda Tattoo)
    =============================================================== */
@@ -2822,6 +2826,12 @@ body.page-id-397 { /* Gear page */
         color: #ffffff !important;
     }
 
+    /* Hide generic copyright & desktop footer on mobile */
+    .copyright,
+    footer#colophon {
+        display: none !important;
+    }
+
     /* Solid Black Header Bar */
     header {
         background: #000000 !important;
@@ -2829,7 +2839,7 @@ body.page-id-397 { /* Gear page */
         top: 0 !important;
         left: 0 !important;
         width: 100% !important;
-        height: 64px !important;
+        height: 60px !important;
         z-index: 10000 !important;
         display: flex !important;
         align-items: center !important;
@@ -2854,13 +2864,13 @@ body.page-id-397 { /* Gear page */
     /* Fixed Mobile Header: Center White Logo + Right Menu */
     .logo_wrap {
         position: fixed !important;
-        top: 12px !important;
+        top: 10px !important;
         left: 50% !important;
         transform: translateX(-50%) !important;
-        width: 44px !important;
-        height: 44px !important;
-        max-width: 44px !important;
-        max-height: 44px !important;
+        width: 40px !important;
+        height: 40px !important;
+        max-width: 40px !important;
+        max-height: 40px !important;
         z-index: 10001 !important;
         display: flex !important;
         align-items: center !important;
@@ -2883,10 +2893,10 @@ body.page-id-397 { /* Gear page */
     .logo_wrap img,
     .logo_wrap .logo__et,
     .mbm-diff img {
-        width: 38px !important;
-        height: 38px !important;
-        max-width: 38px !important;
-        max-height: 38px !important;
+        width: 36px !important;
+        height: 36px !important;
+        max-width: 36px !important;
+        max-height: 36px !important;
         object-fit: contain !important;
         display: block !important;
         filter: brightness(0) invert(1) !important; /* Pure white panda on black bg */
@@ -2895,10 +2905,10 @@ body.page-id-397 { /* Gear page */
 
     #menu-toggle {
         position: fixed !important;
-        top: 12px !important;
-        right: 20px !important;
-        width: 44px !important;
-        height: 44px !important;
+        top: 10px !important;
+        right: 16px !important;
+        width: 40px !important;
+        height: 40px !important;
         padding: 6px !important;
         border: none !important;
         cursor: pointer !important;
@@ -2911,8 +2921,8 @@ body.page-id-397 { /* Gear page */
     }
 
     #menu-toggle svg {
-        width: 26px !important;
-        height: 26px !important;
+        width: 24px !important;
+        height: 24px !important;
         display: block !important;
         stroke: #ffffff !important;
     }
@@ -2965,13 +2975,14 @@ body.page-id-397 { /* Gear page */
         max-width: 100vw !important;
         height: 100% !important;
         height: 100dvh !important;
+        max-height: 100dvh !important;
         overflow-y: auto !important;
         overflow-x: hidden !important;
         -webkit-overflow-scrolling: touch !important;
         scroll-snap-align: start !important;
         scroll-snap-stop: always !important;
         box-sizing: border-box !important;
-        padding: 72px 20px 14px !important;
+        padding: 64px 20px 14px !important;
         position: relative !important;
         top: 0 !important;
         left: 0 !important;
@@ -2991,10 +3002,10 @@ body.page-id-397 { /* Gear page */
         flex-direction: column !important;
         justify-content: space-between !important;
         box-sizing: border-box !important;
-        padding: 72px 20px 14px !important;
+        padding: 64px 20px 14px !important;
         height: 100% !important;
         height: 100dvh !important;
-        min-height: 100dvh !important;
+        max-height: 100dvh !important;
         overflow-y: auto !important;
     }
 
@@ -3004,32 +3015,44 @@ body.page-id-397 { /* Gear page */
         display: flex !important;
         flex-direction: column !important;
         justify-content: space-between !important;
-        flex: 1 !important;
+        align-items: center !important;
+        flex: 1 1 auto !important;
         height: 100% !important;
-        min-height: calc(100dvh - 88px) !important;
+        max-height: 100% !important;
         width: 100% !important;
-        max-width: 100% !important;
+        max-width: 380px !important;
         margin: 0 auto !important;
-        padding-bottom: 0 !important;
+        padding: 0 !important;
         box-sizing: border-box !important;
     }
 
-    /* Section 1 Hero Typography & Elements */
+    /* Section 1 Hero - Vertically Centered Content */
+    .hd-hero-top-wrap {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        margin: auto 0 !important;
+        padding: 6px 0 !important;
+    }
+
     .hd-hero-top-headline {
         text-align: center !important;
-        margin: 0 auto 14px !important;
+        margin: 0 auto 10px !important;
+        width: 100% !important;
     }
 
     .hd-tagline,
     .section_1 h2,
     .section_1 h3 {
         color: #ffffff !important;
-        font-size: 20px !important;
+        font-size: clamp(16px, 4.5vw, 19px) !important;
         font-weight: 500 !important;
         text-transform: uppercase !important;
-        line-height: 1.35 !important;
+        line-height: 1.3 !important;
         letter-spacing: 0.08em !important;
-        margin: 0 auto 14px !important;
+        margin: 0 auto !important;
         text-align: center !important;
     }
 
@@ -3038,23 +3061,23 @@ body.page-id-397 { /* Gear page */
         justify-content: space-between !important;
         align-items: center !important;
         width: 100% !important;
-        max-width: 320px !important;
-        margin: 0 auto 20px !important;
-        padding: 10px 0 0 0 !important;
+        max-width: 300px !important;
+        margin: 12px auto !important;
+        padding: 8px 0 0 0 !important;
         border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
         border-bottom: none !important;
     }
 
     .studio-time {
         color: #ffffff !important;
-        font-size: 15px !important;
+        font-size: 14px !important;
         font-weight: 400 !important;
         letter-spacing: 0.05em !important;
     }
 
     .studio-status {
         color: #ffffff !important;
-        font-size: 12px !important;
+        font-size: 11px !important;
         text-transform: uppercase !important;
         letter-spacing: 0.08em !important;
         font-weight: 600 !important;
@@ -3073,16 +3096,21 @@ body.page-id-397 { /* Gear page */
     .hd-logotype {
         display: flex !important;
         justify-content: center !important;
-        margin: 0 auto 14px !important;
+        margin: 6px auto 12px !important;
+        width: 100% !important;
     }
 
     .hd-logotype img {
-        height: 38px !important;
-        max-height: 38px !important;
+        height: 34px !important;
+        max-height: 34px !important;
         width: auto !important;
         max-width: 100% !important;
         display: block !important;
         filter: brightness(0) invert(1) !important; /* Pure white logotype */
+    }
+
+    .hd-hero-body {
+        width: 100% !important;
     }
 
     .hd-hero-content {
@@ -3090,15 +3118,16 @@ body.page-id-397 { /* Gear page */
         flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
+        width: 100% !important;
     }
 
     .hd-hero-headline,
     .hd-hero-sub {
         color: rgba(255, 255, 255, 0.85) !important;
-        font-size: 15px !important;
+        font-size: 13px !important;
         line-height: 1.4 !important;
         font-weight: 400 !important;
-        margin: 0 auto 16px !important;
+        margin: 0 auto 14px !important;
         max-width: 280px !important;
         text-align: center !important;
     }
@@ -3120,13 +3149,13 @@ body.page-id-397 { /* Gear page */
         color: #000000 !important;
         border: 1.5px solid #ffffff !important;
         border-radius: 999px !important;
-        padding: 12px 32px !important;
+        padding: 10px 28px !important;
         font-size: 11px !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
         letter-spacing: 0.12em !important;
-        box-shadow: 0 4px 18px rgba(255, 255, 255, 0.25) !important;
-        margin: 10px auto 0 !important;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25) !important;
+        margin: 4px auto 0 !important;
         min-width: auto !important;
         cursor: pointer !important;
         line-height: 1 !important;
@@ -3156,32 +3185,32 @@ body.page-id-397 { /* Gear page */
         transform: translateY(-1px) !important;
     }
 
-    /* Sticky Bottom Brand Card / Footer */
+    /* Mobile Brand Card / Footer: Kept firmly in screen at bottom */
     .hd-mobile-brand-card {
         display: block !important;
         background: #f6f2ee !important;
         border-radius: 4px !important;
-        padding: 16px 20px 12px !important;
-        margin: auto auto 4px !important;
+        padding: 10px 18px 8px !important;
+        margin: 0 auto 0 !important;
         width: 100% !important;
-        max-width: 320px !important;
+        max-width: 280px !important;
         text-align: center !important;
-        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6) !important;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
         box-sizing: border-box !important;
         flex-shrink: 0 !important;
     }
 
     .hd-brand-card-logo {
-        height: 28px !important;
+        height: 22px !important;
         width: auto !important;
-        margin: 0 auto 8px !important;
+        margin: 0 auto 4px !important;
         display: block !important;
         filter: brightness(0) !important; /* Solid black logo on cream card */
     }
 
     .hd-brand-card-copy {
         color: #090d11 !important;
-        font-size: 11px !important;
+        font-size: 10px !important;
         font-weight: 600 !important;
         letter-spacing: 0.05em !important;
     }
