@@ -1,0 +1,136 @@
+<?php
+/**
+ * The header for our theme.
+ *
+ * Displays all of the <head> section and everything up till <div id="content">
+ *
+ * @package Studio
+ */
+
+	/** 
+	 * studio_doctype hook
+	 *
+	 * @hooked studio_doctype -  10
+	 * 
+	 */
+	do_action( 'studio_doctype' );
+	?>
+
+<head>
+<?php	
+	/** 
+	 * studio_before_wp_head hook
+	 *
+	 * @hooked studio_head -  10
+	 * 
+	 */
+	do_action( 'studio_before_wp_head' );
+
+	wp_head(); ?>
+</head>
+
+<body <?php body_class(); ?>>
+
+<?php do_action( 'wp_body_open' );  ?>
+	
+	<div class="page-loader-wrapper">
+		
+		<div id="page-loader">
+			<div class="loading-count" id="loading-count">0</div>
+		</div>
+		<div class="studio_logo studio_logo_animate animate__animated animate__fadeInUp">
+			<img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" class="logo__et difference"/>				
+		</div>
+	</div>
+
+	<header>
+		<div class="logo_wrap animate__animated animate__fadeInDown">
+			<a href="/" aria-label="Homepage" style="pointer-events: auto;">
+				<div class="mbm-diff">
+					<img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-icon-bone-white-scaled.png" class="logo__et difference"/>
+				</div>
+			</a>
+		</div>
+
+		<!-- Toggle Button -->
+		<button id="menu-toggle" aria-label="Open Menu">
+			<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M4 18L20 18" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 12L20 12" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> <path d="M4 6L20 6" stroke="#000000" stroke-width="2" stroke-linecap="round"></path> </g></svg>
+		</button>
+
+		<!-- Off-Canvas Menu -->
+		<div id="offcanvas-menu">
+		    <button id="menu-close" aria-label="Close Menu">×</button>
+		    <?php
+		        wp_nav_menu([
+		            'theme_location' => 'primary', // Update with your menu location
+		            'menu_class' => 'offcanvas-nav',
+		        ]);
+		    ?>
+		    <a class="mobile_logo" href="/" aria-label="Homepage" style="pointer-events: auto;">
+		    	<div class="mbm-diff">
+					<img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" class="logo__et difference"/>				
+		    	</div>
+		    </a>
+		</div>
+
+		<!-- Overlay -->
+		<div id="menu-overlay"></div>
+
+		   <!-- Navigation -->
+		   <nav id="site-navigation" class="main-navigation">
+		     <?php
+		       wp_nav_menu(array(
+		         'theme_location' => 'primary',
+		         'menu_id'        => 'primary-menu',
+		         'container'      => false,
+		         'menu_class'     => 'menu d-flex',
+		       ));
+		     ?>
+		   </nav>
+		   <div class="bullet"></div>
+	</header>
+	<script>
+	  // window.addEventListener("load", function () {
+	  //   const loader = document.getElementById("page-loader");
+	  //   loader.addEventListener("animationend", () => {
+	  //     loader.style.display = "none";
+	  //   });
+	  // });
+
+	  document.addEventListener("DOMContentLoaded", function () {
+		    setTimeout(() => {
+		      document.querySelectorAll(".studio_logo_animate").forEach(el => {
+		        el.style.setProperty("opacity", "0", "important");
+		      });
+		    }, 4750);
+		  });
+	</script>
+	<?php
+	/** 
+	 * studio_after_header hook
+	 * 
+	 */
+	do_action( 'studio_after_header' );
+
+
+	/** 
+	 * studio_content hook
+	 *
+	 * @hooked studio_content_start - 10
+	 * 
+	 */
+	do_action( 'studio_content' );
+
+?>
+
+<script>
+	const countEl = document.getElementById("loading-count");
+	  let count = 0;
+	  const interval = setInterval(() => {
+	    count++;
+	    countEl.textContent = count;
+	    if (count >= 100) {
+	      clearInterval(interval);
+	    }
+	  }, 25);
+</script>

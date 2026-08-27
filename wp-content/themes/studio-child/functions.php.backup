@@ -1,0 +1,617 @@
+<?php
+// Exit if accessed directly
+if ( !defined( 'ABSPATH' ) ) exit;
+
+// BEGIN ENQUEUE PARENT ACTION
+// AUTO GENERATED - Do not modify or remove comment markers above or below:
+
+if ( !function_exists( 'chld_thm_cfg_locale_css' ) ):
+    function chld_thm_cfg_locale_css( $uri ){
+        if ( empty( $uri ) && is_rtl() && file_exists( get_template_directory() . '/rtl.css' ) )
+            $uri = get_template_directory_uri() . '/rtl.css';
+        return $uri;
+    }
+endif;
+add_filter( 'locale_stylesheet_uri', 'chld_thm_cfg_locale_css' );
+
+if ( !function_exists( 'chld_thm_cfg_parent_css' ) ):
+    function chld_thm_cfg_parent_css() {
+        wp_enqueue_style( 'chld_thm_cfg_parent', trailingslashit( get_template_directory_uri() ) . 'style.css', array(  ) );
+    }
+endif;
+add_action( 'wp_enqueue_scripts', 'chld_thm_cfg_parent_css', 10 );
+
+// END ENQUEUE PARENT ACTION
+// 
+
+add_action('wp_ajax_send_otp_vote', 'send_otp_vote');
+add_action('wp_ajax_nopriv_send_otp_vote', 'send_otp_vote');
+
+add_action('wp_ajax_verify_otp_vote', 'verify_otp_vote');
+add_action('wp_ajax_nopriv_verify_otp_vote', 'verify_otp_vote');
+
+add_action('wp_ajax_test_votes_field', 'test_votes_field');
+add_action('wp_ajax_nopriv_test_votes_field', 'test_votes_field');
+
+function test_votes_field() {
+    $artist_id = intval($_GET['artist_id'] ?? 0);
+
+    if (!$artist_id) {
+        wp_send_json_error(['message' => 'Artist ID is required']);
+    }
+
+$votes = get_post_meta($artist_id, 'votes', true);
+
+    if ($votes === false) {
+        wp_send_json_error(['message' => 'ACF field not found or artist ID invalid']);
+    }
+
+    wp_send_json_success([
+        'artist_id' => $artist_id,
+        'votes' => $votes
+    ]);
+}
+
+add_action('wp_enqueue_scripts', 'enqueue_vote_script');
+
+function enqueue_vote_script() {
+    wp_enqueue_script('vote-js', get_stylesheet_directory_uri() . '/vote.js', ['jquery'], null, true);
+    wp_localize_script('vote-js', 'vote_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+    ]);
+}
+
+
+function send_otp_vote() {
+    $email = sanitize_email($_POST['email']);
+    $phone = sanitize_text_field($_POST['phone']);
+    $artist_id = intval($_POST['artist_id']);
+
+    if (!is_email($email) || !$artist_id) {
+        wp_send_json_error(['message' => 'Invalid request']);
+    }
+
+    $otp = rand(100000, 999999);
+    $expires = time() + 300; // 5 mins
+    $ip = $_SERVER['REMOTE_ADDR'];
+
+    global $wpdb;
+    $table = $wpdb->prefix . 'artist_votes';
+    $today = current_time('Y-m-d');
+
+    // Check if email already voted today for this artist
+    $already_voted = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM $table WHERE email = %s AND artist_id = %d AND vote_date = %s AND verified = 1",
+        $email, $today
+    ));
+
+    if ($already_voted > 0) {
+        wp_send_json_error(['message' => 'You have already voted today']);
+    }
+
+    $wpdb->insert($table, [
+        'email' => $email,
+        'phone' => $phone,
+        'ip_address' => $ip,
+        'artist_id' => $artist_id,
+        'otp' => $otp,
+        'otp_expires_at' => date('Y-m-d H:i:s', $expires),
+        'vote_date' => current_time('Y-m-d'),
+        'created_at' => current_time('mysql'),
+        'verified' => 0,
+    ]);
+
+    wp_mail($email, 'Your Vote OTP', "Your OTP is: {$otp}");
+
+    wp_send_json_success(['message' => 'OTP sent']);
+}
+function verify_otp_vote() {
+    $email = sanitize_email($_POST['email']);
+    $artist_id = intval($_POST['artist_id']);
+    $user_otp = sanitize_text_field($_POST['otp']);
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $today = date('Y-m-d');
+
+    global $wpdb;
+    $table = $wpdb->prefix . 'artist_votes';
+
+    $record = $wpdb->get_row($wpdb->prepare(
+        "SELECT * FROM $table WHERE email = %s AND artist_id = %d ORDER BY id DESC LIMIT 1",
+        $email, $artist_id
+    ));
+
+    if (!$record || $record->otp != $user_otp || strtotime($record->otp_expires_at) < time()) {
+        wp_send_json_error(['message' => 'Invalid or expired OTP']);
+    }
+
+    // Check IP + verified vote today
+    $ip_check = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM $table WHERE ip_address = %s AND artist_id = %d AND vote_date = %s AND verified = 1",
+        $ip, $artist_id, $today
+    ));
+
+    if ($ip_check > 0) {
+        wp_send_json_error(['message' => 'You have already voted from this IP today']);
+    }
+
+    // Check email already voted today
+    $email_check = $wpdb->get_var($wpdb->prepare(
+        "SELECT COUNT(*) FROM $table WHERE email = %s AND artist_id = %d AND vote_date = %s AND verified = 1",
+        $email, $artist_id, $today
+    ));
+
+    if ($email_check > 0) {
+        wp_send_json_error(['message' => 'You have already voted today']);
+    }
+
+    $wpdb->update($table, ['verified' => 1], ['id' => $record->id]);
+
+    $votes = get_field('votes', $artist_id);
+    $votes = $votes ? $votes + 1 : 1;
+    update_field('votes', $votes, $artist_id);
+
+    wp_send_json_success(['message' => 'Vote recorded']);
+}
+
+// Function to get the nearest active contest and calculate countdown
+function display_contest_countdown() {
+    // Get current date/time in WordPress timezone
+    $current_date = current_time('timestamp');
+
+    // Query for active contests
+    $args = array(
+        'post_type' => 'contests',
+        'post_status' => 'publish',
+        'meta_query' => array(
+            'relation' => 'AND',
+            array(
+                'key' => 'activeinactive',
+                'value' => 'active',
+                'compare' => '='
+            ),
+            array(
+                'key' => 'end_date',
+                'value' => date('Y-m-d H:i:s', $current_date),
+                'compare' => '>=',
+                'type' => 'DATETIME'
+            )
+        ),
+        'meta_key' => 'end_date',
+        'orderby' => 'meta_value',
+        'order' => 'ASC',
+        'posts_per_page' => 1 // Get only the closest contest
+    );
+
+    $contest_query = new WP_Query($args);
+
+    if ($contest_query->have_posts()) {
+        while ($contest_query->have_posts()) {
+            $contest_query->the_post();
+            $end_date = get_post_meta(get_the_ID(), 'end_date', true);
+			$start_date = get_post_meta(get_the_ID(), 'start_date', true);
+            // Convert end_date to timestamp
+            $end_timestamp = strtotime($end_date);
+			$start_timestamp = strtotime($start_date);
+            if ($end_timestamp === false) {
+                return '<p>Error: Invalid end date format.</p>';
+            }
+
+            // Calculate time difference
+            $time_left = $end_timestamp - $current_date;
+            if ($time_left <= 0) {
+                return '<p>Contest has ended.</p>';
+            }
+
+            // Calculate days, hours, minutes
+            $days = floor($time_left / (60 * 60 * 24));
+            $hours = floor(($time_left % (60 * 60 * 24)) / (60 * 60));
+            $minutes = floor(($time_left % (60 * 60)) / 60);
+
+            // Build countdown string
+            $countdown = '';
+            if ($days > 0) {
+                $countdown .= $days . 'd ';
+            }
+            if ($hours > 0 || $days > 0) {
+                $countdown .= $hours . 'h ';
+            }
+            $countdown .= $minutes . 'm';
+			
+			$total_duration = $end_timestamp - $start_timestamp;
+
+			$elapsed_time = min($current_date, $end_timestamp) - $start_timestamp;
+
+			if ($total_duration <= 0) {
+				return '<p>Error: Invalid contest duration.</p>';
+			}
+
+			$progress_percent = round(($elapsed_time / $total_duration) * 100);
+
+			$progress_percent = max(0, min(100, $progress_percent));
+
+			return [
+				'countdown' => esc_html($countdown),
+				'progress' => $progress_percent
+			];
+        }
+    } else {
+        return '<p>No active contests found.</p>';
+    }
+
+    // Reset post data
+    wp_reset_postdata();
+}
+
+function au_find_media_by_filename($remote_url)
+{
+    $remote_url = trim(sanitize_url($remote_url));
+    if (empty($remote_url)) {
+        return 0;
+    }
+
+    // Get the file extension
+    $extension = sanitize_key(pathinfo($remote_url, PATHINFO_EXTENSION));
+
+    // Get the absolute file URL
+    $name = basename($remote_url, '.' . $extension); // Basename without extension
+
+    // Search to see if this file already exists
+    /** @var wpdb $wpdb WordPress Database */
+    global $wpdb;
+    $results = $wpdb->get_results($wpdb->prepare(
+        "SELECT *
+            FROM {$wpdb->prefix}posts
+            WHERE SUBSTRING_INDEX(SUBSTRING_INDEX(guid, '/', -1), '.', 1) LIKE %s
+            AND guid LIKE %s ORDER BY ID DESC",
+        $name . '%',
+        '%' . $name . '%.' . $extension
+    ), ARRAY_A);
+    if (count($results) > 0) {
+        return $results[0]['ID']; // Return the ID of the first result
+    }
+    return 0;
+}
+
+function store_artist_to_custom_post($contact_form) {
+    // Log start of function
+    error_log('Starting store_artist_to_custom_post');
+
+    // Check form title
+    $form_title = $contact_form->title;
+    if ($form_title !== 'Nomination Form') {
+        error_log('Form title does not match: ' . $form_title);
+        return;
+    }
+
+    // Get CF7 submission instance
+    $submission = WPCF7_Submission::get_instance();
+    if (!$submission) {
+        error_log('No CF7 submission instance found.');
+        $submission->set_response('Error: Submission failed.');
+        $submission->set_status('validation_failed');
+        return;
+    }
+
+    $data = $submission->get_posted_data();
+    $files = $submission->uploaded_files();
+	
+
+
+    // Sanitize and validate inputs
+    $artist_name = !empty($data['artist-name']) ? sanitize_text_field($data['artist-name']) : '';
+    $ig_handle = !empty($data['ig-handle']) ? sanitize_text_field($data['ig-handle']) : '';
+    $why_compete = !empty($data['why-compete']) ? sanitize_textarea_field($data['why-compete']) : '';
+    $portfolio_link = !empty($data['portfolio-link']) ? esc_url_raw($data['portfolio-link']) : '';
+
+    if (empty($artist_name)) {
+        error_log('Artist name is required.');
+        $submission->set_response('Error: Artist name is required.');
+        $submission->set_status('validation_failed');
+        return;
+    }
+    
+	if ($submission) {
+		$uploaded_files = $submission->uploaded_files();
+
+		if (!empty($uploaded_files['artist-photo'][0]) && file_exists($uploaded_files['artist-photo'][0])) {
+			$source_path = $uploaded_files['artist-photo'][0];
+			$filename = basename($source_path);
+
+			// Get upload directory info
+			$wp_upload_dir = wp_upload_dir(); // Gives 'path' and 'url'
+			$destination_dir = $wp_upload_dir['path'];
+			$destination_url = $wp_upload_dir['url'];
+
+			$destination_path = trailingslashit($destination_dir) . $filename;
+			$final_url = trailingslashit($destination_url) . $filename;
+
+			// Move the file
+			if (!file_exists($destination_path)) {
+				if (!rename($source_path, $destination_path)) {
+					error_log("Failed to move file: $source_path to $destination_path");
+					die('Failed to move the uploaded file.');
+				}
+			}
+
+			// Use the final URL wherever needed
+			$photo_url = $final_url;
+		}
+	}
+
+    // Verify post type exists
+    if (!post_type_exists('voting-leaderboard')) {
+        error_log('Post type "voting-leaderboard" does not exist.');
+        $submission->set_response('Error: Invalid post type.');
+        $submission->set_status('validation_failed');
+        return;
+    }
+
+    // Create artist post
+    $post_id = wp_insert_post([
+        'post_type'   => 'voting-leaderboard',
+        'post_title'  => $artist_name,
+        'post_status' => 'publish',
+    ]);
+
+    if (is_wp_error($post_id)) {
+        error_log('Error inserting post: ' . $post_id->get_error_message());
+        $submission->set_response('Error: Failed to create artist post.');
+        $submission->set_status('validation_failed');
+        return;
+    } elseif ($post_id) {
+        // Save meta fields
+        update_post_meta($post_id, 'artist_name', $artist_name);
+        update_post_meta($post_id, 'ig_handle', $ig_handle);
+        update_post_meta($post_id, 'why_compete', $why_compete);
+        update_post_meta($post_id, 'portfolio_link', $portfolio_link);
+        update_post_meta($post_id, 'artist_photo', $photo_url);
+        update_post_meta($post_id, 'votes', 0);
+        update_post_meta($post_id, 'rank', 0);
+        update_post_meta($post_id, 'feature_in_round', false);
+
+        error_log('Post created successfully with ID: ' . $post_id);
+        $submission->set_response('Submission successful!');
+    } else {
+        error_log('Post creation failed for unknown reasons.');
+        $submission->set_response('Error: Failed to create post.');
+        $submission->set_status('validation_failed');
+        return;
+    }
+}
+
+add_action('wpcf7_before_send_mail', 'store_artist_to_custom_post');
+
+
+// alpine js cdn
+
+function load_alpine() {
+    wp_enqueue_script(
+        'alpine',
+        'https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js',
+        [],
+        null,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'load_alpine');
+
+// api route for booking form
+
+add_action('rest_api_init', function () {
+    register_rest_route('custom/v1', '/booking-submit', [
+        'methods' => 'POST',
+        'callback' => 'handle_booking_submission',
+    ]);
+});
+
+function handle_booking_submission($request) {
+    $params = $request->get_params(); 
+    $files  = $request->get_file_params();
+
+    // --- Contentful Integration Start ---
+    $space_id = 'na4mk1p9pznd'; 
+    $cma_token = 'CFPAT-1fvF5sp7OK4eijWg6jB5VogvyVuFZD9Fps61mLwfaq0'; 
+    $environment_id = 'master'; 
+
+    $asset_id = null;
+
+    // ---------- 1. IMAGE UPLOAD HANDLING ----------
+    if (!empty($files['tattooImage']) && $files['tattooImage']['error'] === UPLOAD_ERR_OK) {
+        $file = $files['tattooImage'];
+
+        // A. Upload binary
+        $upload = wp_remote_post("https://upload.contentful.com/spaces/$space_id/uploads", [
+            'headers' => [
+                'Authorization' => 'Bearer ' . $cma_token,
+                'Content-Type'  => 'application/octet-stream'
+            ],
+            'body' => file_get_contents($file['tmp_name'])
+        ]);
+
+        if (!is_wp_error($upload) && wp_remote_retrieve_response_code($upload) === 201) {
+            $upload_id = json_decode(wp_remote_retrieve_body($upload))->sys->id;
+
+            // B. Create localized Asset pointing to the Upload
+            $asset_body = [
+                "fields" => [
+                    "title" => ["en-US" => "Tattoo Concept - " . sanitize_text_field($params['fullName'])],
+                    "file"  => [
+                        "en-US" => [
+                            "contentType" => $file['type'],
+                            "fileName"    => sanitize_file_name($file['name']),
+                            "uploadFrom"  => [
+                                "sys" => ["type" => "Link", "linkType" => "Upload", "id" => $upload_id]
+                            ]
+                        ]
+                    ]
+                ]
+            ];
+
+            $asset = wp_remote_post("https://api.contentful.com/spaces/$space_id/environments/$environment_id/assets", [
+                'headers' => [
+                    'Authorization' => 'Bearer ' . $cma_token,
+                    'Content-Type'  => 'application/vnd.contentful.management.v1+json'
+                ],
+                'body' => json_encode($asset_body)
+            ]);
+
+            if (!is_wp_error($asset) && wp_remote_retrieve_response_code($asset) === 201) {
+                $asset_data = json_decode(wp_remote_retrieve_body($asset));
+                $asset_id = $asset_data->sys->id;
+                $asset_version = $asset_data->sys->version;
+
+                // C. Process the asset for Contentful Delivery
+                wp_remote_request("https://api.contentful.com/spaces/$space_id/environments/$environment_id/assets/$asset_id/files/en-US/process", [
+                    'method'  => 'PUT',
+                    'headers' => [
+                        'Authorization'        => 'Bearer ' . $cma_token,
+                        'X-Contentful-Version' => $asset_version
+                    ]
+                ]);
+            }
+        }
+    }
+
+
+    // ---------- 2. ENTRY PAYLOAD CONSTRUCTION ----------
+    $fields = [];
+    
+    // Map text requirements dynamically based on Contentful IDs discovered previously
+    $field_map = [
+        'fullName'          => 'fullName',
+        'email'             => 'email',
+        'phoneNumber'       => 'phoneNumber',
+        'age'               => 'ageType',
+        'gender'            => 'gender',
+        'size'              => 'size',
+        'color'             => 'colorType', 
+        'tattooDescription' => 'tattooDescription',
+        'location'          => 'miamiStatus',
+        'scheduleType'      => 'scheduleType',
+        'desiredTiming'     => 'desiredTiming'
+    ];
+
+    foreach ($field_map as $post_key => $contentful_key) {
+        if (!empty($params[$post_key])) {
+            $fields[$contentful_key] = ["en-US" => sanitize_text_field($params[$post_key])];
+        }
+    }
+
+    // Map Arrays into Comma string (Styles Array setup)
+    if (!empty($params['styles']) && is_array($params['styles'])) {
+        $styles_string = implode(", ", array_map('sanitize_text_field', $params['styles']));
+        $fields['selectedTattooStyles'] = ["en-US" => $styles_string];
+    }
+    
+    // Checkboxes
+    if (!empty($params['somethingDifferent'])) {
+        $fields['somethingDifferent'] = ["en-US" => 'Something different'];
+    }
+
+    // Timestamp
+    $fields['submissionDate'] = ["en-US" => gmdate("c")]; // Standard ISO 8601
+
+    // Attach processed image Asset Link
+    if ($asset_id) {
+        $fields["tattooImage"] = [
+            "en-US" => [
+                "sys" => ["type" => "Link", "linkType" => "Asset", "id" => $asset_id]
+            ]
+        ];
+    }
+
+    // ---------- 3. CREATE & PUBLISH ENTRY ----------
+    $entry = wp_remote_post("https://api.contentful.com/spaces/$space_id/environments/$environment_id/entries", [
+        'headers' => [
+            'Authorization'             => 'Bearer ' . $cma_token,
+            'Content-Type'              => 'application/vnd.contentful.management.v1+json',
+            'X-Contentful-Content-Type' => 'appointments'
+        ],
+        'body' => json_encode(["fields" => $fields])
+    ]);
+
+    $response_code = wp_remote_retrieve_response_code($entry);
+
+    // Provide the FULL Exact JSON string back if it fails
+    if (is_wp_error($entry) || $response_code >= 400) {
+        $error_body = wp_remote_retrieve_body($entry);
+        return [
+            'status'  => 'error', 
+            'message' => 'Failed to create entry. Contentful says: ' . $error_body
+        ];
+    }
+
+    // Extract payload to push a simultaneous publish command
+    $entry_data = json_decode(wp_remote_retrieve_body($entry));
+    $entry_id = $entry_data->sys->id;
+    $entry_version = $entry_data->sys->version;
+
+    $publish = wp_remote_request("https://api.contentful.com/spaces/$space_id/environments/$environment_id/entries/$entry_id/published", [
+        'method'  => 'PUT',
+        'headers' => [
+            'Authorization'        => 'Bearer ' . $cma_token,
+            'X-Contentful-Version' => $entry_version
+        ]
+    ]);
+
+    return [
+        'status' => 'success',
+        'entry'  => json_decode(wp_remote_retrieve_body($publish))
+    ];
+}
+
+// 1. Add ACF Options Page
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page([
+        'page_title' => 'Studio Settings',
+        'menu_title' => 'Studio Settings',
+        'menu_slug'  => 'studio-setting',
+        'capability' => 'edit_posts',
+        'redirect'   => false
+    ]);
+}
+
+function get_studio_status() {
+
+    $opening_time = get_field('opening_time', 'option'); // e.g. 09:00
+    $closing_time = get_field('closing_time', 'option'); // e.g. 22:00
+    $timezone     = get_field('timezone', 'option') ?: 'Asia/Karachi';
+
+    if (!$opening_time || !$closing_time) {
+        return [
+            'status' => 'Unknown',
+            'current_time' => null,
+            'timezone' => $timezone
+        ];
+    }
+
+    $tz = new DateTimeZone($timezone);
+
+    $now = new DateTime('now', $tz);
+    $current_time = $now->format('H:i');
+
+    $open = DateTime::createFromFormat('H:i', $opening_time, $tz);
+    $close = DateTime::createFromFormat('H:i', $closing_time, $tz);
+
+    // Align dates
+    $open->setDate($now->format('Y'), $now->format('m'), $now->format('d'));
+    $close->setDate($now->format('Y'), $now->format('m'), $now->format('d'));
+
+    // Handle overnight (e.g. 10PM - 2AM)
+    if ($close < $open) {
+        $close->modify('+1 day');
+        if ($now < $open) {
+            $now->modify('+1 day');
+        }
+    }
+
+    $status = ($now >= $open && $now <= $close) ? 'Open' : 'Closed';
+
+    return [
+        'status' => $status,
+        'current_time' => $now->format('h:i A'),
+        'timezone' => $timezone,
+        'opening_time' => $opening_time,
+        'closing_time' => $closing_time
+    ];
+}

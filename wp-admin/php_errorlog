@@ -1,0 +1,25 @@
+[18-May-2026 16:30:02 UTC] PHP Warning:  Undefined property: stdClass::$license in /home/customer/www/pandatattoo.com/public_html/wp-content/plugins/fluentformpro/libs/ff_plugin_updater/updater/FluentFormAddOnChecker.php on line 504
+[18-May-2026 16:30:30 UTC] PHP Warning:  Undefined property: stdClass::$plugin in /home/customer/www/pandatattoo.com/public_html/wp-includes/class-wp-list-util.php on line 168
+[18-May-2026 16:30:44 UTC] PHP Warning:  Undefined property: stdClass::$plugin in /home/customer/www/pandatattoo.com/public_html/wp-includes/class-wp-list-util.php on line 168
+[18-May-2026 16:50:18 UTC] Contentful CDA token not configured. Please set CONTENTFUL_CDA_TOKEN in wp-config.php
+[18-May-2026 16:50:29 UTC] Contentful CDA token not configured. Please set CONTENTFUL_CDA_TOKEN in wp-config.php
+[18-May-2026 16:50:36 UTC] Contentful CDA token not configured. Please set CONTENTFUL_CDA_TOKEN in wp-config.php
+[18-May-2026 16:50:40 UTC] Contentful CDA token not configured. Please set CONTENTFUL_CDA_TOKEN in wp-config.php
+[18-May-2026 17:04:53 UTC] Contentful API Request URL: https://cdn.contentful.com/spaces/na4mk1p9pznd/environments/master/entries?content_type=artists&limit=100&order=fields.artistName
+[18-May-2026 17:04:53 UTC] Contentful API returned 6 artists
+[28-May-2026 20:56:44 UTC] PHP Warning:  Undefined property: stdClass::$license in /home/customer/www/pandatattoo.com/public_html/wp-content/plugins/fluentformpro/libs/ff_plugin_updater/updater/FluentFormAddOnChecker.php on line 504
+[28-May-2026 21:16:51 UTC] Contentful API Request URL: https://cdn.contentful.com/spaces/na4mk1p9pznd/environments/master/entries?content_type=artists&limit=100&order=fields.artistName
+[28-May-2026 21:16:51 UTC] Contentful API returned 6 artists
+[28-May-2026 21:17:46 UTC] PHP Warning:  Undefined property: stdClass::$plugin in /home/customer/www/pandatattoo.com/public_html/wp-includes/class-wp-list-util.php on line 168
+[28-May-2026 21:18:25 UTC] PHP Warning:  Undefined property: stdClass::$plugin in /home/customer/www/pandatattoo.com/public_html/wp-includes/class-wp-list-util.php on line 168
+[25-Jul-2026 16:55:39 UTC] PHP Warning:  Undefined property: stdClass::$license in /home/customer/www/pandatattoo.com/public_html/wp-content/plugins/fluentformpro/libs/ff_plugin_updater/updater/FluentFormAddOnChecker.php on line 504
+[25-Jul-2026 16:55:39 UTC] Contentful API Request URL: https://cdn.contentful.com/spaces/na4mk1p9pznd/environments/master/entries?content_type=artists&limit=100&order=fields.artistName
+[25-Jul-2026 16:55:39 UTC] Contentful API returned 6 artists
+[12-Aug-2026 10:37:48 UTC] PHP Warning:  Undefined property: stdClass::$license in /home/customer/www/pandatattoo.com/public_html/wp-content/plugins/fluentformpro/libs/ff_plugin_updater/updater/FluentFormAddOnChecker.php on line 504
+[12-Aug-2026 10:38:00 UTC] Contentful API Request URL: https://cdn.contentful.com/spaces/na4mk1p9pznd/environments/master/entries?content_type=artists&limit=100&order=fields.artistName
+[12-Aug-2026 10:38:00 UTC] Contentful API returned 11 artists
+[12-Aug-2026 16:25:09 UTC] Contentful API Request URL: https://cdn.contentful.com/spaces/na4mk1p9pznd/environments/master/entries?content_type=artists&limit=100&order=fields.artistName
+[12-Aug-2026 16:25:10 UTC] Contentful API returned 11 artists
+[12-Aug-2026 18:57:10 UTC] PHP Warning:  Undefined property: stdClass::$plugin in /home/customer/www/pandatattoo.com/public_html/wp-includes/class-wp-list-util.php on line 168
+[12-Aug-2026 18:57:17 UTC] PHP Warning:  Undefined property: stdClass::$plugin in /home/customer/www/pandatattoo.com/public_html/wp-includes/class-wp-list-util.php on line 168
+[24-Aug-2026 21:34:14 UTC] PHP Warning:  Undefined property: stdClass::$license in /home/customer/www/pandatattoo.com/public_html/wp-content/plugins/fluentformpro/libs/ff_plugin_updater/updater/FluentFormAddOnChecker.php on line 504
