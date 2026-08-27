@@ -23,13 +23,13 @@ define( 'WP_CACHE', true ); // By Speed Optimizer by SiteGround
 
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'dbbpy361cisdqg' );
+define( 'DB_NAME', 'dbgisxgcwawgks' );
 
 /** Database username */
-define( 'DB_USER', 'ua6rowrv7helm' );
+define( 'DB_USER', 'uot4x6amtropv' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'cjrrjezrz08r' );
+define( 'DB_PASSWORD', 'giif1gcvjcxz' );
 
 /** Database hostname */
 define( 'DB_HOST', '127.0.0.1' );
