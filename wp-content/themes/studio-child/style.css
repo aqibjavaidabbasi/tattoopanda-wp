@@ -2994,6 +2994,19 @@ body.page-id-397 { /* Gear page */
     box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
 }
 
+body.has-modal-open .global-slider-dots-wrapper,
+body.has-modal-open .logo_wrap,
+body.has-modal-open .main-navigation,
+body.modal-open .global-slider-dots-wrapper,
+body.modal-open .logo_wrap,
+body.modal-open .main-navigation,
+.pt-modal-overlay.pt-modal-open ~ .global-slider-dots-wrapper {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
 /* ===============================================================
    MOBILE LUXURY DARK THEME & SECTION SLIDER (Panda Tattoo)
    =============================================================== */

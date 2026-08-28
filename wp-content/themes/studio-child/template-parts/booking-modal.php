@@ -331,7 +331,7 @@ if (!empty($args['artist_slug'])) {
     <div class="pt-modal-overlay" :class="{ 'pt-modal-open': open }"
         <?php if (!$is_inline): ?>
         @click.self="closeHandler()"
-        x-effect="open ? document.body.style.overflow = 'hidden' : document.body.style.overflow = ''"
+        x-effect="open ? (document.body.classList.add('has-modal-open', 'modal-open'), document.body.style.overflow = 'hidden') : (document.body.classList.remove('has-modal-open', 'modal-open'), document.body.style.overflow = '')"
         <?php endif; ?>>
 
         <section class="pt-modal-container">
@@ -1447,7 +1447,6 @@ if (!empty($args['artist_slug'])) {
 <style>
     /* ========================================
        BOOKING MODAL STYLES
-       Extracted from inline styles + Responsive
        ======================================== */
 
     /* Required for Alpine.js initialization state */
@@ -1455,10 +1454,23 @@ if (!empty($args['artist_slug'])) {
         display: none !important;
     }
 
+    /* Hide global dots, logo, and navigation when booking modal is open */
+    body.has-modal-open .global-slider-dots-wrapper,
+    body.has-modal-open .logo_wrap,
+    body.has-modal-open .main-navigation,
+    body.modal-open .global-slider-dots-wrapper,
+    body.modal-open .logo_wrap,
+    body.modal-open .main-navigation,
+    .pt-modal-overlay.pt-modal-open ~ .global-slider-dots-wrapper {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
     /* ========================================
-       MODAL LAYOUT - Scoped to prevent page interference
+       MODAL OVERLAY
        ======================================== */
-    /* Only apply when modal is within the x-data container */
     [x-data="bookingForm()"] .pt-modal-overlay,
     .pt-modal-overlay {
         display: none;
@@ -1467,57 +1479,73 @@ if (!empty($args['artist_slug'])) {
 
     [x-data="bookingForm()"] .pt-modal-overlay.pt-modal-open,
     .pt-modal-overlay.pt-modal-open {
-        display: flex;
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.85);
-        z-index: 9999;
-        align-items: flex-start;
-        justify-content: center;
-        overflow-y: auto;
-        padding: 40px 16px;
-        box-sizing: border-box;
+        display: flex !important;
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100vw !important;
+        height: 100vh !important;
+        height: 100dvh !important;
+        background: rgba(0, 0, 0, 0.94) !important;
+        backdrop-filter: blur(16px) !important;
+        -webkit-backdrop-filter: blur(16px) !important;
+        z-index: 99999999 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 16px !important;
+        padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
+        padding-bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
     }
 
+    /* ========================================
+       MODAL CONTAINER (Fixed Frame with internal scroll)
+       ======================================== */
     .pt-modal-container {
-        width: 100%;
-        max-width: 800px;
-        margin: auto;
-        background: #0d0d0d;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #ffffff;
-        border-radius: 16px;
-        position: relative;
-        max-height: calc(100vh - 80px);
-        overflow-y: auto;
-        box-sizing: border-box;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+        width: 100% !important;
+        max-width: 680px !important;
+        height: 88vh !important;
+        height: 88dvh !important;
+        max-height: 840px !important;
+        margin: auto !important;
+        background: #0d0d0d !important;
+        border: 1px solid rgba(255, 255, 255, 0.15) !important;
+        color: #ffffff !important;
+        border-radius: 20px !important;
+        position: relative !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95) !important;
+        z-index: 100 !important;
     }
 
-    .pt-modal-inner {
-        padding: 0;
-        min-height: 100%;
+    .pt-modal-inner,
+    .pt-modal-right,
+    .pt-modal-form {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        min-height: 0 !important;
+        position: relative !important;
     }
 
-    .pt-modal-right {
-        width: 100%;
-        max-width: 800px;
-        margin: 0 auto;
-        display: flex;
-        flex-direction: column;
-        position: relative;
-        min-height: 100%;
-    }
-
-    /* Fix scroll glitch - ensure smooth transitions between steps */
-    .pt-form-fields,
-    .pt-form-fields-step1 {
-        min-height: 100%;
-        will-change: transform;
+    /* Step Wrappers */
+    .pt-modal-form > div[x-show] {
+        width: 100% !important;
+        height: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        overflow: hidden !important;
+        min-height: 0 !important;
     }
 
     /* Prevent body scroll when modal is open */
-    body.modal-open {
+    body.modal-open,
+    body.has-modal-open {
         overflow: hidden !important;
         touch-action: none;
     }
@@ -1527,51 +1555,44 @@ if (!empty($args['artist_slug'])) {
        ======================================== */
     .pt-close-btn {
         position: absolute;
-        top: 12px;
-        right: 12px;
-        background: rgba(255, 255, 255, 0.08);
+        top: 14px;
+        right: 14px;
+        background: rgba(255, 255, 255, 0.1);
         color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        font-size: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        font-size: 18px;
         cursor: pointer;
-        z-index: 10;
-        width: 36px;
-        height: 36px;
+        z-index: 50;
+        width: 34px;
+        height: 34px;
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         transition: background 0.2s, transform 0.2s;
+        line-height: 1;
     }
 
     .pt-close-btn:hover {
-        background: rgba(255, 255, 255, 0.2);
-        transform: scale(1.05);
+        background: rgba(255, 255, 255, 0.25);
+        transform: scale(1.1);
     }
 
     /* ========================================
-       FORM FIELDS & INPUTS - Only inside open modal
+       FORM FIELDS & SCROLLABLE BODY
        ======================================== */
-    .pt-modal-overlay.pt-modal-open .pt-form-fields {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 24px;
-        min-height: 400px;
-    }
-
-    .pt-modal-overlay.pt-modal-open .pt-form-fields-step1 {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        width: 400px;
-        padding: 20px;
-        margin: auto;
-        min-height: 500px;
-    }
-
-    .pt-modal-form {
-        width: 100%;
+    .pt-form-fields,
+    .pt-form-fields-step1 {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        padding: 24px 20px 20px !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        box-sizing: border-box !important;
+        min-height: 0 !important;
     }
 
     .pt-input-group {
@@ -1579,13 +1600,13 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-floating-label-wrap {
-        margin-bottom: 4px;
+        margin-bottom: 6px;
     }
 
     .pt-floating-label {
         font-size: 14px;
         font-weight: 500;
-        color: #d1d5db;
+        color: #e2e8f0 !important;
     }
 
     .pt-input-wrap {
@@ -1598,21 +1619,22 @@ if (!empty($args['artist_slug'])) {
         background: #181818;
         color: #ffffff;
         border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 6px;
-        font-size: 16px;
+        border-radius: 8px;
+        font-size: 15px;
+        box-sizing: border-box;
         transition: border-color 0.2s, background 0.2s;
     }
 
     .pt-input-element:focus {
         outline: none;
         border-color: #ff4500;
-        background: #202020;
+        background: #222222;
     }
 
     input[type="file"].pt-input-element {
         padding: 12px;
         font-size: 13px;
-        color: #a0aec0;
+        color: #cbd5e1;
         cursor: pointer;
     }
 
@@ -1628,7 +1650,7 @@ if (!empty($args['artist_slug'])) {
         appearance: none;
         background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
-        background-position: right 12px center;
+        background-position: right 14px center;
         padding-right: 36px;
     }
 
@@ -1639,40 +1661,42 @@ if (!empty($args['artist_slug'])) {
     }
 
     /* ========================================
-       STEP HEADERS
+       STEP HEADERS & TYPOGRAPHY
        ======================================== */
+    .pt-step-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
     .pt-step-title {
-        font-size: 15px;
+        font-size: 16px;
         font-weight: 800;
-        margin-bottom: 2px;
+        margin-bottom: 4px;
         text-transform: uppercase;
-        color: #ffffff;
+        letter-spacing: 1px;
+        color: #ffffff !important;
     }
 
     .pt-step-subtitle {
-        margin-bottom: 24px;
+        margin-bottom: 16px;
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.7);
-    }
-
-    .pt-step-header {
-        text-align: center;
-        margin-bottom: 24px;
+        color: #cbd5e1 !important;
     }
 
     .pt-step-description {
-        margin-bottom: 16px;
-        font-size: 16px;
-        color: rgba(255, 255, 255, 0.75);
-        font-weight: 500;
+        margin-bottom: 12px;
+        font-size: 15px;
+        color: #cbd5e1 !important;
+        font-weight: 600;
     }
 
     .pt-step-instruction {
-        font-weight: bold;
-        margin-bottom: 24px;
-        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 18px;
+        font-size: 13px;
         text-transform: uppercase;
-        color: #ffffff;
+        letter-spacing: 0.5px;
+        color: #ffffff !important;
     }
 
     /* ========================================
@@ -1681,8 +1705,8 @@ if (!empty($args['artist_slug'])) {
     .pt-style-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        margin-bottom: 10px;
+        gap: 8px;
+        margin-bottom: 12px;
     }
 
     .pt-style-card {
@@ -1690,7 +1714,7 @@ if (!empty($args['artist_slug'])) {
         cursor: pointer;
         border: 1px solid rgba(255, 255, 255, 0.15);
         background: #141414;
-        border-radius: 8px;
+        border-radius: 10px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
@@ -1709,23 +1733,27 @@ if (!empty($args['artist_slug'])) {
         width: 18px;
         height: 18px;
         cursor: pointer;
-        z-index: 1;
+        z-index: 2;
         accent-color: #ff4500;
     }
 
     .pt-style-card img {
         width: 100%;
-        height: 140px;
+        height: 120px;
         object-fit: cover;
+        display: block;
     }
 
     .pt-style-label {
-        padding: 6px 2px;
+        padding: 8px 4px;
         font-size: 11px;
-        font-weight: 500;
+        font-weight: 600;
         text-align: center;
-        background: #141414;
-        color: #ffffff;
+        background: #141414 !important;
+        color: #ffffff !important;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .pt-something-different {
@@ -1733,8 +1761,8 @@ if (!empty($args['artist_slug'])) {
         align-items: center;
         cursor: pointer;
         justify-content: center;
-        margin-top: 8px;
-        color: #ffffff;
+        margin-top: 10px;
+        color: #ffffff !important;
     }
 
     .pt-something-different input {
@@ -1745,8 +1773,8 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-something-different span {
-        font-size: 14px;
-        color: #e2e8f0;
+        font-size: 13px;
+        color: #e2e8f0 !important;
     }
 
     /* ========================================
@@ -1765,8 +1793,8 @@ if (!empty($args['artist_slug'])) {
 
     .pt-radio-main-label {
         font-size: 14px;
-        font-weight: 500;
-        color: #ffffff;
+        font-weight: 600;
+        color: #ffffff !important;
     }
 
     .pt-radio-option {
@@ -1791,7 +1819,7 @@ if (!empty($args['artist_slug'])) {
         padding: 12px 16px;
         background: #181818;
         border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #e2e8f0;
+        color: #f1f5f9 !important;
         text-align: center;
         font-size: 13px;
         transition: all 0.2s;
@@ -1799,13 +1827,14 @@ if (!empty($args['artist_slug'])) {
 
     .pt-radio-button:hover {
         background: #252525;
-        color: #ffffff;
+        color: #ffffff !important;
     }
 
     .pt-radio-hidden:checked + .pt-radio-button {
-        background: #ff4500;
-        color: white;
-        border-color: #ff4500;
+        background: #ff4500 !important;
+        color: #ffffff !important;
+        border-color: #ff4500 !important;
+        font-weight: 600;
     }
 
     .pt-rounded-left {
@@ -1825,7 +1854,7 @@ if (!empty($args['artist_slug'])) {
     .pt-radio-sublabel {
         font-size: 10px;
         display: block;
-        color: rgba(255, 255, 255, 0.7);
+        color: #94a3b8 !important;
     }
 
     .pt-hidden-label {
@@ -1837,7 +1866,7 @@ if (!empty($args['artist_slug'])) {
     }
 
     /* ========================================
-       SECTION GROUPING - Mobile differentiation
+       SECTION GROUPING
        ======================================== */
     .pt-section-group {
         padding: 16px 0;
@@ -1853,9 +1882,9 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-section-group .pt-radio-main-label {
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 600;
-        color: #ffffff;
+        color: #ffffff !important;
         display: block;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -1866,8 +1895,8 @@ if (!empty($args['artist_slug'])) {
        ======================================== */
     .pt-artist-addons {
         background: #141414;
-        padding: 20px;
-        border-radius: 8px;
+        padding: 16px;
+        border-radius: 12px;
         border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
@@ -1883,16 +1912,17 @@ if (!empty($args['artist_slug'])) {
         cursor: pointer;
         transition: all 0.2s ease;
         width: 100%;
+        box-sizing: border-box;
     }
 
     .pt-addon-option:hover {
         background: #242424;
-        border-color: rgba(255, 255, 255, 0.2);
+        border-color: rgba(255, 255, 255, 0.25);
     }
 
     .pt-addon-checkbox {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        height: 18px;
         margin-top: 2px;
         cursor: pointer;
         accent-color: #ff4500;
@@ -1908,45 +1938,22 @@ if (!empty($args['artist_slug'])) {
     .pt-addon-name {
         font-weight: 600;
         font-size: 14px;
-        color: #ffffff;
+        color: #ffffff !important;
     }
 
     .pt-addon-desc {
         font-size: 13px;
-        color: rgba(255, 255, 255, 0.7);
+        color: #94a3b8 !important;
     }
 
     .pt-addon-price {
         font-weight: 700;
-        color: #ff4500;
+        color: #ff4500 !important;
         font-size: 14px;
     }
 
-    /* Mobile artist add-ons */
-    @media (max-width: 480px) {
-        .pt-artist-addons {
-            padding: 16px;
-        }
-
-        .pt-addon-option {
-            padding: 10px;
-        }
-
-        .pt-addon-name {
-            font-size: 15px;
-        }
-
-        .pt-addon-desc {
-            font-size: 14px;
-        }
-
-        .pt-addon-price {
-            font-size: 15px;
-        }
-    }
-
     /* ========================================
-       BODY MAP (STEP 3)
+       BODY MAP (STEP 2)
        ======================================== */
     .pt-body-map-section {
         text-align: center;
@@ -1955,9 +1962,10 @@ if (!empty($args['artist_slug'])) {
 
     .pt-body-map-label {
         font-size: 13px;
-        color: #8c8c8c;
-        font-weight: bold;
+        color: #ffffff !important;
+        font-weight: 700;
         text-transform: uppercase;
+        letter-spacing: 0.5px;
     }
 
     .pt-body-view-selector {
@@ -1972,7 +1980,7 @@ if (!empty($args['artist_slug'])) {
         padding: 4px;
         transition: 0.2s;
         border: 2px solid transparent;
-        opacity: 0.6;
+        opacity: 0.7;
         border-radius: 8px;
     }
 
@@ -1982,28 +1990,29 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-body-view-option img {
-        height: 200px;
+        height: 180px;
     }
 
     .pt-body-view-label {
-        font-size: 10px;
-        color: #8c8c8c;
+        font-size: 11px;
+        color: #cbd5e1 !important;
         display: block;
+        margin-top: 4px;
     }
 
     /* Body Map Overlay - Inside Modal */
     .pt-body-overlay {
         position: absolute;
         inset: 0;
-        background: rgba(0, 0, 0, 0.95);
-        z-index: 10;
+        background: rgba(0, 0, 0, 0.96);
+        z-index: 60;
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: flex-start;
         overflow-y: auto;
         padding: 20px 16px;
-        border-radius: 8px;
+        border-radius: 20px;
     }
 
     .pt-body-overlay-header {
@@ -2016,7 +2025,7 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-body-overlay-title {
-        color: white;
+        color: #ffffff !important;
         font-size: 16px;
         font-weight: 600;
         margin: 0;
@@ -2027,7 +2036,7 @@ if (!empty($args['artist_slug'])) {
     .pt-body-overlay-x {
         background: none;
         border: none;
-        color: #ccc;
+        color: #cbd5e1;
         font-size: 24px;
         cursor: pointer;
         padding: 4px 8px;
@@ -2035,17 +2044,7 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-body-overlay-x:hover {
-        color: white;
-    }
-
-    .pt-body-overlay-footer {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 16px;
-        flex-shrink: 0;
-        padding: 10px 0;
+        color: #ffffff;
     }
 
     .pt-body-overlay-bar {
@@ -2063,25 +2062,27 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-body-overlay-btn {
-        background: #444;
-        color: #ccc;
-        border: none;
-        padding: 6px 16px;
-        border-radius: 4px;
+        background: #252525;
+        color: #cbd5e1;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        padding: 6px 14px;
+        border-radius: 6px;
         cursor: pointer;
+        font-size: 13px;
         font-weight: normal;
         transition: all 0.2s;
     }
 
     .pt-body-overlay-btn.pt-active-btn {
         background: #ff4901;
-        color: white;
-        font-weight: bold;
+        color: #ffffff;
+        font-weight: 600;
+        border-color: #ff4901;
     }
 
     .pt-body-overlay-status {
-        color: #ccc;
-        font-size: 11px;
+        color: #cbd5e1 !important;
+        font-size: 12px;
         flex: 1;
         text-align: center;
         padding: 0 8px;
@@ -2089,33 +2090,26 @@ if (!empty($args['artist_slug'])) {
 
     .pt-body-overlay-done {
         background: #ff4901;
-        color: white;
+        color: #ffffff;
         border: none;
         padding: 6px 16px;
-        border-radius: 4px;
-        font-weight: bold;
+        border-radius: 6px;
+        font-weight: 600;
         cursor: pointer;
     }
 
     .pt-svg-wrapper {
         width: 100%;
-        max-width: 360px;
+        max-width: 340px;
     }
 
     .pt-body-map-svg {
         width: 100%;
         height: auto;
-        max-height: 400px;
+        max-height: 380px;
         display: block;
     }
 
-    .pt-body-map-svg image {
-        width: auto;
-        height: 100%;
-        margin: auto;
-    }
-
-    /* SVG Body Path Styles */
     .pt-body-path {
         cursor: pointer;
         transition: all 0.2s;
@@ -2132,42 +2126,58 @@ if (!empty($args['artist_slug'])) {
     }
 
     /* ========================================
-       FORM ACTIONS
+       STICKY FORM ACTIONS (FOOTER)
        ======================================== */
     .pt-form-actions {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        margin-top: 24px;
+        flex-shrink: 0 !important;
+        position: sticky !important;
+        bottom: 0 !important;
+        width: 100% !important;
+        background: #0d0d0d !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+        padding: 14px 20px !important;
+        margin-top: 0 !important;
+        z-index: 40 !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        gap: 12px !important;
+        box-sizing: border-box !important;
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.7) !important;
     }
 
     .pt-form-actions-centered {
-        justify-content: center;
+        justify-content: center !important;
     }
 
     .pt-btn {
-        padding: 12px 32px;
-        border-radius: 4px;
+        padding: 14px 28px;
+        border-radius: 8px;
         border: none;
-        font-weight: bold;
+        font-weight: 700;
         cursor: pointer;
         font-size: 14px;
+        letter-spacing: 0.5px;
         transition: all 0.2s;
         flex: 1;
+        text-align: center;
+        box-sizing: border-box;
     }
 
     .pt-btn-primary {
         background: #ff4500;
-        color: white;
+        color: #ffffff;
     }
 
     .pt-btn-primary:hover {
         background: #e63d00;
+        transform: translateY(-1px);
     }
 
     .pt-btn-primary:disabled {
-        background: #ccc;
+        background: #444444;
+        color: #888888;
         cursor: not-allowed;
+        transform: none;
     }
 
     .pt-btn-secondary {
@@ -2182,56 +2192,12 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-btn-wide {
-        padding: 12px 64px;
+        padding: 14px 48px;
+        max-width: 320px;
     }
 
     .pt-btn-black {
         background-color: #000000;
-    }
-
-    /* ========================================
-       TOAST NOTIFICATION
-       ======================================== */
-    .pt-toast {
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        padding: 12px 24px;
-        border-radius: 8px;
-        color: white;
-        font-weight: bold;
-        z-index: 99999;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
-        width: max-content;
-        max-width: 340px;
-        text-align: center;
-    }
-
-    .pt-toast-success {
-        background: #2ecc71;
-    }
-
-    .pt-toast-error {
-        background: #e74c3c;
-    }
-
-    /* ========================================
-       UTILITY CLASSES
-       ======================================== */
-    .mt-2 {
-        margin-top: 8px;
-    }
-
-    .mt-4 {
-        margin-top: 16px;
-    }
-
-    .mr-2 {
-        margin-right: 8px;
-    }
-
-    .uppercase {
-        text-transform: uppercase;
     }
 
     /* ========================================
@@ -2240,43 +2206,23 @@ if (!empty($args['artist_slug'])) {
     .pt-thank-you-step {
         padding: 60px 20px;
         text-align: center;
-    }
-
-    .pt-thank-you-content {
-        max-width: 400px;
-        margin: 0 auto;
-    }
-
-    .pt-thank-you-icon {
-        width: 80px;
-        height: 80px;
-        margin: 0 auto 24px;
-        background: linear-gradient(135deg, #ff4500 0%, #ff7844 100%);
-        border-radius: 50%;
+        flex: 1;
         display: flex;
-        align-items: center;
+        flex-direction: column;
         justify-content: center;
-        animation: pt-scale-in 0.5s ease-out;
-    }
-
-    .pt-check-icon {
-        width: 40px;
-        height: 40px;
-        color: white;
-        stroke-width: 3;
     }
 
     .pt-thank-you-title {
         font-size: 32px;
         font-weight: 700;
-        color: #ffffff;
+        color: #ffffff !important;
         margin-bottom: 16px;
         animation: pt-fade-in 0.6s ease-out 0.2s both;
     }
 
     .pt-thank-you-message {
         font-size: 18px;
-        color: rgba(255, 255, 255, 0.85);
+        color: rgba(255, 255, 255, 0.85) !important;
         margin-bottom: 12px;
         line-height: 1.6;
         animation: pt-fade-in 0.6s ease-out 0.4s both;
@@ -2284,31 +2230,19 @@ if (!empty($args['artist_slug'])) {
 
     .pt-thank-you-submessage {
         font-size: 14px;
-        color: rgba(255, 255, 255, 0.6);
+        color: rgba(255, 255, 255, 0.6) !important;
         line-height: 1.6;
         animation: pt-fade-in 0.6s ease-out 0.6s both;
     }
 
     @keyframes pt-scale-in {
-        from {
-            transform: scale(0);
-            opacity: 0;
-        }
-        to {
-            transform: scale(1);
-            opacity: 1;
-        }
+        from { transform: scale(0); opacity: 0; }
+        to { transform: scale(1); opacity: 1; }
     }
 
     @keyframes pt-fade-in {
-        from {
-            opacity: 0;
-            transform: translateY(10px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
     /* ========================================
@@ -2316,53 +2250,34 @@ if (!empty($args['artist_slug'])) {
        ======================================== */
     @media (max-width: 768px) {
         .pt-modal-overlay.pt-modal-open {
-            padding: 10px;
-            overflow-y: auto;
+            padding: 10px !important;
+            padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
+            padding-bottom: max(12px, env(safe-area-inset-bottom, 12px)) !important;
         }
 
         .pt-modal-container {
-            max-width: 100%;
-            border-radius: 8px;
-            max-height: calc(100vh - 20px);
+            max-width: 100% !important;
+            height: 94vh !important;
+            height: 94dvh !important;
+            max-height: 94dvh !important;
+            border-radius: 16px !important;
         }
 
-        .pt-modal-overlay.pt-modal-open .pt-form-fields {
-            padding: 16px;
-            min-height: 300px;
+        .pt-form-fields,
+        .pt-form-fields-step1 {
+            padding: 20px 16px !important;
         }
 
-        .pt-modal-overlay.pt-modal-open .pt-form-fields-step1 {
-            width: 100%;
-            padding: 16px;
-            min-height: auto;
-        }
-
-        /* Style grid becomes 2 columns on tablet */
+        /* Style grid becomes 2 columns on mobile/tablet */
         .pt-style-grid {
             grid-template-columns: repeat(2, 1fr);
             gap: 8px;
         }
 
         .pt-style-card img {
-            height: 120px;
+            height: 110px;
         }
 
-        /* Body map adjustments */
-        .pt-body-view-option img {
-            height: 220px;
-            width: auto;
-            margin: auto;
-        }
-
-        .pt-svg-wrapper {
-            max-width: 300px;
-        }
-
-        .pt-body-map-svg {
-            max-height: 300px;
-        }
-
-        /* Radio buttons stack better */
         .pt-radio-option {
             min-width: 60px;
         }
@@ -2372,242 +2287,79 @@ if (!empty($args['artist_slug'])) {
             font-size: 12px;
         }
 
-        /* Section groups more prominent on mobile */
-        .pt-section-group {
-            padding: 20px 0;
-            margin: 0 -16px;
-            padding-left: 16px;
-            padding-right: 16px;
-            background: #fafafa;
-            border-bottom: 2px solid #e2e8f0;
-        }
-
-        .pt-section-group:nth-child(odd) {
-            background: #ffffff;
-        }
-
-        .pt-section-group .pt-radio-main-label {
-            font-size: 13px;
-            margin-bottom: 12px;
-        }
-
-        /* Form actions stack on smaller screens */
         .pt-form-actions {
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .pt-btn {
-            width: 100%;
-            padding: 14px 24px;
-        }
-
-        /* Toast adjusts for mobile */
-        .pt-toast {
-            left: 16px;
-            right: 16px;
-            max-width: none;
-            width: auto;
-            top: auto;
-            bottom: 20px;
-            word-wrap: break-word;
-            white-space: normal;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-
-        /* Thank you step mobile adjustments */
-        .pt-thank-you-step {
-            padding: 40px 20px;
-        }
-
-        .pt-thank-you-icon {
-            width: 70px;
-            height: 70px;
-        }
-
-        .pt-check-icon {
-            width: 35px;
-            height: 35px;
-        }
-
-        .pt-thank-you-title {
-            font-size: 28px;
-        }
-
-        .pt-thank-you-message {
-            font-size: 16px;
+            padding: 12px 16px !important;
         }
     }
 
     @media (max-width: 480px) {
         .pt-step-title {
-            font-size: 20px;
-            margin-bottom: 8px;
+            font-size: 16px !important;
+            color: #ffffff !important;
         }
 
         .pt-step-subtitle {
-            font-size: 16px;
+            font-size: 13px !important;
+            color: #cbd5e1 !important;
         }
 
         .pt-step-description {
-            font-size: 18px;
-            margin-bottom: 16px;
+            font-size: 15px !important;
+            color: #cbd5e1 !important;
             font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        /* Larger radio labels for mobile */
-        .pt-radio-main-label {
-            font-size: 16px;
-            font-weight: 600;
-            text-align: center;
-        }
-
-        .pt-section-group .pt-radio-main-label {
-            font-size: 17px;
-            margin-bottom: 14px;
-            text-align: center;
-            font-weight: 700;
-        }
-
-        /* Center align radio rows */
-        .pt-radio-row {
-            justify-content: center;
-        }
-
-        .pt-radio-label-wrap {
-            text-align: center;
-        }
-
-        /* Larger body map labels */
-        .pt-body-map-label {
-            font-size: 14px;
-            margin-bottom: 12px;
-        }
-
-        .pt-body-view-label {
-            font-size: 13px;
-        }
-
-        /* Larger style labels */
-        .pt-style-label {
-            font-size: 14px;
-            padding: 6px 4px;
-        }
-
-        /* Center align section groups */
-        .pt-section-group {
-            text-align: center;
-        }
-
-        /* Larger input labels */
-        .pt-floating-label {
-            font-size: 15px;
-        }
-
-        /* Larger radio buttons text */
-        .pt-radio-button {
-            font-size: 15px;
-            padding: 14px 12px;
-        }
-
-        /* Style grid becomes 1 column on very small screens */
-        .pt-style-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .pt-style-card img {
-            height: 160px;
-        }
-
-        /* Body view selector stacks */
-        .pt-body-view-selector {
-            flex-direction: row;
-            gap: 12px;
-        }
-
-        .pt-body-view-option img {
-            height: 220px;
-            width: auto;
-            margin: auto;
-        }
-
-        /* Overlay adjustments */
-        .pt-body-overlay {
-            padding: 10px;
-            border-radius: 8px;
-        }
-
-        .pt-body-overlay-bar {
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .pt-body-overlay-title {
-            font-size: 18px;
-        }
-
-        /* Ensure step headers are prominent */
-        .pt-step-header {
-            margin-bottom: 20px;
         }
 
         .pt-step-instruction {
-            font-size: 14px;
-            margin-bottom: 16px;
+            font-size: 12px !important;
+            color: #ffffff !important;
         }
 
-        /* Form fields spacing for mobile */
-        .pt-form-fields,
-        .pt-form-fields-step1 {
-            padding-top: 10px;
+        .pt-radio-main-label {
+            font-size: 14px !important;
+            color: #ffffff !important;
         }
 
-        .pt-body-overlay-status {
-            order: 3;
-            width: 100%;
-            text-align: center;
-            padding: 8px 0;
-        }
-        .pt-body-overlay-buttons {
-            order: 1;
+        .pt-section-group .pt-radio-main-label {
+            font-size: 14px !important;
+            color: #ffffff !important;
         }
 
-        .pt-body-overlay-done {
-            order: 2;
-        }
-
-        .pt-svg-wrapper {
-            max-width: 100%;
-        }
-
-        /* Make radio buttons full width */
-        .pt-radio-row {
-            flex-direction: column;
-        }
-
-        .pt-radio-option {
-            width: 100%;
+        .pt-floating-label {
+            font-size: 13px !important;
+            color: #e2e8f0 !important;
         }
 
         .pt-radio-button {
-            border-radius: 6px !important;
+            font-size: 13px !important;
+            padding: 12px 10px !important;
         }
 
-        /* Close button smaller on mobile */
-        .pt-modal-overlay.pt-modal-open .pt-close-btn {
-            top: 8px;
-            right: 8px;
-            width: 32px;
-            height: 32px;
-            font-size: 20px;
+        .pt-style-label {
+            font-size: 11px !important;
+            padding: 6px 2px !important;
+            color: #ffffff !important;
+            background: #141414 !important;
         }
-    }
 
-    @media (min-width: 769px) {
-        .pt-modal-container {
-            max-height: calc(100vh - 80px);
+        .pt-style-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .pt-style-card img {
+            height: 100px;
+        }
+
+        .pt-body-view-option img {
+            height: 160px;
+        }
+
+        .pt-close-btn {
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            font-size: 16px;
         }
     }
 </style>

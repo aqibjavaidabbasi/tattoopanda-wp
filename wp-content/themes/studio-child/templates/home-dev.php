@@ -239,6 +239,14 @@ get_header();
         box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
     }
 
+    body.has-modal-open .global-slider-dots-wrapper,
+    body.modal-open .global-slider-dots-wrapper {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
     /* ========================================
        SECTION 5: POST SCRIPTUM (Manifesto)
        ======================================== */
