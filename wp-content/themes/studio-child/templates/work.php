@@ -165,38 +165,64 @@ get_header();
 
     /* Navigation Controls */
     .hd-swiper-nav-controls {
-        display: flex;
-        align-items: center;
-        gap: 8px;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 10px !important;
     }
 
+    button.hd-nav-btn,
     .hd-nav-btn {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        backdrop-filter: blur(8px);
-        -webkit-backdrop-filter: blur(8px);
+        width: 42px !important;
+        min-width: 42px !important;
+        max-width: 42px !important;
+        height: 42px !important;
+        min-height: 42px !important;
+        max-height: 42px !important;
+        aspect-ratio: 1 / 1 !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        border: 1px solid rgba(255, 255, 255, 0.22) !important;
+        color: #ffffff !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        box-sizing: border-box !important;
+        outline: none !important;
+        line-height: 1 !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+        flex-shrink: 0 !important;
+    }
+
+    .hd-nav-btn svg {
+        width: 20px !important;
+        height: 20px !important;
+        stroke: #ffffff !important;
+        fill: none !important;
+        display: block !important;
+        pointer-events: none !important;
+        transition: stroke 0.2s ease !important;
     }
 
     .hd-nav-btn:hover {
-        background: #ffffff;
-        color: #000000;
-        border-color: #ffffff;
-        transform: scale(1.05);
+        background: #ffffff !important;
+        border-color: #ffffff !important;
+        transform: scale(1.06) !important;
+    }
+
+    .hd-nav-btn:hover svg {
+        stroke: #000000 !important;
     }
 
     .hd-nav-btn.swiper-button-disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-        pointer-events: none;
+        opacity: 0.25 !important;
+        cursor: not-allowed !important;
+        pointer-events: none !important;
     }
 
     /* Swiper Slider Styling */
