@@ -178,46 +178,26 @@ get_header();
         border-radius: 999px;
     }
 
-    /* Social Links Styling */
-    .hd-social-links-list {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-        align-items: center;
-    }
-
-    .hd-social-pill {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 999px;
-        padding: 8px 16px;
-        color: #ffffff !important;
-        font-size: 13px;
-        font-weight: 600;
-        text-decoration: none !important;
-        letter-spacing: 0.03em;
-        transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .hd-social-pill:hover {
-        background: rgba(255, 255, 255, 0.14);
-        border-color: rgba(255, 255, 255, 0.35);
-        transform: translateY(-2px);
-        color: #ffffff !important;
-    }
-
     .hd-custom-contact-info {
         font-size: 14px;
         color: rgba(255, 255, 255, 0.85);
         line-height: 1.6;
     }
 
-    .hd-custom-contact-info a {
-        color: #ffffff;
-        text-decoration: underline;
+    .hd-custom-contact-info a,
+    .hd-contact-main-card a {
+        color: #ffffff !important;
+        text-decoration: none !important;
+        border-bottom: none !important;
+        box-shadow: none !important;
+        transition: opacity 0.2s ease, color 0.2s ease;
+    }
+
+    .hd-custom-contact-info a:hover,
+    .hd-contact-main-card a:hover {
+        opacity: 0.8;
+        text-decoration: none !important;
+        border-bottom: none !important;
     }
 
     .hd-custom-contact-info ul {
@@ -226,11 +206,16 @@ get_header();
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 6px;
     }
 
     .hd-custom-contact-info li {
         margin: 0;
+        list-style: none;
+    }
+
+    .hd-custom-contact-info p {
+        margin: 0 0 10px 0;
     }
 
     /* One Liner Studio Hours */
@@ -479,21 +464,6 @@ get_header();
                         </div>
                     <?php endif; ?>
 
-                    <div class="hd-social-links-list">
-                        <a href="https://instagram.com/tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Instagram @tattoopandaofficial">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-                            <span>Instagram</span>
-                        </a>
-                        <a href="https://www.facebook.com/tattoopandaofficial/" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Facebook">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                            <span>Facebook</span>
-                        </a>
-                        <a href="https://www.tiktok.com/@tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="TikTok @tattoopandaofficial">
-                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                            <span>TikTok</span>
-                        </a>
-                    </div>
-
                     <!-- One Liner Studio Hours -->
                     <div class="hd-contact-hours-line">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
@@ -509,12 +479,6 @@ get_header();
                     </div>
                     <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="PANDA" class="hd-contact-visual-logo" loading="lazy">
                 </div>
-
-                <?php if (get_field('vat_info')): ?>
-                    <div class="hd-contact-vat">
-                        <?php the_field('vat_info'); ?>
-                    </div>
-                <?php endif; ?>
             </div>
 
             <!-- Right Column: Message Form -->
