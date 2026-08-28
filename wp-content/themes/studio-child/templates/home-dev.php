@@ -32,6 +32,7 @@ get_header();
         justify-content: center;
         width: 100%;
         height: 100%;
+        min-height: 80vh;
         box-sizing: border-box;
     }
 
@@ -39,38 +40,15 @@ get_header();
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        gap: 16px;
+        justify-content: space-evenly;
+        gap: clamp(24px, 4.5vh, 48px);
         width: 100%;
-        max-width: 440px;
+        max-width: 520px;
+        min-height: 75vh;
         margin: 0 auto;
-        padding: 20px 10px;
+        padding: 40px 16px;
         box-sizing: border-box;
         text-align: center;
-    }
-
-    .hd-hero-eyebrow {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 5px 14px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.06);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        font-size: 11px;
-        font-weight: 600;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.9);
-    }
-
-    .hd-hero-badge {
-        color: #ffffff;
-    }
-
-    .hd-hero-loc {
-        color: rgba(255, 255, 255, 0.5);
-        font-size: 10px;
     }
 
     .hd-hero-top-headline {
@@ -80,91 +58,15 @@ get_header();
 
     .hd-tagline {
         color: #ffffff !important;
-        font-size: clamp(24px, 4.5vw, 36px) !important;
+        font-size: clamp(26px, 4.8vw, 42px) !important;
         font-weight: 700 !important;
         text-transform: uppercase !important;
-        line-height: 1.22 !important;
-        letter-spacing: 0.05em !important;
+        line-height: 1.24 !important;
+        letter-spacing: 0.04em !important;
         margin: 0 auto !important;
-        max-width: 380px !important;
-    }
-
-    .hd-hero-desc {
-        color: rgba(255, 255, 255, 0.7) !important;
-        font-size: 13px !important;
-        line-height: 1.5 !important;
-        margin: 0 auto !important;
-        max-width: 360px !important;
-        font-weight: 400 !important;
-    }
-
-    .hd-hero-actions {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        width: 100%;
-        max-width: 360px;
-        margin: 4px auto 0;
-        flex-wrap: wrap;
-    }
-
-    .hd-hero-btn-primary {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: #ffffff !important;
-        color: #000000 !important;
-        border: 1.5px solid #ffffff !important;
-        border-radius: 999px !important;
-        padding: 10px 24px !important;
-        font-size: 11px !important;
-        font-weight: 700 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.12em !important;
-        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25) !important;
-        cursor: pointer !important;
-        transition: all 0.2s ease !important;
-        line-height: 1 !important;
-    }
-
-    .hd-hero-btn-primary span {
-        color: #000000 !important;
-        font-weight: 700 !important;
-    }
-
-    .hd-hero-btn-primary:hover {
-        background: #f0ece6 !important;
-        transform: translateY(-1px) !important;
-    }
-
-    .hd-hero-btn-secondary {
-        display: inline-flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        background: rgba(255, 255, 255, 0.08) !important;
-        color: #ffffff !important;
-        border: 1px solid rgba(255, 255, 255, 0.25) !important;
-        border-radius: 999px !important;
-        padding: 10px 20px !important;
-        font-size: 11px !important;
-        font-weight: 600 !important;
-        text-transform: uppercase !important;
-        letter-spacing: 0.1em !important;
-        cursor: pointer !important;
-        text-decoration: none !important;
-        transition: all 0.2s ease !important;
-        line-height: 1 !important;
-    }
-
-    .hd-hero-btn-secondary span {
-        color: #ffffff !important;
-    }
-
-    .hd-hero-btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.18) !important;
-        border-color: rgba(255, 255, 255, 0.4) !important;
-        transform: translateY(-1px) !important;
+        max-width: 440px !important;
+        text-wrap: balance !important;
+        text-wrap: pretty !important;
     }
 
     /* Live Studio Status Card */
@@ -173,20 +75,23 @@ get_header();
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        max-width: 360px;
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 12px;
-        padding: 10px 16px;
+        max-width: 380px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 14px;
+        padding: 12px 22px;
         box-sizing: border-box;
-        margin: 2px auto 0;
+        margin: 0 auto;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
     }
 
     .hd-status-col {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 3px;
+        gap: 4px;
         text-align: left;
     }
 
@@ -196,15 +101,15 @@ get_header();
     }
 
     .hd-status-label {
-        font-size: 9px;
+        font-size: 10px;
         font-weight: 600;
         text-transform: uppercase;
-        letter-spacing: 0.1em;
+        letter-spacing: 0.12em;
         color: rgba(255, 255, 255, 0.5);
     }
 
     .hd-status-val {
-        font-size: 12px;
+        font-size: 13.5px;
         font-weight: 600;
         letter-spacing: 0.04em;
         color: #ffffff;
@@ -212,20 +117,20 @@ get_header();
 
     .hd-status-divider {
         width: 1px;
-        height: 24px;
-        background: rgba(255, 255, 255, 0.12);
-        margin: 0 8px;
+        height: 26px;
+        background: rgba(255, 255, 255, 0.15);
+        margin: 0 10px;
     }
 
     .hd-status-indicator {
         display: inline-flex;
         align-items: center;
-        gap: 5px;
+        gap: 6px;
     }
 
     .hd-status-dot {
-        width: 6px;
-        height: 6px;
+        width: 7px;
+        height: 7px;
         border-radius: 50%;
         display: inline-block;
     }
@@ -246,6 +151,23 @@ get_header();
 
     .hd-status-indicator.closed {
         color: #ef4444;
+    }
+
+    .hd-logotype {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .hd-logotype img {
+        width: 100%;
+        height: auto;
+        display: block;
+        max-height: 90px;
+        object-fit: contain;
     }
 
     /* 3-Column Highlights Grid */
@@ -793,18 +715,61 @@ get_header();
 
     /* Mobile responsive */
     @media (max-width: 991px) {
-        .studio-status-bar {
-            flex-direction: row;
-            gap: 8px;
-            align-items: flex-start;
+        /* Section 1 mobile */
+        .section_1.hd-hero-section {
+            height: 100dvh !important;
+            min-height: 100dvh !important;
+            padding: 72px 20px 85px !important;
+            box-sizing: border-box !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
         }
 
-        .studio-time {
-            font-size: 28px;
+        .section_1.hd-hero-section .hd-section-inner {
+            height: 100% !important;
+            width: 100% !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-between !important;
         }
 
-        .studio-status {
-            font-size: 20px;
+        .hd-hero-top-wrap {
+            height: 100% !important;
+            min-height: auto !important;
+            padding: 0 !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: space-evenly !important;
+            gap: 16px !important;
+            max-width: 360px !important;
+        }
+
+        .hd-tagline {
+            font-size: 26px !important;
+            line-height: 1.25 !important;
+            letter-spacing: 0.04em !important;
+        }
+
+        .hd-hero-status-card {
+            max-width: 340px !important;
+            padding: 10px 18px !important;
+            margin: 0 auto !important;
+        }
+
+        .hd-status-val {
+            font-size: 12px !important;
+        }
+
+        .hd-logotype {
+            max-width: 250px !important;
+            margin: 0 auto !important;
+        }
+
+        .hd-hero-scroll-cue {
+            margin: 4px auto 0 !important;
+            padding: 8px 18px !important;
+            font-size: 10.5px !important;
         }
 
         /* Section 2 mobile */
@@ -1036,11 +1001,18 @@ get_header();
                                 <?php endif; ?>
                             </div>
 
-                            <!-- Studio Status Bar -->
-                            <div class="studio-status-bar">
-                                <div class="studio-time"><?php echo esc_html($current_time); ?></div>
-                                <div class="studio-status">
-                                    Studio: <span class="<?php echo strtolower($studio_status); ?>"><?php echo esc_html($studio_status); ?></span>
+                            <!-- Live Studio Status Card -->
+                            <div class="hd-hero-status-card">
+                                <div class="hd-status-col">
+                                    <span class="hd-status-label">Current Time</span>
+                                    <span class="hd-status-val"><?php echo esc_html($current_time); ?> EST</span>
+                                </div>
+                                <div class="hd-status-divider"></div>
+                                <div class="hd-status-col">
+                                    <span class="hd-status-label">Studio Hours</span>
+                                    <span class="hd-status-val hd-status-indicator <?php echo strtolower($studio_status); ?>">
+                                        <span class="hd-status-dot"></span> <?php echo esc_html($studio_status); ?> (11AM–9PM)
+                                    </span>
                                 </div>
                             </div>
 
