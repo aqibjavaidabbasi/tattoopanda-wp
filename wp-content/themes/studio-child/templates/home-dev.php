@@ -946,7 +946,7 @@ get_header();
                 <div class="hd-final-content-wrap">
                     <!-- Top Image -->
                     <div class="hd-final-image-wrap">
-                        <img src="https://pandatattoo.com/wp-content/uploads/2025/04/ET_0001_Livello_9_d432086c52.webp" alt="Tatu Panda Studio" class="hd-final-image" loading="lazy">
+                        <img src="https://pandatattoo.com/wp-content/uploads/2025/05/Tattoo-Artist-Tatu-Panda-3-1.jpg" alt="Panda Tattoo Studio" class="hd-final-image" loading="lazy">
                     </div>
 
                     <!-- Panda Wordmark Logo -->
