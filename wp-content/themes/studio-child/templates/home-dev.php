@@ -723,17 +723,6 @@ get_header();
                                     loading="eager"
                                 >
                             </div>
-
-                            <div class="hd-hero-body">
-                                <div class="hd-hero-content">
-                                    <!-- Primary CTA -->
-                                    <div x-data>
-                                        <button @click="$dispatch('open-booking-modal')" class="button hd-hero-cta ghl-booking-btn" aria-label="Book a tattoo appointment at Tatu Panda">
-                                            <span class="button-content">Book Appointment</span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
