@@ -1183,8 +1183,8 @@ get_header();
                             <?php endif; ?>
 
                             <!-- Action CTA -->
-                            <div class="hd-ps-action-wrap">
-                                <button type="button" @click="$dispatch('open-booking-modal')" class="ghl-booking-btn button hd-ps-cta-btn" aria-label="Book Appointment">
+                            <div class="hd-ps-action-wrap" x-data>
+                                <button type="button" @click="$dispatch('open-booking-modal')" onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="ghl-booking-btn button hd-ps-cta-btn" aria-label="Book Appointment">
                                     <span>Book Appointment</span>
                                 </button>
                             </div>
@@ -1321,6 +1321,12 @@ get_template_part('template-parts/booking-modal');
         const sectionCount = $sections.length;
         const dotsContainer = document.getElementById('globalSliderDots');
         let currentSlideIndex = 0;
+
+        // Global listener for all booking buttons to open modal
+        $(document).on('click', '.ghl-booking-btn, .hd-ps-cta-btn', function (e) {
+            e.preventDefault();
+            window.dispatchEvent(new CustomEvent('open-booking-modal'));
+        });
 
         // Render global sticky dots strictly for direct child sections
         if (dotsContainer && sectionCount > 0) {
