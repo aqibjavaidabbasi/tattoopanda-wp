@@ -926,8 +926,7 @@ if (!empty($args['artist_slug'])) {
                                                 <template x-if="selectedGender === 'Female' && bodyView === 'front'">
                                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 680 1320" class="pt-body-map-svg">
-                                                        <image overflow="visible" width="800" height="1360"
-                                                            href="https://pandatattoo.com/wp-content/uploads/2026/04/f-modela.png" />
+                                                        <image overflow="visible" x="0" y="0" width="680" height="1320" preserveAspectRatio="none" href="https://pandatattoo.com/wp-content/uploads/2026/04/f-modela.png" />
                                                         <path @click="togglePosition('head')" id="ffb_1"
                                                             :class="{ 'pt-active-path': selectedPositions.includes('head') }"
                                                             class="head pt-body-path" fill="transparent"
@@ -1073,8 +1072,7 @@ if (!empty($args['artist_slug'])) {
                                                 <template x-if="selectedGender === 'Female' && bodyView === 'back'">
                                                     <svg version="1.1" xmlns="http://www.w3.org/2000/svg"
                                                         viewBox="0 0 680 1320" class="pt-body-map-svg">
-                                                        <image overflow="visible" width="800" height="1360"
-                                                            href="https://pandatattoo.com/wp-content/uploads/2026/04/f-modelb.png" />
+                                                        <image overflow="visible" x="0" y="0" width="680" height="1320" preserveAspectRatio="none" href="https://pandatattoo.com/wp-content/uploads/2026/04/f-modelb.png" />
                                                         <path @click="togglePosition('head-back')" id="ffb_29"
                                                             :class="{ 'pt-active-path': selectedPositions.includes('head-back') }"
                                                             class="head-back pt-body-path" fill="transparent"
@@ -1554,23 +1552,30 @@ if (!empty($args['artist_slug'])) {
        CLOSE BUTTON (Fixed at Top Right of Modal)
        ======================================== */
     .pt-close-btn {
-        position: absolute;
-        top: 14px;
-        right: 14px;
-        background: rgba(255, 255, 255, 0.12);
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.25);
-        font-size: 18px;
-        cursor: pointer;
-        z-index: 50;
-        width: 36px;
-        height: 36px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
+        position: absolute !important;
+        top: 14px !important;
+        right: 14px !important;
+        background: rgba(255, 255, 255, 0.12) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        font-size: 16px !important;
+        cursor: pointer !important;
+        z-index: 50 !important;
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        min-height: 36px !important;
+        max-width: 36px !important;
+        max-height: 36px !important;
+        aspect-ratio: 1 / 1 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 50% !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
         transition: background 0.2s, transform 0.2s;
-        line-height: 1;
+        line-height: 1 !important;
     }
 
     .pt-close-btn:hover {
@@ -1614,21 +1619,40 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-input-element {
-        width: 100%;
-        padding: 12px 16px;
-        background: #181818;
-        color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        font-size: 15px;
-        box-sizing: border-box;
-        transition: border-color 0.2s, background 0.2s;
+        width: 100% !important;
+        padding: 12px 16px !important;
+        background: #181818 !important;
+        background-color: #181818 !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.2) !important;
+        border-radius: 8px !important;
+        font-size: 15px !important;
+        box-sizing: border-box !important;
+        transition: border-color 0.2s, background 0.2s !important;
     }
 
     .pt-input-element:focus {
-        outline: none;
-        border-color: #ff4500;
-        background: #222222;
+        outline: none !important;
+        border-color: #ff4500 !important;
+        background: #222222 !important;
+        background-color: #222222 !important;
+        color: #ffffff !important;
+    }
+
+    .pt-input-element::placeholder {
+        color: #64748b !important;
+        opacity: 1 !important;
+    }
+
+    /* Prevent browser autofill from turning inputs white in personal info */
+    .pt-input-element:-webkit-autofill,
+    .pt-input-element:-webkit-autofill:hover, 
+    .pt-input-element:-webkit-autofill:focus, 
+    .pt-input-element:-webkit-autofill:active {
+        -webkit-box-shadow: 0 0 0 1000px #181818 inset !important;
+        -webkit-text-fill-color: #ffffff !important;
+        caret-color: #ffffff !important;
+        transition: background-color 5000s ease-in-out 0s !important;
     }
 
     input[type="file"].pt-input-element {
@@ -1664,8 +1688,15 @@ if (!empty($args['artist_slug'])) {
        STEP HEADERS & TYPOGRAPHY
        ======================================== */
     .pt-step-header {
-        text-align: center;
-        margin-bottom: 20px;
+        text-align: center !important;
+        margin-bottom: 16px !important;
+        position: sticky !important;
+        top: -24px !important;
+        background: #0d0d0d !important;
+        z-index: 10 !important;
+        padding-top: 6px !important;
+        padding-bottom: 8px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     }
 
     .pt-step-title {
@@ -2250,14 +2281,21 @@ if (!empty($args['artist_slug'])) {
         color: #ffffff !important;
         font-size: 14px !important;
         cursor: pointer !important;
-        width: 30px !important;
-        height: 30px !important;
+        width: 32px !important;
+        height: 32px !important;
+        min-width: 32px !important;
+        min-height: 32px !important;
+        max-width: 32px !important;
+        max-height: 32px !important;
+        aspect-ratio: 1 / 1 !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
         border-radius: 50% !important;
+        padding: 0 !important;
         line-height: 1 !important;
         flex-shrink: 0 !important;
+        box-sizing: border-box !important;
         margin-left: 6px !important;
     }
 

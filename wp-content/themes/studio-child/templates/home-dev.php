@@ -218,7 +218,7 @@ get_header();
         font-weight: 700;
         letter-spacing: 0.12em;
         text-transform: uppercase;
-        margin: 4px auto 0;
+        margin: 6px auto 32px;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
     }
@@ -767,7 +767,7 @@ get_header();
         }
 
         .hd-hero-scroll-cue {
-            margin: 4px auto 0 !important;
+            margin: 6px auto 36px !important;
             padding: 8px 18px !important;
             font-size: 10.5px !important;
         }
@@ -1126,15 +1126,6 @@ get_header();
         <?php endif; ?>
 
 
-        <?php if (get_field('single_video')): ?>
-            <section class="section_4 single_video">
-                <div class="cmn_container">
-                    <video autoplay="autoplay" preload="auto" playsinline="" loop="loop" muted="muted" class="media__video">
-                        <source src="<?php the_field('single_video'); ?>" type="video/mp4">
-                    </video>
-                </div>
-            </section>
-        <?php endif; ?>
 
 
         <?php if (have_rows('post_scriptum')): ?>

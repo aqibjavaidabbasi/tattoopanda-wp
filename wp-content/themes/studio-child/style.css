@@ -3461,7 +3461,7 @@ body.compensate-for-scrollbar .artist-section-cta-fixed {
         font-weight: 700 !important;
         letter-spacing: 0.12em !important;
         text-transform: uppercase !important;
-        margin: 4px auto 0 !important;
+        margin: 6px auto 32px !important;
         transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4) !important;
     }
