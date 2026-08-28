@@ -360,161 +360,149 @@ get_header();
     }
 
     /* ========================================
-       SECTION 7: LOCATION & CONTACT (Last Section)
+       SECTION 7: FULL IMAGE + STUDIO LOGO & CONTACT
        ======================================== */
-    .section_7.hd-location-section {
+    section.section_7.full_image_section {
         position: relative;
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
         background: #000000;
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
     }
 
-    @media (min-width: 991px) {
-        .section_7.hd-location-section {
-            width: 100vw;
-            min-width: 100vw;
-            height: 100vh;
-        }
-
-        .hd-location-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            padding: 0 40px;
-        }
-
-        .hd-location-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            max-width: 820px;
-            width: 100%;
-            margin: auto;
-        }
+    .full_image_section .cmn_container {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        position: relative;
     }
 
-    .hd-location-content {
+    .full_image_section .img_wrap {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+    }
+
+    .full_image_section .img_wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(100%) brightness(0.55) !important;
+    }
+
+    .studio_logo_info_overlay {
+        position: absolute;
+        bottom: 50px;
+        left: 0;
+        right: 0;
+        z-index: 2;
+        padding: 0 40px;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
-        width: 100%;
-        max-width: 800px;
+        align-items: flex-start;
+        gap: 20px;
+        max-width: 1200px;
         margin: 0 auto;
     }
 
-    .hd-location-logo-wrap {
-        margin-bottom: 28px;
+    .full_image_section .studio_logo {
+        position: relative;
+        bottom: auto;
+        left: auto;
+        right: auto;
+        z-index: 2;
+        width: 100%;
+        max-width: 800px;
     }
 
-    .hd-location-logo {
-        height: 48px;
-        width: auto;
+    .full_image_section .studio_logo svg,
+    .full_image_section .studio_logo img {
         max-width: 100%;
+        height: auto;
+        max-height: 120px;
         display: block;
+        fill: #ffffff;
         filter: brightness(0) invert(1);
     }
 
-    .hd-location-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        width: 100%;
-        margin-bottom: 32px;
-    }
-
-    .hd-location-card {
-        background: rgba(255, 255, 255, 0.04);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
-        padding: 24px 18px;
+    .hd-footer-info-bar {
         display: flex;
         flex-direction: column;
+        gap: 12px;
+        width: 100%;
+        background: rgba(10, 10, 10, 0.78);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 16px;
+        padding: 16px 24px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+        box-sizing: border-box;
+    }
+
+    .hd-footer-address-wrap {
+        width: 100%;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        padding-bottom: 10px;
+    }
+
+    .hd-footer-address {
+        width: 100%;
+        display: flex;
         align-items: center;
-        justify-content: space-between;
-        text-align: center;
-        min-height: 160px;
-        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-        transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-
-    .hd-location-card:hover {
-        transform: translateY(-4px);
-        border-color: rgba(255, 255, 255, 0.28);
-    }
-
-    .hd-location-card-header {
-        margin-bottom: 12px;
-    }
-
-    .hd-location-card-tag {
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.15em;
-        text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.5);
-    }
-
-    .hd-location-card-text {
+        gap: 10px;
         font-size: 15px;
-        line-height: 1.45;
-        font-weight: 500;
-        color: #ffffff;
-        margin: 0 0 10px 0;
-    }
-
-    .hd-location-phone-link {
-        color: #ffffff;
-        text-decoration: none;
-        transition: opacity 0.2s ease;
-    }
-
-    .hd-location-phone-link:hover {
-        opacity: 0.8;
-        color: #ffffff;
-    }
-
-    .hd-location-link {
-        font-size: 12px;
         font-weight: 600;
         color: #ffffff;
+        letter-spacing: 0.04em;
         text-decoration: none;
-        letter-spacing: 0.05em;
-        opacity: 0.8;
-        transition: opacity 0.2s ease;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
-    .hd-location-link:hover {
-        opacity: 1;
+    .hd-footer-address:hover {
+        color: #ffffff;
         text-decoration: underline;
     }
 
-    .hd-location-subtext {
-        font-size: 11px;
-        color: rgba(255, 255, 255, 0.45);
+    .hd-footer-meta-wrap {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 32px;
     }
 
-    .hd-location-badge-open {
+    .hd-footer-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 500;
+    }
+
+    .hd-footer-link {
+        color: #ffffff;
+        text-decoration: none;
         display: inline-flex;
         align-items: center;
-        font-size: 11px;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-        color: #22c55e;
-        background: rgba(34, 197, 94, 0.1);
-        border: 1px solid rgba(34, 197, 94, 0.25);
-        padding: 3px 10px;
-        border-radius: 999px;
+        gap: 8px;
+        transition: opacity 0.2s ease;
     }
 
-    .hd-location-cta-wrap {
-        margin-top: 6px;
+    .hd-footer-link:hover {
+        opacity: 0.8;
+        color: #ffffff;
+    }
+
+    .hd-footer-icon {
+        color: rgba(255, 255, 255, 0.65);
+        flex-shrink: 0;
     }
 
     /* Mobile responsive */
@@ -536,28 +524,36 @@ get_header();
         /* Section 2 mobile */
         .section_2.think_making {
             position: relative !important;
-            padding-bottom: 90px !important;
+            padding: 56px 20px 90px !important;
+            min-height: 100dvh !important;
+            box-sizing: border-box !important;
         }
 
         .section_2.think_making .cmn_container {
             display: flex !important;
             flex-direction: column !important;
-            gap: 24px !important;
+            gap: 12px !important;
             height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100% !important;
         }
 
         .section_2.think_making .content_wrap {
             max-width: 100% !important;
             width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
         }
 
         .section_2.think_making .content_wrap h3.section-header-title {
             color: #ffffff !important;
             font-size: 13px !important;
-            letter-spacing: 0.1em !important;
+            letter-spacing: 0.14em !important;
             text-transform: uppercase !important;
-            margin: 0 0 14px 0 !important;
-            font-weight: 600 !important;
+            margin: 0 0 8px 0 !important;
+            padding: 0 !important;
+            font-weight: 700 !important;
         }
 
         .artist-vertical-cards-wrap {
@@ -567,6 +563,7 @@ get_header();
             max-width: 100% !important;
             padding: 0 0 40px 0 !important;
             gap: 20px !important;
+            margin: 0 !important;
         }
 
         .artist-vertical-card {
@@ -632,39 +629,64 @@ get_header();
         }
 
         /* Section 7 mobile */
-        .section_7.hd-location-section {
+        section.section_7.full_image_section {
             display: flex !important;
             flex-direction: column !important;
-            justify-content: center !important;
-            padding: 70px 20px 80px !important;
+            justify-content: flex-end !important;
+            padding: 70px 20px 85px !important;
             min-height: 100dvh !important;
             box-sizing: border-box !important;
         }
 
-        .hd-location-logo-wrap {
-            margin-bottom: 20px !important;
+        .full_image_section .img_wrap {
+            position: absolute !important;
+            width: 100% !important;
+            height: 100% !important;
+            top: 0 !important;
+            left: 0 !important;
         }
 
-        .hd-location-logo {
-            height: 36px !important;
+        .studio_logo_info_overlay {
+            position: relative !important;
+            bottom: auto !important;
+            padding: 0 !important;
+            width: 100% !important;
+            gap: 16px !important;
+            margin-top: auto !important;
         }
 
-        .hd-location-grid {
-            grid-template-columns: 1fr !important;
-            gap: 12px !important;
-            margin-bottom: 20px !important;
-            max-width: 320px !important;
+        .full_image_section .studio_logo {
+            max-width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
         }
 
-        .hd-location-card {
-            padding: 16px 14px !important;
-            min-height: auto !important;
+        .full_image_section .studio_logo svg,
+        .full_image_section .studio_logo img {
+            max-height: 44px !important;
+            width: auto !important;
+        }
+
+        .hd-footer-info-bar {
+            padding: 14px 16px !important;
+            gap: 10px !important;
             border-radius: 12px !important;
         }
 
-        .hd-location-card-text {
-            font-size: 14px !important;
-            margin-bottom: 6px !important;
+        .hd-footer-address {
+            font-size: 13px !important;
+            white-space: normal !important;
+            line-height: 1.35 !important;
+        }
+
+        .hd-footer-meta-wrap {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 8px !important;
+        }
+
+        .hd-footer-item {
+            font-size: 12px !important;
         }
     }
 </style>
@@ -743,54 +765,35 @@ get_header();
                     <div class="cmn_container">
                         <div class="content_wrap">
                             <h3 class="fs_14 section-header-title">Artists</h3>
-                            <?php if ($content): ?>
-                                <div class="studio_content fs_36">
-                                    <?php echo $content; ?>
-                                </div>
-                            <?php endif; ?>
-
-                            <div class="studio_data_boxes" style="display:none">
-                                <?php if ($below_content_box_heading_1): ?>
-                                    <div class="data fs_14">
-                                        <h3 class="fs_14">
-                                            <?php echo $below_content_box_heading_1; ?>
-                                        </h3>
-                                        <?php echo $below_content_box_1; ?>
-                                    </div>
-                                <?php endif; ?>
-
-                                <?php if ($below_content_box_heading_2): ?>
-                                    <div class="data fs_14">
-                                        <h3 class="fs_14">
-                                            <?php echo $below_content_box_heading_2; ?>
-                                        </h3>
-                                        <?php echo $below_content_box_2; ?>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
                         </div>
 
                         <!-- Artist Cards - Vertical Scroll Cards -->
                         <?php
                         // Fetch artists from Contentful
-                        $artists = get_contentful_artists(['limit' => 10, 'order' => 'fields.artistName']);
+                        $artists = get_contentful_artists(['limit' => 20, 'order' => 'fields.artistName']);
+                        // Only show artists that have images (profile picture or portfolio images)
+                        $active_artists = array_filter($artists, function($artist) {
+                            return !empty($artist['profile_picture']) || !empty($artist['portfolio_images']);
+                        });
                         ?>
-                        <?php if (!empty($artists)): ?>
+                        <?php if (!empty($active_artists)): ?>
                             <div class="artist-vertical-cards-wrap">
-                                <?php foreach ($artists as $artist): ?>
+                                <?php foreach ($active_artists as $artist): ?>
                                     <?php
                                     $artist_slug = $artist['slug'];
                                     $artist_name = $artist['name'];
-                                    $artist_img_url = $artist['profile_picture'];
+                                    $artist_img_url = !empty($artist['profile_picture']) 
+                                        ? $artist['profile_picture'] 
+                                        : (!empty($artist['portfolio_images'][0]['url']) ? $artist['portfolio_images'][0]['url'] : '');
+                                    
+                                    if (empty($artist_img_url)) {
+                                        continue;
+                                    }
                                     ?>
                                     <a href="/gallery/#<?php echo esc_attr($artist_slug); ?>" class="artist-vertical-card-link">
                                         <div class="artist-vertical-card">
                                             <div class="artist-vertical-image">
-                                                <?php if ($artist_img_url): ?>
-                                                    <img src="<?php echo esc_url($artist_img_url); ?>" alt="<?php echo esc_attr($artist_name); ?>" loading="lazy">
-                                                <?php else: ?>
-                                                    <img src="https://via.placeholder.com/300x400/ff4500/ffffff?text=<?php echo urlencode(substr($artist_name, 0, 2)); ?>" alt="<?php echo esc_attr($artist_name); ?>">
-                                                <?php endif; ?>
+                                                <img src="<?php echo esc_url($artist_img_url); ?>" alt="<?php echo esc_attr($artist_name); ?>" loading="lazy">
                                             </div>
                                             <div class="artist-vertical-name"><?php echo esc_html($artist_name); ?></div>
                                         </div>
@@ -947,67 +950,96 @@ get_header();
             </div>
         </section>
 
-        <!-- Section 7: Studio Info, Hours & Booking (Last Section) -->
-        <section class="section_7 hd-location-section">
-            <div class="cmn_container hd-location-container">
-                <div class="hd-location-content">
-                    <!-- Panda Logo -->
-                    <div class="hd-location-logo-wrap">
-                        <img
-                            src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png"
-                            alt="Tatu Panda"
-                            class="hd-location-logo"
-                            loading="lazy"
-                        >
-                    </div>
-
-                    <!-- Contact & Info Cards Grid -->
-                    <div class="hd-location-grid">
-                        <!-- Address Card -->
-                        <div class="hd-location-card">
-                            <div class="hd-location-card-header">
-                                <span class="hd-location-card-tag">Studio Location</span>
-                            </div>
-                            <p class="hd-location-card-text">
-                                254 NW 36th St<br>Miami, FL 33127
-                            </p>
-                            <a href="https://www.google.com/maps/search/?api=1&query=Panda+Tattoo+254+NW+36th+St+Miami+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-location-link">
-                                Get Directions &rarr;
-                            </a>
+        <!-- Section 7: Full Image, Studio Logo & Studio Contact Info -->
+        <?php if (have_rows('full_image_section')): ?>
+            <?php while (have_rows('full_image_section')):
+                the_row();
+                $image = get_sub_field('image');
+                $logo = get_sub_field('logo');
+                ?>
+                <section class="section_7 full_image_section">
+                    <div class="cmn_container">
+                        <div class="img_wrap">
+                            <img src="<?php echo $image ? esc_url($image) : 'https://pandatattoo.com/wp-content/uploads/2025/04/ET_0001_Livello_9_d432086c52.webp'; ?>" alt="Tatu Panda" loading="lazy">
                         </div>
 
-                        <!-- Phone Card -->
-                        <div class="hd-location-card">
-                            <div class="hd-location-card-header">
-                                <span class="hd-location-card-tag">Direct Line</span>
+                        <div class="studio_logo_info_overlay">
+                            <div class="studio_logo">
+                                <?php if ($logo): ?>
+                                    <?php echo $logo; ?>
+                                <?php else: ?>
+                                    <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Tatu Panda" class="hd-footer-logo-img">
+                                <?php endif; ?>
                             </div>
-                            <p class="hd-location-card-text">
-                                <a href="tel:+17869199998" class="hd-location-phone-link">(786) 919-9998</a>
-                            </p>
-                            <span class="hd-location-subtext">Appointments & Consultations</span>
-                        </div>
 
-                        <!-- Hours Card -->
-                        <div class="hd-location-card">
-                            <div class="hd-location-card-header">
-                                <span class="hd-location-card-tag">Studio Hours</span>
+                            <!-- Contact Info Below Logo -->
+                            <div class="hd-footer-info-bar">
+                                <!-- Address - Full Width Single Line with Google Maps Link -->
+                                <div class="hd-footer-address-wrap">
+                                    <a href="https://www.google.com/maps/search/?api=1&query=Panda+Tattoo+254+NW+36th+St+Miami+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-footer-address" aria-label="Open Google Maps for 254 NW 36th St, Miami, FL 33127">
+                                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                        <span>254 NW 36th St, Miami, FL 33127</span>
+                                    </a>
+                                </div>
+
+                                <!-- Phone and Hours in row -->
+                                <div class="hd-footer-meta-wrap">
+                                    <div class="hd-footer-item">
+                                        <a href="tel:+17869199998" class="hd-footer-link" aria-label="Call (786) 919-9998">
+                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                            <span>(786) 919-9998</span>
+                                        </a>
+                                    </div>
+                                    <div class="hd-footer-item">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-footer-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                        <span>Mon – Sun: 11:00 AM – 9:00 PM</span>
+                                    </div>
+                                </div>
                             </div>
-                            <p class="hd-location-card-text">
-                                Mon – Sun<br>11:00 AM – 9:00 PM
-                            </p>
-                            <span class="hd-location-badge-open">Open Daily</span>
                         </div>
                     </div>
+                </section>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <section class="section_7 full_image_section">
+                <div class="cmn_container">
+                    <div class="img_wrap">
+                        <img src="https://pandatattoo.com/wp-content/uploads/2025/04/ET_0001_Livello_9_d432086c52.webp" alt="Tatu Panda" loading="lazy">
+                    </div>
 
-                    <!-- Booking CTA -->
-                    <div class="hd-location-cta-wrap" x-data>
-                        <button @click="$dispatch('open-booking-modal')" class="button hd-hero-cta ghl-booking-btn" aria-label="Book a tattoo appointment">
-                            <span class="button-content">Book Appointment</span>
-                        </button>
+                    <div class="studio_logo_info_overlay">
+                        <div class="studio_logo">
+                            <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Tatu Panda" class="hd-footer-logo-img">
+                        </div>
+
+                        <!-- Contact Info Below Logo -->
+                        <div class="hd-footer-info-bar">
+                            <!-- Address - Full Width Single Line with Google Maps Link -->
+                            <div class="hd-footer-address-wrap">
+                                <a href="https://www.google.com/maps/search/?api=1&query=Panda+Tattoo+254+NW+36th+St+Miami+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-footer-address" aria-label="Open Google Maps for 254 NW 36th St, Miami, FL 33127">
+                                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-footer-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                                    <span>254 NW 36th St, Miami, FL 33127</span>
+                                </a>
+                            </div>
+
+                            <!-- Phone and Hours in row -->
+                            <div class="hd-footer-meta-wrap">
+                                <div class="hd-footer-item">
+                                    <a href="tel:+17869199998" class="hd-footer-link" aria-label="Call (786) 919-9998">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-footer-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                                        <span>(786) 919-9998</span>
+                                    </a>
+                                </div>
+                                <div class="hd-footer-item">
+                                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-footer-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                    <span>Mon – Sun: 11:00 AM – 9:00 PM</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        <?php endif; ?>
 
     </div>
 
