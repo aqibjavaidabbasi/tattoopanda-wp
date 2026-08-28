@@ -33,16 +33,6 @@
 
 <?php do_action( 'wp_body_open' );  ?>
 	
-	<div class="page-loader-wrapper">
-		
-		<div id="page-loader">
-			<div class="loading-count" id="loading-count">0</div>
-		</div>
-		<div class="studio_logo studio_logo_animate animate__animated animate__fadeInUp">
-			<img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" class="logo__et difference"/>				
-		</div>
-	</div>
-
 	<header>
 		<div class="logo_wrap animate__animated animate__fadeInDown">
 			<a href="/" aria-label="Homepage" style="pointer-events: auto;">
@@ -89,22 +79,6 @@
 		   </nav>
 		   <div class="bullet"></div>
 	</header>
-	<script>
-	  // window.addEventListener("load", function () {
-	  //   const loader = document.getElementById("page-loader");
-	  //   loader.addEventListener("animationend", () => {
-	  //     loader.style.display = "none";
-	  //   });
-	  // });
-
-	  document.addEventListener("DOMContentLoaded", function () {
-		    setTimeout(() => {
-		      document.querySelectorAll(".studio_logo_animate").forEach(el => {
-		        el.style.setProperty("opacity", "0", "important");
-		      });
-		    }, 4750);
-		  });
-	</script>
 	<?php
 	/** 
 	 * studio_after_header hook
@@ -122,15 +96,3 @@
 	do_action( 'studio_content' );
 
 ?>
-
-<script>
-	const countEl = document.getElementById("loading-count");
-	  let count = 0;
-	  const interval = setInterval(() => {
-	    count++;
-	    countEl.textContent = count;
-	    if (count >= 100) {
-	      clearInterval(interval);
-	    }
-	  }, 25);
-</script>

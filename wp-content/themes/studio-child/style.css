@@ -296,59 +296,6 @@ svg{
 }
 /***** Header *******/
 
-#page-loader {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: 10;
-  transform-origin: top center;
-  animation: foldDownRotate 1.5s ease forwards;
-  animation-delay: 4s; 
-  perspective: 1000px;
-}
-
-@keyframes foldDownRotate {
-  0% {
-    transform: rotateX(0deg);
-  }
-  100% {
-    transform: rotateX(-90deg); 
-  }
-}
-
-div#loading-count {
-    font-size: 25px;
-}
-
-.loading-count {
-  position: absolute;
-  top: 50%;
-  left: 0%;
-  transform: translateY(-50%);
-  color: white;
-  font-family: monospace;
-  animation: moveCount 1.5s linear forwards;
-}
-
-@keyframes moveCount {
-  from {
-    left: 0%;
-  }
-  to {
-    left: 90%;
-  }
-}
-
-.page-loader-wrapper .studio_logo {
-    position: absolute;
-    bottom: 0;
-    right: 60px;
-    z-index: 10;
-}
-
 .logo_wrap {
     position: fixed;
     left: 50px;
@@ -2798,11 +2745,49 @@ body.page-id-397 { /* Gear page */
 
 
 
-.hd-mobile-brand-card,
-.hd-mobile-footer-wrap,
-.mobile-slider-dots,
-.pagination-indicator-row {
-    display: none;
+/* Global Slider Dots Navigation */
+.global-slider-dots-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 7px 16px;
+    background: rgba(18, 18, 18, 0.85);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 999px;
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.6);
+    pointer-events: auto;
+}
+
+.global-slider-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+    border: none;
+    padding: 0;
+}
+
+.global-slider-dot:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+    transform: scale(1.2);
+}
+
+.global-slider-dot.is-active {
+    width: 24px;
+    border-radius: 999px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.85);
 }
 
 /* ===============================================================
@@ -3188,81 +3173,20 @@ body.page-id-397 { /* Gear page */
         transform: translateY(-1px) !important;
     }
 
-    /* Mobile Footer Wrap & Section Dots */
-    .hd-mobile-footer-wrap {
-        display: flex !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        width: 100% !important;
-        margin: 0 auto 0 !important;
-        flex-shrink: 0 !important;
-        gap: 6px !important;
-    }
-
-    /* Mobile Brand Card / Footer: Kept firmly in screen at bottom */
-    .hd-mobile-brand-card {
-        display: block !important;
-        background: #f6f2ee !important;
-        border-radius: 4px !important;
-        padding: 9px 18px 7px !important;
-        margin: 0 auto 0 !important;
-        width: 100% !important;
-        max-width: 280px !important;
-        text-align: center !important;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5) !important;
-        box-sizing: border-box !important;
-        flex-shrink: 0 !important;
-    }
-
-    .hd-brand-card-logo {
-        height: 22px !important;
-        width: auto !important;
-        margin: 0 auto 3px !important;
-        display: block !important;
-        filter: brightness(0) !important; /* Solid black logo on cream card */
-    }
-
-    .hd-brand-card-copy {
-        color: #090d11 !important;
-        font-size: 10px !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.05em !important;
-    }
-
-    /* Section Slider Pagination Dots */
-    .pagination-indicator-row,
-    .mobile-slider-dots {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
+    /* Sticky Slider Dots Styling on Mobile */
+    .global-slider-dots-wrapper {
+        bottom: 14px !important;
+        padding: 6px 14px !important;
         gap: 8px !important;
-        padding: 2px 0 0 !important;
-        margin: 0 auto !important;
-        z-index: 10 !important;
     }
 
-    .page-dot {
-        width: 6px !important;
-        height: 6px !important;
-        border-radius: 50% !important;
-        background-color: #ffffff !important;
-        opacity: 0.3 !important;
-        cursor: pointer !important;
-        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
-        display: inline-block !important;
-        padding: 0 !important;
-        border: none !important;
+    .global-slider-dot {
+        width: 7px !important;
+        height: 7px !important;
     }
 
-    .page-dot:hover {
-        opacity: 0.7 !important;
-        transform: scale(1.2) !important;
-    }
-
-    .page-dot.is-active {
-        opacity: 1 !important;
-        transform: scale(1.35) !important;
-        box-shadow: 0 0 8px rgba(255, 255, 255, 0.8) !important;
+    .global-slider-dot.is-active {
+        width: 20px !important;
     }
 
     /* Ink for Icons / Awards Section */
