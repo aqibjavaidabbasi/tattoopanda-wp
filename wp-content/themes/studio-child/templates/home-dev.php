@@ -1010,11 +1010,12 @@ get_template_part('template-parts/booking-modal');
     jQuery(function ($) {
         const windowWidth = $(window).width();
         const $et_studio_slider = $('.main_slider');
-        const $sections = $et_studio_slider.find('section');
+        const $sections = $et_studio_slider.children('section');
+        const sectionCount = $sections.length;
         const dotsContainer = document.getElementById('globalSliderDots');
 
-        // Render global sticky dots
-        if (dotsContainer && $sections.length) {
+        // Render global sticky dots strictly for direct child sections
+        if (dotsContainer && sectionCount > 0) {
             dotsContainer.innerHTML = '';
             $sections.each(function (index) {
                 const dot = document.createElement('button');
@@ -1047,23 +1048,37 @@ get_template_part('template-parts/booking-modal');
             document.documentElement.scrollTop = 0;
             document.body.scrollTop = 0;
 
-            const et_studio_sectionCount = $sections.length;
-            const et_studio_sectionWidth = windowWidth;
-            const et_studio_totalWidth = et_studio_sectionCount * et_studio_sectionWidth;
+            function getMaxScroll() {
+                const lastSection = $sections.last()[0];
+                return lastSection ? -lastSection.offsetLeft : -((sectionCount - 1) * windowWidth);
+            }
 
             let et_studio_currentX = 0;
             let et_studio_targetX = 0;
-            let et_studio_maxScroll = -(et_studio_totalWidth - et_studio_sectionWidth);
+            let et_studio_maxScroll = getMaxScroll();
             let isVerticalSection = false;
 
             const $verticalSection = $('.section_6.awards_wrp');
             const verticalSectionOffsetLeft = $verticalSection.length ? $verticalSection.position().left : 0;
 
             // Dot click navigation on desktop
-            $(dotsContainer).on('click', '.global-slider-dot', function () {
+            $(dotsContainer).on('click', '.global-slider-dot', function (e) {
+                e.preventDefault();
                 const targetIndex = parseInt($(this).data('index'), 10);
-                et_studio_targetX = Math.max(-targetIndex * et_studio_sectionWidth, et_studio_maxScroll);
-                updateActiveDot(targetIndex);
+                const targetSection = $sections.get(targetIndex);
+                if (targetSection) {
+                    // Reset vertical section state when clicking any dot
+                    isVerticalSection = false;
+                    $(".main_slider").removeClass('awards_wrp_sec');
+                    verticalScrollPosition = 0;
+                    if ($verticalSection.length) {
+                        $verticalSection.css('transform', 'translateY(0px)');
+                    }
+
+                    et_studio_targetX = -targetSection.offsetLeft;
+                    et_studio_targetX = Math.min(0, Math.max(et_studio_targetX, et_studio_maxScroll));
+                    updateActiveDot(targetIndex);
+                }
             });
 
             // Function to animate the scroll smoothly
@@ -1075,7 +1090,16 @@ get_template_part('template-parts/booking-modal');
 
                     $et_studio_slider.css('transform', `translateX(${et_studio_currentX}px)`);
 
-                    const activeIndex = Math.min(et_studio_sectionCount - 1, Math.max(0, Math.round(-et_studio_currentX / et_studio_sectionWidth)));
+                    // Find closest section for active dot
+                    let activeIndex = 0;
+                    let minDistance = Infinity;
+                    $sections.each(function (i, sec) {
+                        const dist = Math.abs(sec.offsetLeft - (-et_studio_currentX));
+                        if (dist < minDistance) {
+                            minDistance = dist;
+                            activeIndex = i;
+                        }
+                    });
                     updateActiveDot(activeIndex);
                 }
                 requestAnimationFrame(et_studio_animateScroll);
@@ -1141,7 +1165,7 @@ get_template_part('template-parts/booking-modal');
 
             $(window).on('resize', function () {
                 const newWidth = $(window).width();
-                if (newWidth !== et_studio_sectionWidth && newWidth >= 991) {
+                if (newWidth !== windowWidth && newWidth >= 991) {
                     window.location.reload();
                 }
             });
@@ -1149,11 +1173,15 @@ get_template_part('template-parts/booking-modal');
             // Mobile navigation & touch scroll sync
             const sliderEl = document.querySelector('.main_slider');
             if (dotsContainer && sliderEl) {
-                $(dotsContainer).on('click', '.global-slider-dot', function () {
+                $(dotsContainer).on('click', '.global-slider-dot', function (e) {
+                    e.preventDefault();
                     const targetIndex = parseInt($(this).data('index'), 10);
                     const targetSection = $sections.get(targetIndex);
                     if (targetSection) {
-                        targetSection.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+                        sliderEl.scrollTo({
+                            left: targetSection.offsetLeft,
+                            behavior: 'smooth'
+                        });
                         updateActiveDot(targetIndex);
                     }
                 });
@@ -1163,8 +1191,15 @@ get_template_part('template-parts/booking-modal');
                     window.clearTimeout(scrollTimer);
                     scrollTimer = setTimeout(function () {
                         const scrollLeft = sliderEl.scrollLeft;
-                        const width = window.innerWidth || document.documentElement.clientWidth;
-                        const activeIndex = Math.min($sections.length - 1, Math.max(0, Math.round(scrollLeft / width)));
+                        let activeIndex = 0;
+                        let minDistance = Infinity;
+                        $sections.each(function (i, sec) {
+                            const dist = Math.abs(sec.offsetLeft - scrollLeft);
+                            if (dist < minDistance) {
+                                minDistance = dist;
+                                activeIndex = i;
+                            }
+                        });
                         updateActiveDot(activeIndex);
                     }, 30);
                 }, { passive: true });

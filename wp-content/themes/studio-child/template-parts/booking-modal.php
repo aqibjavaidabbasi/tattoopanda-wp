@@ -1483,12 +1483,15 @@ if (!empty($args['artist_slug'])) {
         width: 100%;
         max-width: 800px;
         margin: auto;
-        background: white;
-        border-radius: 8px;
+        background: #0d0d0d;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        border-radius: 16px;
         position: relative;
         max-height: calc(100vh - 80px);
         overflow-y: auto;
         box-sizing: border-box;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
     }
 
     .pt-modal-inner {
@@ -1526,9 +1529,10 @@ if (!empty($args['artist_slug'])) {
         position: absolute;
         top: 12px;
         right: 12px;
-        background: none;
-        border: none;
-        font-size: 24px;
+        background: rgba(255, 255, 255, 0.08);
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 20px;
         cursor: pointer;
         z-index: 10;
         width: 36px;
@@ -1537,11 +1541,12 @@ if (!empty($args['artist_slug'])) {
         align-items: center;
         justify-content: center;
         border-radius: 50%;
-        transition: background 0.2s;
+        transition: background 0.2s, transform 0.2s;
     }
 
     .pt-close-btn:hover {
-        background: rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.2);
+        transform: scale(1.05);
     }
 
     /* ========================================
@@ -1580,7 +1585,7 @@ if (!empty($args['artist_slug'])) {
     .pt-floating-label {
         font-size: 14px;
         font-weight: 500;
-        color: #333;
+        color: #d1d5db;
     }
 
     .pt-input-wrap {
@@ -1590,21 +1595,24 @@ if (!empty($args['artist_slug'])) {
     .pt-input-element {
         width: 100%;
         padding: 12px 16px;
-        border: 1px solid #e2e8f0;
+        background: #181818;
+        color: #ffffff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
         border-radius: 6px;
         font-size: 16px;
-        transition: border-color 0.2s;
+        transition: border-color 0.2s, background 0.2s;
     }
 
     .pt-input-element:focus {
         outline: none;
         border-color: #ff4500;
+        background: #202020;
     }
 
     input[type="file"].pt-input-element {
         padding: 12px;
         font-size: 13px;
-        color: #8c8c8c;
+        color: #a0aec0;
         cursor: pointer;
     }
 
@@ -1615,9 +1623,10 @@ if (!empty($args['artist_slug'])) {
 
     select.pt-input-element {
         cursor: pointer;
-        background-color: white;
+        background-color: #181818;
+        color: #ffffff;
         appearance: none;
-        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23ffffff' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
         background-repeat: no-repeat;
         background-position: right 12px center;
         padding-right: 36px;
@@ -1625,6 +1634,8 @@ if (!empty($args['artist_slug'])) {
 
     select.pt-input-element option {
         padding: 8px;
+        background-color: #181818;
+        color: #ffffff;
     }
 
     /* ========================================
@@ -1635,12 +1646,13 @@ if (!empty($args['artist_slug'])) {
         font-weight: 800;
         margin-bottom: 2px;
         text-transform: uppercase;
+        color: #ffffff;
     }
 
     .pt-step-subtitle {
         margin-bottom: 24px;
         font-size: 14px;
-        color: #666;
+        color: rgba(255, 255, 255, 0.7);
     }
 
     .pt-step-header {
@@ -1651,7 +1663,7 @@ if (!empty($args['artist_slug'])) {
     .pt-step-description {
         margin-bottom: 16px;
         font-size: 16px;
-        color: #666;
+        color: rgba(255, 255, 255, 0.75);
         font-weight: 500;
     }
 
@@ -1660,6 +1672,7 @@ if (!empty($args['artist_slug'])) {
         margin-bottom: 24px;
         font-size: 15px;
         text-transform: uppercase;
+        color: #ffffff;
     }
 
     /* ========================================
@@ -1675,16 +1688,18 @@ if (!empty($args['artist_slug'])) {
     .pt-style-card {
         position: relative;
         cursor: pointer;
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        background: #141414;
         border-radius: 8px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        transition: border-color 0.2s;
+        transition: border-color 0.2s, transform 0.2s;
     }
 
     .pt-style-card:hover {
         border-color: #ff4500;
+        transform: translateY(-2px);
     }
 
     .pt-style-card input[type="checkbox"] {
@@ -1695,6 +1710,7 @@ if (!empty($args['artist_slug'])) {
         height: 18px;
         cursor: pointer;
         z-index: 1;
+        accent-color: #ff4500;
     }
 
     .pt-style-card img {
@@ -1704,11 +1720,12 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-style-label {
-        padding: 4px 2px;
+        padding: 6px 2px;
         font-size: 11px;
         font-weight: 500;
         text-align: center;
-        background: white;
+        background: #141414;
+        color: #ffffff;
     }
 
     .pt-something-different {
@@ -1717,16 +1734,19 @@ if (!empty($args['artist_slug'])) {
         cursor: pointer;
         justify-content: center;
         margin-top: 8px;
+        color: #ffffff;
     }
 
     .pt-something-different input {
         margin-right: 8px;
         width: 16px;
         height: 16px;
+        accent-color: #ff4500;
     }
 
     .pt-something-different span {
         font-size: 14px;
+        color: #e2e8f0;
     }
 
     /* ========================================
@@ -1746,7 +1766,7 @@ if (!empty($args['artist_slug'])) {
     .pt-radio-main-label {
         font-size: 14px;
         font-weight: 500;
-        color: #333;
+        color: #ffffff;
     }
 
     .pt-radio-option {
@@ -1769,15 +1789,17 @@ if (!empty($args['artist_slug'])) {
     .pt-radio-button {
         display: block;
         padding: 12px 16px;
-        background: #f7fafc;
-        border: 1px solid #e2e8f0;
+        background: #181818;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #e2e8f0;
         text-align: center;
         font-size: 13px;
         transition: all 0.2s;
     }
 
     .pt-radio-button:hover {
-        background: #edf2f7;
+        background: #252525;
+        color: #ffffff;
     }
 
     .pt-radio-hidden:checked + .pt-radio-button {
@@ -1803,6 +1825,7 @@ if (!empty($args['artist_slug'])) {
     .pt-radio-sublabel {
         font-size: 10px;
         display: block;
+        color: rgba(255, 255, 255, 0.7);
     }
 
     .pt-hidden-label {
@@ -1818,7 +1841,7 @@ if (!empty($args['artist_slug'])) {
        ======================================== */
     .pt-section-group {
         padding: 16px 0;
-        border-bottom: 1px solid #e2e8f0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .pt-section-group:last-of-type {
@@ -1832,7 +1855,7 @@ if (!empty($args['artist_slug'])) {
     .pt-section-group .pt-radio-main-label {
         font-size: 15px;
         font-weight: 600;
-        color: #1a1a1a;
+        color: #ffffff;
         display: block;
         text-transform: uppercase;
         letter-spacing: 0.5px;
@@ -1842,10 +1865,10 @@ if (!empty($args['artist_slug'])) {
        ARTIST ADD-ONS
        ======================================== */
     .pt-artist-addons {
-        background: #fafafa;
+        background: #141414;
         padding: 20px;
         border-radius: 8px;
-        border: 1px solid #e2e8f0;
+        border: 1px solid rgba(255, 255, 255, 0.15);
     }
 
     .pt-addon-option {
@@ -1854,7 +1877,8 @@ if (!empty($args['artist_slug'])) {
         gap: 12px;
         padding: 12px;
         margin-bottom: 8px;
-        background: white;
+        background: #1c1c1c;
+        border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 8px;
         cursor: pointer;
         transition: all 0.2s ease;
@@ -1862,7 +1886,8 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-addon-option:hover {
-        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        background: #242424;
+        border-color: rgba(255, 255, 255, 0.2);
     }
 
     .pt-addon-checkbox {
@@ -1883,12 +1908,12 @@ if (!empty($args['artist_slug'])) {
     .pt-addon-name {
         font-weight: 600;
         font-size: 14px;
-        color: #1a1a1a;
+        color: #ffffff;
     }
 
     .pt-addon-desc {
         font-size: 13px;
-        color: #666;
+        color: rgba(255, 255, 255, 0.7);
     }
 
     .pt-addon-price {
@@ -2146,12 +2171,14 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-btn-secondary {
-        background: #e2e8f0;
-        color: #333;
+        background: #252525;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        color: #ffffff;
     }
 
     .pt-btn-secondary:hover {
-        background: #cbd5e0;
+        background: #353535;
+        border-color: rgba(255, 255, 255, 0.3);
     }
 
     .pt-btn-wide {
@@ -2224,7 +2251,7 @@ if (!empty($args['artist_slug'])) {
         width: 80px;
         height: 80px;
         margin: 0 auto 24px;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: linear-gradient(135deg, #ff4500 0%, #ff7844 100%);
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -2242,14 +2269,14 @@ if (!empty($args['artist_slug'])) {
     .pt-thank-you-title {
         font-size: 32px;
         font-weight: 700;
-        color: #1a202c;
+        color: #ffffff;
         margin-bottom: 16px;
         animation: pt-fade-in 0.6s ease-out 0.2s both;
     }
 
     .pt-thank-you-message {
         font-size: 18px;
-        color: #4a5568;
+        color: rgba(255, 255, 255, 0.85);
         margin-bottom: 12px;
         line-height: 1.6;
         animation: pt-fade-in 0.6s ease-out 0.4s both;
@@ -2257,7 +2284,7 @@ if (!empty($args['artist_slug'])) {
 
     .pt-thank-you-submessage {
         font-size: 14px;
-        color: #718096;
+        color: rgba(255, 255, 255, 0.6);
         line-height: 1.6;
         animation: pt-fade-in 0.6s ease-out 0.6s both;
     }
