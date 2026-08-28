@@ -5,17 +5,36 @@ get_header();
 
 <style>
     /* ========================================
+       GLOBAL SCROLL OVERRIDE FOR CONTACT PAGE
+       ======================================== */
+    html,
+    body,
+    #page,
+    .site-content,
+    .main_layout {
+        height: auto !important;
+        min-height: 100vh !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        position: static !important;
+        background-color: #000000 !important;
+    }
+
+    /* ========================================
        CONTACT PAGE - TATU PANDA DESIGN SYSTEM
        ======================================== */
     .hd-contact-page {
         background-color: #000000;
         color: #ffffff;
         min-height: 100vh;
-        padding: 100px 24px 80px;
+        height: auto !important;
+        padding: 110px 24px 120px;
         box-sizing: border-box;
         font-family: inherit;
         position: relative;
-        overflow-x: hidden;
+        overflow-y: visible !important;
+        overflow-x: hidden !important;
     }
 
     .hd-contact-container {
@@ -71,7 +90,7 @@ get_header();
     .hd-contact-status-bar {
         display: inline-flex;
         align-items: center;
-        gap: 16px;
+        gap: 14px;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 999px;
@@ -199,6 +218,63 @@ get_header();
         border-radius: 999px;
     }
 
+    /* Social Links Styling */
+    .hd-social-links-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        margin-top: 4px;
+    }
+
+    .hd-social-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 999px;
+        padding: 8px 16px;
+        color: #ffffff !important;
+        font-size: 13px;
+        font-weight: 600;
+        text-decoration: none !important;
+        letter-spacing: 0.03em;
+        transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .hd-social-pill:hover {
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.35);
+        transform: translateY(-2px);
+        color: #ffffff !important;
+    }
+
+    .hd-custom-contact-info {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.5;
+        margin-bottom: 12px;
+    }
+
+    .hd-custom-contact-info a {
+        color: #ffffff;
+        text-decoration: underline;
+    }
+
+    .hd-custom-contact-info ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .hd-custom-contact-info li {
+        margin: 0;
+    }
+
     /* Studio Visual Accent Card */
     .hd-contact-visual-card {
         background: rgba(255, 255, 255, 0.02);
@@ -297,48 +373,66 @@ get_header();
         text-align: center;
     }
 
-    /* Bottom Fixed Booking Bar for Mobile */
-    .hd-fixed-book-bar {
-        display: none;
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 999;
-        background: rgba(5, 5, 5, 0.92);
-        backdrop-filter: blur(16px);
-        -webkit-backdrop-filter: blur(16px);
-        border-top: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 12px 20px;
-        justify-content: center;
-        align-items: center;
+    /* ========================================
+       EXACT HOME PAGE FIXED BOOK APPOINTMENT CTA
+       ======================================== */
+    .artist-section-cta-fixed {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        z-index: 99999 !important;
+        pointer-events: none !important;
     }
 
-    .hd-fixed-book-btn {
-        width: 100%;
-        max-width: 380px;
+    .artist-section-cta-fixed .ghl-booking-btn,
+    .artist-section-cta-fixed .button {
+        pointer-events: auto !important;
         background: #ffffff !important;
         color: #000000 !important;
         border: none !important;
         border-radius: 999px !important;
-        padding: 14px 24px !important;
-        font-size: 14px !important;
+        padding: 14px 28px !important;
+        height: auto !important;
+        font-size: 13px !important;
         font-weight: 700 !important;
-        letter-spacing: 0.08em !important;
+        letter-spacing: 0.1em !important;
         text-transform: uppercase !important;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7) !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
         cursor: pointer !important;
-        box-shadow: 0 4px 20px rgba(255, 255, 255, 0.25) !important;
-        transition: transform 0.2s ease, opacity 0.2s ease !important;
+        line-height: 1 !important;
+        text-decoration: none !important;
+        transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease !important;
+        min-width: 190px !important;
     }
 
-    .hd-fixed-book-btn:active {
-        transform: scale(0.97);
+    .artist-section-cta-fixed .button .button-content,
+    .artist-section-cta-fixed .button span {
+        color: #000000 !important;
+        font-weight: 700 !important;
+        display: inline-block !important;
+    }
+
+    .artist-section-cta-fixed .button:hover {
+        background: #f0ece6 !important;
+        color: #000000 !important;
+        transform: translateY(-2px) !important;
+    }
+
+    .artist-section-cta-fixed .button:active {
+        transform: scale(0.97) !important;
     }
 
     /* Responsive */
     @media (max-width: 991px) {
         .hd-contact-page {
-            padding: 80px 16px 95px;
+            padding: 85px 16px 110px !important;
         }
 
         .hd-contact-grid {
@@ -364,8 +458,16 @@ get_header();
             max-height: 220px;
         }
 
-        .hd-fixed-book-bar {
-            display: flex;
+        .artist-section-cta-fixed {
+            bottom: 16px !important;
+        }
+
+        .artist-section-cta-fixed .ghl-booking-btn,
+        .artist-section-cta-fixed .button {
+            padding: 13px 24px !important;
+            font-size: 12px !important;
+            width: auto !important;
+            max-width: 320px !important;
         }
     }
 </style>
@@ -375,17 +477,7 @@ get_header();
 
         <!-- Top Hero Section -->
         <div class="hd-contact-hero">
-            <span class="hd-contact-eyebrow">✦ Get in Touch</span>
-            <h1 class="hd-contact-title">Contact The Studio</h1>
-            <p class="hd-contact-subtitle">
-                Have a project in mind, want to schedule a consultation, or have general questions? Reach out to our Miami studio or send us a direct message below.
-            </p>
-
-            <!-- Live Status Indicator -->
-            <div class="hd-contact-status-bar">
-                <span class="hd-status-pulse"></span>
-                <span id="contactStudioStatus">Miami, FL &bull; Open Today 11:00 AM &ndash; 9:00 PM</span>
-            </div>
+            <h1 class="hd-contact-title">Contact</h1>
         </div>
 
         <!-- Main Grid Layout -->
@@ -433,6 +525,35 @@ get_header();
                             11:00 AM &ndash; 9:00 PM
                         </p>
                         <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5);">Walk-ins welcome & by appointment</span>
+                    </div>
+
+                    <!-- Social Channels Card (Full Width) -->
+                    <div class="hd-contact-card is-fullwidth hd-contact-social-card">
+                        <div class="hd-card-header">
+                            <span class="hd-card-tag">Social Channels</span>
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                        </div>
+                        
+                        <?php if (get_field('contact_info')): ?>
+                            <div class="hd-custom-contact-info">
+                                <?php the_field('contact_info'); ?>
+                            </div>
+                        <?php endif; ?>
+
+                        <div class="hd-social-links-list">
+                            <a href="https://instagram.com/tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Instagram @tattoopandaofficial">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://www.facebook.com/tattoopandaofficial/" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Facebook">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                                <span>Facebook</span>
+                            </a>
+                            <a href="https://www.tiktok.com/@tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="TikTok @tattoopandaofficial">
+                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                                <span>TikTok</span>
+                            </a>
+                        </div>
                     </div>
                 </div>
 
@@ -485,10 +606,10 @@ get_header();
     </div>
 </div>
 
-<!-- Mobile Sticky Book Appointment CTA -->
-<div class="hd-fixed-book-bar" x-data>
-    <button @click="$dispatch('open-booking-modal')" class="hd-fixed-book-btn ghl-booking-btn" aria-label="Book appointment">
-        Book Appointment
+<!-- Exact Home Page Style Fixed Bottom Book Appointment CTA -->
+<div class="artist-section-cta-fixed" x-data>
+    <button @click="$dispatch('open-booking-modal')" class="ghl-booking-btn button" aria-label="Book Appointment">
+        <span class="button-content">Book Appointment</span>
     </button>
 </div>
 
@@ -510,27 +631,5 @@ if (locate_template('template-parts/booking-modal.php')) {
     get_template_part('template-parts/booking-modal');
 }
 ?>
-
-<script>
-    // Live Miami Time and Open Status Clock
-    function updateContactStatus() {
-        try {
-            const now = new Date();
-            const options = { timeZone: 'America/New_York', hour: '2-digit', minute: '2-digit', hour12: true };
-            const miamiTime = new Intl.DateTimeFormat('en-US', options).format(now);
-            
-            const estDate = new Date(now.toLocaleString("en-US", { timeZone: "America/New_York" }));
-            const hours = estDate.getHours();
-            const isOpen = (hours >= 11 && hours < 21);
-            
-            const el = document.getElementById('contactStudioStatus');
-            if (el) {
-                el.innerHTML = `Miami, FL: ${miamiTime} &bull; ${isOpen ? '<span style="color: #22c55e; font-weight: 600;">Studio is Open (11 AM – 9 PM)</span>' : '<span style="color: rgba(255,255,255,0.6);">Opens at 11:00 AM</span>'}`;
-            }
-        } catch(e) {}
-    }
-    updateContactStatus();
-    setInterval(updateContactStatus, 30000);
-</script>
 
 <?php get_footer(); ?>
