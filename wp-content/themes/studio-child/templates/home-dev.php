@@ -24,40 +24,455 @@ get_header();
     }
     
     /* ========================================
-       STUDIO STATUS BAR (Section 1)
+       SECTION 1: HERO & STUDIO INTRO
        ======================================== */
-    .studio-status-bar {
+    .hd-hero-section {
         display: flex;
-        width: 100%;
-        justify-content: space-between;
         align-items: center;
-        margin-top: 20px;
-        padding: 12px 0;
-        color: #000;
-        font-size: 24px;
-        border-top: 1px solid rgba(0, 0, 0, 0.2);
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
     }
 
-    .studio-time {
-        font-size: 24px;
-        font-weight: 300;
-        letter-spacing: 1px;
+    .hd-hero-top-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        width: 100%;
+        max-width: 440px;
+        margin: 0 auto;
+        padding: 20px 10px;
+        box-sizing: border-box;
+        text-align: center;
     }
 
-    .studio-status {
-        font-size: 14px;
+    .hd-hero-eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
         text-transform: uppercase;
-        letter-spacing: 0.5px;
+        color: rgba(255, 255, 255, 0.9);
     }
 
-    .studio-status .open {
+    .hd-hero-badge {
+        color: #ffffff;
+    }
+
+    .hd-hero-loc {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 10px;
+    }
+
+    .hd-hero-top-headline {
+        margin: 0;
+        width: 100%;
+    }
+
+    .hd-tagline {
+        color: #ffffff !important;
+        font-size: clamp(24px, 4.5vw, 36px) !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        line-height: 1.22 !important;
+        letter-spacing: 0.05em !important;
+        margin: 0 auto !important;
+        max-width: 380px !important;
+    }
+
+    .hd-hero-desc {
+        color: rgba(255, 255, 255, 0.7) !important;
+        font-size: 13px !important;
+        line-height: 1.5 !important;
+        margin: 0 auto !important;
+        max-width: 360px !important;
+        font-weight: 400 !important;
+    }
+
+    .hd-hero-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        max-width: 360px;
+        margin: 4px auto 0;
+        flex-wrap: wrap;
+    }
+
+    .hd-hero-btn-primary {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1.5px solid #ffffff !important;
+        border-radius: 999px !important;
+        padding: 10px 24px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.12em !important;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.25) !important;
+        cursor: pointer !important;
+        transition: all 0.2s ease !important;
+        line-height: 1 !important;
+    }
+
+    .hd-hero-btn-primary span {
+        color: #000000 !important;
+        font-weight: 700 !important;
+    }
+
+    .hd-hero-btn-primary:hover {
+        background: #f0ece6 !important;
+        transform: translateY(-1px) !important;
+    }
+
+    .hd-hero-btn-secondary {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(255, 255, 255, 0.08) !important;
+        color: #ffffff !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
+        border-radius: 999px !important;
+        padding: 10px 20px !important;
+        font-size: 11px !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.1em !important;
+        cursor: pointer !important;
+        text-decoration: none !important;
+        transition: all 0.2s ease !important;
+        line-height: 1 !important;
+    }
+
+    .hd-hero-btn-secondary span {
+        color: #ffffff !important;
+    }
+
+    .hd-hero-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.18) !important;
+        border-color: rgba(255, 255, 255, 0.4) !important;
+        transform: translateY(-1px) !important;
+    }
+
+    /* Live Studio Status Card */
+    .hd-hero-status-card {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 360px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 12px;
+        padding: 10px 16px;
+        box-sizing: border-box;
+        margin: 2px auto 0;
+    }
+
+    .hd-status-col {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 3px;
+        text-align: left;
+    }
+
+    .hd-status-col:last-child {
+        align-items: flex-end;
+        text-align: right;
+    }
+
+    .hd-status-label {
+        font-size: 9px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: rgba(255, 255, 255, 0.5);
+    }
+
+    .hd-status-val {
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.04em;
+        color: #ffffff;
+    }
+
+    .hd-status-divider {
+        width: 1px;
+        height: 24px;
+        background: rgba(255, 255, 255, 0.12);
+        margin: 0 8px;
+    }
+
+    .hd-status-indicator {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .hd-status-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        display: inline-block;
+    }
+
+    .hd-status-indicator.open .hd-status-dot {
+        background-color: #22c55e;
+        box-shadow: 0 0 8px #22c55e;
+    }
+
+    .hd-status-indicator.closed .hd-status-dot {
+        background-color: #ef4444;
+        box-shadow: 0 0 8px #ef4444;
+    }
+
+    .hd-status-indicator.open {
         color: #22c55e;
-        font-weight: 700;
     }
 
-    .studio-status .closed {
+    .hd-status-indicator.closed {
         color: #ef4444;
+    }
+
+    /* 3-Column Highlights Grid */
+    .hd-hero-features-grid {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        max-width: 360px;
+        gap: 6px;
+        margin: 0 auto;
+        box-sizing: border-box;
+    }
+
+    .hd-feature-item {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 6px 4px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        border-radius: 8px;
+        font-size: 10px;
+        font-weight: 500;
+        color: rgba(255, 255, 255, 0.75);
+        white-space: nowrap;
+    }
+
+    .hd-feature-icon {
+        color: #ff4500;
+        font-size: 9px;
+    }
+
+    /* 4. Obvious Visual Horizontal Slide Cue */
+    .hd-hero-scroll-cue {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 16px;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 999px;
+        cursor: pointer;
+        color: #ffffff;
+        font-size: 10.5px;
         font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin: 4px auto 0;
+        transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .hd-hero-scroll-cue:hover {
+        background: rgba(255, 255, 255, 0.16);
+        border-color: #ff4500;
+        transform: translateX(4px);
+    }
+
+    .hd-scroll-cue-pulse {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background-color: #ff4500;
+        box-shadow: 0 0 10px #ff4500;
+        animation: hd-pulse-dot 1.8s infinite ease-in-out;
+    }
+
+    .hd-scroll-cue-text {
+        color: #ffffff;
+    }
+
+    .hd-scroll-cue-arrow {
+        display: flex;
+        align-items: center;
+        color: #ff4500;
+        animation: hd-slide-arrow 1.6s infinite ease-in-out;
+    }
+
+    @keyframes hd-slide-arrow {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        50% {
+            transform: translateX(5px);
+        }
+    }
+
+    @keyframes hd-pulse-dot {
+        0%, 100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        50% {
+            transform: scale(1.4);
+            opacity: 0.5;
+        }
+    }
+
+    /* 5. Floating Side Navigation Arrows (Desktop & Mobile) */
+    .global-slider-arrows {
+        position: fixed;
+        right: 24px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9999;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        pointer-events: auto;
+    }
+
+    .global-arrow-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: rgba(18, 18, 18, 0.85);
+        border: 1.5px solid rgba(255, 255, 255, 0.25);
+        color: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
+        transition: all 0.25s ease;
+        padding: 0;
+        position: relative;
+    }
+
+    .global-arrow-btn:hover {
+        background: #ff4500;
+        border-color: #ff4500;
+        color: #ffffff;
+        transform: scale(1.1);
+        box-shadow: 0 0 16px rgba(255, 69, 0, 0.6);
+    }
+
+    .global-arrow-btn.is-pulsing {
+        animation: hd-pulse-arrow 2.2s infinite ease-in-out;
+    }
+
+    .global-arrow-btn.is-pulsing::after {
+        content: '';
+        position: absolute;
+        inset: -4px;
+        border-radius: 50%;
+        border: 1.5px solid rgba(255, 69, 0, 0.6);
+        animation: hd-pulse-ring 2.2s infinite ease-out;
+    }
+
+    .global-arrow-label {
+        position: absolute;
+        right: 52px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(18, 18, 18, 0.9);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        color: #ffffff;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        padding: 4px 10px;
+        border-radius: 6px;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0.9;
+        transition: opacity 0.2s;
+    }
+
+    @keyframes hd-pulse-arrow {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.08);
+            border-color: #ff4500;
+        }
+    }
+
+    @keyframes hd-pulse-ring {
+        0% {
+            transform: scale(1);
+            opacity: 0.8;
+        }
+        100% {
+            transform: scale(1.4);
+            opacity: 0;
+        }
+    }
+
+    .global-arrow-prev.is-hidden,
+    .global-arrow-next.is-hidden {
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
+    }
+
+    @media (max-width: 990px) {
+        .global-slider-arrows {
+            right: 14px;
+            top: auto;
+            bottom: 74px;
+            transform: none;
+            flex-direction: row;
+            gap: 8px;
+        }
+
+        .global-arrow-btn {
+            width: 38px;
+            height: 38px;
+        }
+
+        .global-arrow-label {
+            display: none;
+        }
+    }
+
+    body.has-modal-open .global-slider-arrows,
+    body.modal-open .global-slider-arrows {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
 
     /* ========================================
@@ -273,12 +688,12 @@ get_header();
         flex-direction: column;
         justify-content: center;
         width: 100%;
-        max-width: 640px;
+        max-width: 620px;
         margin: 0 auto;
     }
 
     .hd-ps-eyebrow {
-        margin-bottom: 24px;
+        margin-bottom: 20px;
     }
 
     .hd-ps-tag {
@@ -296,18 +711,22 @@ get_header();
     }
 
     .hd-ps-content {
-        font-size: clamp(20px, 4.8vw, 30px);
+        font-size: clamp(20px, 4.2vw, 28px);
         font-weight: 400;
-        line-height: 1.4;
+        line-height: 1.45;
         color: #ffffff;
         letter-spacing: -0.015em;
-        margin-bottom: 36px;
+        margin-bottom: 28px;
+        text-wrap: balance;
+        text-wrap: pretty;
     }
 
     .hd-ps-content p {
         margin-bottom: 16px;
         color: rgba(255, 255, 255, 0.92);
-        line-height: 1.42;
+        line-height: 1.45;
+        text-wrap: balance;
+        text-wrap: pretty;
     }
 
     .hd-ps-content p:last-child {
@@ -320,8 +739,15 @@ get_header();
         display: flex;
         flex-direction: column;
         gap: 12px;
-        padding-top: 24px;
+        padding-top: 20px;
         border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .hd-ps-action-wrap {
+        margin-top: 24px;
+        display: flex;
+        justify-content: flex-start;
+        width: 100%;
     }
 
     .hd-ps-subtitle {
@@ -580,40 +1006,50 @@ get_header();
             display: flex !important;
             flex-direction: column !important;
             justify-content: center !important;
-            padding: 70px 24px 70px !important;
+            padding: 64px 20px 80px !important;
             min-height: 100dvh !important;
             box-sizing: border-box !important;
         }
 
         .section_5.post_scriptum .cmn_container {
             width: 100% !important;
-            max-width: 100% !important;
+            max-width: 380px !important;
             margin: auto 0 !important;
         }
 
         .hd-ps-eyebrow {
-            margin-bottom: 16px !important;
+            margin-bottom: 14px !important;
         }
 
         .hd-ps-content {
-            font-size: 20px !important;
-            line-height: 1.45 !important;
-            margin-bottom: 24px !important;
+            font-size: 18px !important;
+            line-height: 1.42 !important;
+            margin-bottom: 18px !important;
+            text-wrap: balance !important;
+            text-wrap: pretty !important;
+            letter-spacing: -0.01em !important;
         }
 
         .hd-ps-content p {
-            margin-bottom: 12px !important;
+            margin-bottom: 10px !important;
             line-height: 1.42 !important;
+            text-wrap: balance !important;
+            text-wrap: pretty !important;
         }
 
         .hd-ps-ingredients {
-            padding-top: 18px !important;
-            gap: 10px !important;
+            padding-top: 14px !important;
+            gap: 8px !important;
         }
 
         .hd-ps-tag-item {
-            font-size: 11px !important;
+            font-size: 10.5px !important;
             padding: 5px 12px !important;
+        }
+
+        .hd-ps-action-wrap {
+            margin-top: 18px !important;
+            justify-content: center !important;
         }
 
         /* Section 7 mobile */
@@ -718,31 +1154,79 @@ get_header();
                 <section class="section_1 hd-section hd-hero-section">
                     <div class="hd-section-inner">
                         <div class="hd-hero-top-wrap">
-                            <!-- Top Headline / Tagline -->
+                            
+                            <!-- Eyebrow Badge -->
+                            <div class="hd-hero-eyebrow">
+                                <span class="hd-hero-badge">Tattoo Studio & Art Gallery</span>
+                                <span class="hd-hero-loc">NYC • Est. 2012</span>
+                            </div>
+
+                            <!-- Main Tagline Headline -->
                             <div class="hd-hero-top-headline">
                                 <?php if ($content): ?>
-                                    <h2 class="hd-tagline"><?php echo strip_tags($content, "<br>"); ?></h2>
+                                    <h1 class="hd-tagline"><?php echo strip_tags($content, "<br>"); ?></h1>
                                 <?php else: ?>
-                                    <h2 class="hd-tagline">Skin Art<br>For Those Who<br>Only Accept The<br>Best In Life</h2>
+                                    <h1 class="hd-tagline">Skin Art<br>For Those Who<br>Only Accept The<br>Best In Life</h1>
                                 <?php endif; ?>
                             </div>
 
-                            <!-- Studio Status Bar -->
-                            <div class="studio-status-bar">
-                                <div class="studio-time"><?php echo esc_html($current_time); ?></div>
-                                <div class="studio-status">
-                                    Studio: <span class="<?php echo strtolower($studio_status); ?>"><?php echo esc_html($studio_status); ?></span>
+                            <!-- Narrative Description -->
+                            <p class="hd-hero-desc">
+                                Bespoke tattoo craftsmanship by resident & guest masters. Private consultations and custom pieces created exclusively for you.
+                            </p>
+
+                            <!-- Quick Action Buttons -->
+                            <div class="hd-hero-actions">
+                                <button type="button" @click="$dispatch('open-booking-modal')" class="hd-hero-btn-primary ghl-booking-btn button" aria-label="Book Appointment">
+                                    <span>Book Appointment</span>
+                                </button>
+                                <button type="button" onclick="document.querySelectorAll('.global-slider-dot')[1]?.click()" class="hd-hero-btn-secondary" aria-label="View Artists">
+                                    <span>View Artists →</span>
+                                </button>
+                            </div>
+
+                            <!-- Live Studio Status Card -->
+                            <div class="hd-hero-status-card">
+                                <div class="hd-status-col">
+                                    <span class="hd-status-label">Current Time</span>
+                                    <span class="hd-status-val"><?php echo esc_html($current_time); ?> EST</span>
+                                </div>
+                                <div class="hd-status-divider"></div>
+                                <div class="hd-status-col">
+                                    <span class="hd-status-label">Studio Hours</span>
+                                    <span class="hd-status-val hd-status-indicator <?php echo strtolower($studio_status); ?>">
+                                        <span class="hd-status-dot"></span> <?php echo esc_html($studio_status); ?> (11AM–9PM)
+                                    </span>
                                 </div>
                             </div>
 
-                            <!-- Logotype -->
-                            <div class="hd-logotype">
-                                <img
-                                    src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png"
-                                    alt="Tatu Panda"
-                                    loading="eager"
-                                >
+                            <!-- Key Highlights / Feature Badges -->
+                            <div class="hd-hero-features-grid">
+                                <div class="hd-feature-item">
+                                    <span class="hd-feature-icon">✦</span>
+                                    <span class="hd-feature-text">100% Custom Work</span>
+                                </div>
+                                <div class="hd-feature-item">
+                                    <span class="hd-feature-icon">✦</span>
+                                    <span class="hd-feature-text">Award-Winning</span>
+                                </div>
+                                <div class="hd-feature-item">
+                                    <span class="hd-feature-icon">✦</span>
+                                    <span class="hd-feature-text">Private Studio</span>
+                                </div>
                             </div>
+
+                            <!-- Obvious Visual Horizontal Slide Cue -->
+                            <div class="hd-hero-scroll-cue" onclick="document.querySelectorAll('.global-slider-dot')[1]?.click()" role="button" aria-label="Slide to explore website">
+                                <span class="hd-scroll-cue-pulse"></span>
+                                <span class="hd-scroll-cue-text">Slide to Explore</span>
+                                <span class="hd-scroll-cue-arrow">
+                                    <svg width="18" height="12" viewBox="0 0 18 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M1 6H17M17 6L12 1M17 6L12 11" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </span>
+                            </div>
+
                         </div>
                     </div>
                 </section>
@@ -862,7 +1346,15 @@ get_header();
                             
                             <?php if ($content): ?>
                                 <div class="hd-ps-content">
-                                    <?php echo wpautop($content); ?>
+                                    <?php 
+                                    // Remove em dash and replace with clean punctuation
+                                    $clean_content = str_replace(array(' — ', ' —', '— ', '—'), ', ', $content);
+                                    $clean_content = str_replace(array(' – ', ' –', '– ', '–'), ', ', $clean_content);
+                                    // Prevent orphan words like "forever" from sitting alone on a line
+                                    $clean_content = str_replace('This is forever.', 'This is&nbsp;forever.', $clean_content);
+                                    $clean_content = str_replace('forever.', '&nbsp;forever.', $clean_content);
+                                    echo wpautop($clean_content); 
+                                    ?>
                                 </div>
                             <?php endif; ?>
 
@@ -889,6 +1381,13 @@ get_header();
                                     <?php endif; ?>
                                 </div>
                             <?php endif; ?>
+
+                            <!-- Action CTA -->
+                            <div class="hd-ps-action-wrap">
+                                <button type="button" @click="$dispatch('open-booking-modal')" class="ghl-booking-btn button hd-ps-cta-btn" aria-label="Book Appointment">
+                                    <span>Book Appointment</span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -993,6 +1492,17 @@ get_header();
 
     </div>
 
+    <!-- Floating Horizontal Navigation Arrows (Obvious Visual Cue) -->
+    <div class="global-slider-arrows" id="globalSliderArrows">
+        <button type="button" class="global-arrow-btn global-arrow-prev is-hidden" id="globalPrevBtn" aria-label="Previous section">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+        </button>
+        <button type="button" class="global-arrow-btn global-arrow-next is-pulsing" id="globalNextBtn" aria-label="Next section">
+            <span class="global-arrow-label">SLIDE →</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        </button>
+    </div>
+
     <!-- Sticky Prominent Global Slider Dots -->
     <div class="global-slider-dots-wrapper" id="globalSliderDots" role="tablist" aria-label="Section Navigation"></div>
 </div>
@@ -1021,6 +1531,7 @@ get_template_part('template-parts/booking-modal');
         const $sections = $et_studio_slider.children('section');
         const sectionCount = $sections.length;
         const dotsContainer = document.getElementById('globalSliderDots');
+        let currentSlideIndex = 0;
 
         // Render global sticky dots strictly for direct child sections
         if (dotsContainer && sectionCount > 0) {
@@ -1037,18 +1548,60 @@ get_template_part('template-parts/booking-modal');
         }
 
         function updateActiveDot(activeIndex) {
-            if (!dotsContainer) return;
-            const dots = dotsContainer.querySelectorAll('.global-slider-dot');
-            dots.forEach((d, i) => {
-                if (i === activeIndex) {
-                    d.classList.add('is-active');
-                    d.setAttribute('aria-selected', 'true');
+            currentSlideIndex = activeIndex;
+            if (dotsContainer) {
+                const dots = dotsContainer.querySelectorAll('.global-slider-dot');
+                dots.forEach((d, i) => {
+                    if (i === activeIndex) {
+                        d.classList.add('is-active');
+                        d.setAttribute('aria-selected', 'true');
+                    } else {
+                        d.classList.remove('is-active');
+                        d.setAttribute('aria-selected', 'false');
+                    }
+                });
+            }
+
+            // Update floating prev/next arrows
+            const prevBtn = document.getElementById('globalPrevBtn');
+            const nextBtn = document.getElementById('globalNextBtn');
+            if (prevBtn) {
+                if (activeIndex === 0) {
+                    prevBtn.classList.add('is-hidden');
                 } else {
-                    d.classList.remove('is-active');
-                    d.setAttribute('aria-selected', 'false');
+                    prevBtn.classList.remove('is-hidden');
                 }
-            });
+            }
+            if (nextBtn) {
+                if (activeIndex >= sectionCount - 1) {
+                    nextBtn.classList.add('is-hidden');
+                } else {
+                    nextBtn.classList.remove('is-hidden');
+                }
+                if (activeIndex > 0) {
+                    nextBtn.classList.remove('is-pulsing');
+                }
+            }
         }
+
+        // Arrow click navigation
+        $('#globalPrevBtn').on('click', function (e) {
+            e.preventDefault();
+            const targetIdx = Math.max(0, currentSlideIndex - 1);
+            const dots = dotsContainer ? dotsContainer.querySelectorAll('.global-slider-dot') : null;
+            if (dots && dots[targetIdx]) {
+                dots[targetIdx].click();
+            }
+        });
+
+        $('#globalNextBtn').on('click', function (e) {
+            e.preventDefault();
+            const targetIdx = Math.min(sectionCount - 1, currentSlideIndex + 1);
+            const dots = dotsContainer ? dotsContainer.querySelectorAll('.global-slider-dot') : null;
+            if (dots && dots[targetIdx]) {
+                dots[targetIdx].click();
+            }
+        });
 
         if (windowWidth >= 991) {
             // Force scroll to top on page load
