@@ -347,134 +347,6 @@ get_header();
         }
     }
 
-    /* 5. Floating Side Navigation Arrows (Desktop & Mobile) */
-    .global-slider-arrows {
-        position: fixed;
-        right: 24px;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 9999;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        pointer-events: auto;
-    }
-
-    .global-arrow-btn {
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: rgba(18, 18, 18, 0.85);
-        border: 1.5px solid rgba(255, 255, 255, 0.25);
-        color: #ffffff;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-        transition: all 0.25s ease;
-        padding: 0;
-        position: relative;
-    }
-
-    .global-arrow-btn:hover {
-        background: #ff4500;
-        border-color: #ff4500;
-        color: #ffffff;
-        transform: scale(1.1);
-        box-shadow: 0 0 16px rgba(255, 69, 0, 0.6);
-    }
-
-    .global-arrow-btn.is-pulsing {
-        animation: hd-pulse-arrow 2.2s infinite ease-in-out;
-    }
-
-    .global-arrow-btn.is-pulsing::after {
-        content: '';
-        position: absolute;
-        inset: -4px;
-        border-radius: 50%;
-        border: 1.5px solid rgba(255, 69, 0, 0.6);
-        animation: hd-pulse-ring 2.2s infinite ease-out;
-    }
-
-    .global-arrow-label {
-        position: absolute;
-        right: 52px;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(18, 18, 18, 0.9);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        color: #ffffff;
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        padding: 4px 10px;
-        border-radius: 6px;
-        white-space: nowrap;
-        pointer-events: none;
-        opacity: 0.9;
-        transition: opacity 0.2s;
-    }
-
-    @keyframes hd-pulse-arrow {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.08);
-            border-color: #ff4500;
-        }
-    }
-
-    @keyframes hd-pulse-ring {
-        0% {
-            transform: scale(1);
-            opacity: 0.8;
-        }
-        100% {
-            transform: scale(1.4);
-            opacity: 0;
-        }
-    }
-
-    .global-arrow-prev.is-hidden,
-    .global-arrow-next.is-hidden {
-        opacity: 0 !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
-    }
-
-    @media (max-width: 990px) {
-        .global-slider-arrows {
-            right: 14px;
-            top: auto;
-            bottom: 74px;
-            transform: none;
-            flex-direction: row;
-            gap: 8px;
-        }
-
-        .global-arrow-btn {
-            width: 38px;
-            height: 38px;
-        }
-
-        .global-arrow-label {
-            display: none;
-        }
-    }
-
-    body.has-modal-open .global-slider-arrows,
-    body.modal-open .global-slider-arrows {
-        display: none !important;
-        opacity: 0 !important;
-        visibility: hidden !important;
-        pointer-events: none !important;
-    }
-
     /* ========================================
        SECTION 2: THINK MAKING & ARTIST SECTION
        ======================================== */
@@ -1155,12 +1027,6 @@ get_header();
                     <div class="hd-section-inner">
                         <div class="hd-hero-top-wrap">
                             
-                            <!-- Eyebrow Badge -->
-                            <div class="hd-hero-eyebrow">
-                                <span class="hd-hero-badge">Tattoo Studio & Art Gallery</span>
-                                <span class="hd-hero-loc">NYC • Est. 2012</span>
-                            </div>
-
                             <!-- Main Tagline Headline -->
                             <div class="hd-hero-top-headline">
                                 <?php if ($content): ?>
@@ -1170,50 +1036,21 @@ get_header();
                                 <?php endif; ?>
                             </div>
 
-                            <!-- Narrative Description -->
-                            <p class="hd-hero-desc">
-                                Bespoke tattoo craftsmanship by resident & guest masters. Private consultations and custom pieces created exclusively for you.
-                            </p>
-
-                            <!-- Quick Action Buttons -->
-                            <div class="hd-hero-actions">
-                                <button type="button" @click="$dispatch('open-booking-modal')" class="hd-hero-btn-primary ghl-booking-btn button" aria-label="Book Appointment">
-                                    <span>Book Appointment</span>
-                                </button>
-                                <button type="button" onclick="document.querySelectorAll('.global-slider-dot')[1]?.click()" class="hd-hero-btn-secondary" aria-label="View Artists">
-                                    <span>View Artists →</span>
-                                </button>
-                            </div>
-
-                            <!-- Live Studio Status Card -->
-                            <div class="hd-hero-status-card">
-                                <div class="hd-status-col">
-                                    <span class="hd-status-label">Current Time</span>
-                                    <span class="hd-status-val"><?php echo esc_html($current_time); ?> EST</span>
-                                </div>
-                                <div class="hd-status-divider"></div>
-                                <div class="hd-status-col">
-                                    <span class="hd-status-label">Studio Hours</span>
-                                    <span class="hd-status-val hd-status-indicator <?php echo strtolower($studio_status); ?>">
-                                        <span class="hd-status-dot"></span> <?php echo esc_html($studio_status); ?> (11AM–9PM)
-                                    </span>
+                            <!-- Studio Status Bar -->
+                            <div class="studio-status-bar">
+                                <div class="studio-time"><?php echo esc_html($current_time); ?></div>
+                                <div class="studio-status">
+                                    Studio: <span class="<?php echo strtolower($studio_status); ?>"><?php echo esc_html($studio_status); ?></span>
                                 </div>
                             </div>
 
-                            <!-- Key Highlights / Feature Badges -->
-                            <div class="hd-hero-features-grid">
-                                <div class="hd-feature-item">
-                                    <span class="hd-feature-icon">✦</span>
-                                    <span class="hd-feature-text">100% Custom Work</span>
-                                </div>
-                                <div class="hd-feature-item">
-                                    <span class="hd-feature-icon">✦</span>
-                                    <span class="hd-feature-text">Award-Winning</span>
-                                </div>
-                                <div class="hd-feature-item">
-                                    <span class="hd-feature-icon">✦</span>
-                                    <span class="hd-feature-text">Private Studio</span>
-                                </div>
+                            <!-- Logotype -->
+                            <div class="hd-logotype">
+                                <img
+                                    src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png"
+                                    alt="Tatu Panda"
+                                    loading="eager"
+                                >
                             </div>
 
                             <!-- Obvious Visual Horizontal Slide Cue -->
@@ -1492,17 +1329,6 @@ get_header();
 
     </div>
 
-    <!-- Floating Horizontal Navigation Arrows (Obvious Visual Cue) -->
-    <div class="global-slider-arrows" id="globalSliderArrows">
-        <button type="button" class="global-arrow-btn global-arrow-prev is-hidden" id="globalPrevBtn" aria-label="Previous section">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-        </button>
-        <button type="button" class="global-arrow-btn global-arrow-next is-pulsing" id="globalNextBtn" aria-label="Next section">
-            <span class="global-arrow-label">SLIDE →</span>
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-        </button>
-    </div>
-
     <!-- Sticky Prominent Global Slider Dots -->
     <div class="global-slider-dots-wrapper" id="globalSliderDots" role="tablist" aria-label="Section Navigation"></div>
 </div>
@@ -1561,47 +1387,7 @@ get_template_part('template-parts/booking-modal');
                     }
                 });
             }
-
-            // Update floating prev/next arrows
-            const prevBtn = document.getElementById('globalPrevBtn');
-            const nextBtn = document.getElementById('globalNextBtn');
-            if (prevBtn) {
-                if (activeIndex === 0) {
-                    prevBtn.classList.add('is-hidden');
-                } else {
-                    prevBtn.classList.remove('is-hidden');
-                }
-            }
-            if (nextBtn) {
-                if (activeIndex >= sectionCount - 1) {
-                    nextBtn.classList.add('is-hidden');
-                } else {
-                    nextBtn.classList.remove('is-hidden');
-                }
-                if (activeIndex > 0) {
-                    nextBtn.classList.remove('is-pulsing');
-                }
-            }
         }
-
-        // Arrow click navigation
-        $('#globalPrevBtn').on('click', function (e) {
-            e.preventDefault();
-            const targetIdx = Math.max(0, currentSlideIndex - 1);
-            const dots = dotsContainer ? dotsContainer.querySelectorAll('.global-slider-dot') : null;
-            if (dots && dots[targetIdx]) {
-                dots[targetIdx].click();
-            }
-        });
-
-        $('#globalNextBtn').on('click', function (e) {
-            e.preventDefault();
-            const targetIdx = Math.min(sectionCount - 1, currentSlideIndex + 1);
-            const dots = dotsContainer ? dotsContainer.querySelectorAll('.global-slider-dot') : null;
-            if (dots && dots[targetIdx]) {
-                dots[targetIdx].click();
-            }
-        });
 
         if (windowWidth >= 991) {
             // Force scroll to top on page load
