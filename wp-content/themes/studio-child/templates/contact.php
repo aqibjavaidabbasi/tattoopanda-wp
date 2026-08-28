@@ -130,40 +130,26 @@ get_header();
         gap: 24px;
     }
 
-    .hd-contact-cards-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 16px;
-    }
-
-    .hd-contact-card {
+    /* Compact Studio & Social Channels Card */
+    .hd-contact-main-card {
         background: rgba(255, 255, 255, 0.03);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 16px;
-        padding: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 20px;
+        padding: 24px;
         box-sizing: border-box;
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
-        transition: transform 0.25s ease, border-color 0.25s ease;
-    }
-
-    .hd-contact-card:hover {
-        transform: translateY(-3px);
-        border-color: rgba(255, 255, 255, 0.25);
-    }
-
-    .hd-contact-card.is-fullwidth {
-        grid-column: 1 / -1;
+        gap: 16px;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        box-shadow: 0 10px 32px rgba(0, 0, 0, 0.4);
     }
 
     .hd-card-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 12px;
+        margin-bottom: 2px;
     }
 
     .hd-card-tag {
@@ -176,32 +162,6 @@ get_header();
 
     .hd-card-icon {
         color: rgba(255, 255, 255, 0.6);
-    }
-
-    .hd-card-value {
-        font-size: 15px;
-        font-weight: 600;
-        color: #ffffff;
-        line-height: 1.4;
-        margin: 0 0 10px 0;
-    }
-
-    .hd-card-link {
-        color: #ffffff;
-        text-decoration: none;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 13px;
-        font-weight: 600;
-        letter-spacing: 0.03em;
-        opacity: 0.85;
-        transition: opacity 0.2s ease;
-    }
-
-    .hd-card-link:hover {
-        opacity: 1;
-        text-decoration: underline;
     }
 
     .hd-badge-open {
@@ -224,7 +184,6 @@ get_header();
         flex-wrap: wrap;
         gap: 10px;
         align-items: center;
-        margin-top: 4px;
     }
 
     .hd-social-pill {
@@ -251,10 +210,9 @@ get_header();
     }
 
     .hd-custom-contact-info {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.75);
-        line-height: 1.5;
-        margin-bottom: 12px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.6;
     }
 
     .hd-custom-contact-info a {
@@ -268,11 +226,27 @@ get_header();
         margin: 0;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 8px;
     }
 
     .hd-custom-contact-info li {
         margin: 0;
+    }
+
+    /* One Liner Studio Hours */
+    .hd-contact-hours-line {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.85);
+        padding-top: 14px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hd-contact-hours-line strong {
+        color: #ffffff;
     }
 
     /* Studio Visual Accent Card */
@@ -485,75 +459,46 @@ get_header();
 
             <!-- Left Column: Info & Visual Cards -->
             <div class="hd-contact-left">
-                <div class="hd-contact-cards-grid">
-                    
-                    <!-- Location Card (Full Width) -->
-                    <div class="hd-contact-card is-fullwidth">
-                        <div class="hd-card-header">
-                            <span class="hd-card-tag">Studio Location</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <!-- Compact Studio & Social Channels Card -->
+                <div class="hd-contact-main-card">
+                    <div class="hd-card-header">
+                        <span class="hd-card-tag">Studio & Social Channels</span>
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                    </div>
+
+                    <?php if (get_field('contact_info')): ?>
+                        <div class="hd-custom-contact-info">
+                            <?php the_field('contact_info'); ?>
                         </div>
-                        <p class="hd-card-value">
-                            254 NW 36th St, Miami, FL 33127
-                        </p>
-                        <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-card-link" aria-label="Open Google Maps for 254 NW 36th St, Miami, FL 33127">
-                            <span>Get Directions on Google Maps</span>
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                    <?php else: ?>
+                        <div class="hd-custom-contact-info">
+                            <ul>
+                                <li><strong>Location:</strong> <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer">254 NW 36th St, Miami, FL 33127</a></li>
+                                <li><strong>Direct Line:</strong> <a href="tel:7869199998">(786) 919-9998</a></li>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+
+                    <div class="hd-social-links-list">
+                        <a href="https://instagram.com/tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Instagram @tattoopandaofficial">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="https://www.facebook.com/tattoopandaofficial/" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Facebook">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            <span>Facebook</span>
+                        </a>
+                        <a href="https://www.tiktok.com/@tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="TikTok @tattoopandaofficial">
+                            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
+                            <span>TikTok</span>
                         </a>
                     </div>
 
-                    <!-- Direct Line Card -->
-                    <div class="hd-contact-card">
-                        <div class="hd-card-header">
-                            <span class="hd-card-tag">Direct Line</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-                        </div>
-                        <p class="hd-card-value">
-                            <a href="tel:7869199998" class="hd-card-link" style="font-size: 16px;">(786) 919-9998</a>
-                        </p>
-                        <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5);">Direct calls & text consultations</span>
-                    </div>
-
-                    <!-- Studio Hours Card -->
-                    <div class="hd-contact-card">
-                        <div class="hd-card-header">
-                            <span class="hd-card-tag">Hours</span>
-                            <span class="hd-badge-open">Open Daily</span>
-                        </div>
-                        <p class="hd-card-value">
-                            Mon &ndash; Sun<br>
-                            11:00 AM &ndash; 9:00 PM
-                        </p>
-                        <span style="font-size: 12px; color: rgba(255, 255, 255, 0.5);">Walk-ins welcome & by appointment</span>
-                    </div>
-
-                    <!-- Social Channels Card (Full Width) -->
-                    <div class="hd-contact-card is-fullwidth hd-contact-social-card">
-                        <div class="hd-card-header">
-                            <span class="hd-card-tag">Social Channels</span>
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                        </div>
-                        
-                        <?php if (get_field('contact_info')): ?>
-                            <div class="hd-custom-contact-info">
-                                <?php the_field('contact_info'); ?>
-                            </div>
-                        <?php endif; ?>
-
-                        <div class="hd-social-links-list">
-                            <a href="https://instagram.com/tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Instagram @tattoopandaofficial">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg>
-                                <span>Instagram</span>
-                            </a>
-                            <a href="https://www.facebook.com/tattoopandaofficial/" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="Facebook">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="https://www.tiktok.com/@tattoopandaofficial" target="_blank" rel="noopener noreferrer" class="hd-social-pill" aria-label="TikTok @tattoopandaofficial">
-                                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"></path></svg>
-                                <span>TikTok</span>
-                            </a>
-                        </div>
+                    <!-- One Liner Studio Hours -->
+                    <div class="hd-contact-hours-line">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span><strong>Hours:</strong> Mon &ndash; Sun 11:00 AM &ndash; 9:00 PM</span>
+                        <span class="hd-badge-open">Open Daily</span>
                     </div>
                 </div>
 
