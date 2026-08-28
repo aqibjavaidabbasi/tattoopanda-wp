@@ -526,11 +526,83 @@ get_header();
         transform: translateY(-2px) !important;
     }
 
-    /* Fancybox Dark Customizations */
+    /* ========================================
+       FANCYBOX LIGHTBOX ENHANCEMENTS
+       ======================================== */
+    .fancybox__container {
+        z-index: 99999999 !important;
+        position: fixed !important;
+        inset: 0 !important;
+    }
+
     .fancybox__backdrop {
-        background: rgba(0, 0, 0, 0.94) !important;
+        background: rgba(0, 0, 0, 0.96) !important;
         backdrop-filter: blur(16px) !important;
         -webkit-backdrop-filter: blur(16px) !important;
+    }
+
+    .fancybox__toolbar {
+        position: absolute !important;
+        top: max(12px, env(safe-area-inset-top, 12px)) !important;
+        right: 14px !important;
+        z-index: 999999999 !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 10px !important;
+        background: transparent !important;
+        text-shadow: none !important;
+    }
+
+    .fancybox__button--close {
+        width: 44px !important;
+        height: 44px !important;
+        min-width: 44px !important;
+        min-height: 44px !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.25) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+        border: 1px solid rgba(255, 255, 255, 0.4) !important;
+        color: #ffffff !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: auto !important;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7) !important;
+        transition: all 0.2s ease !important;
+        padding: 0 !important;
+    }
+
+    .fancybox__button--close:hover {
+        background: #ffffff !important;
+        color: #000000 !important;
+        border-color: #ffffff !important;
+        transform: scale(1.08) !important;
+    }
+
+    .fancybox__button--close svg {
+        width: 22px !important;
+        height: 22px !important;
+        stroke: currentColor !important;
+        stroke-width: 2.5 !important;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5)) !important;
+    }
+
+    /* Hide site header, navigation, and floating book CTA when Fancybox is open */
+    body.has-fancybox .logo_wrap,
+    body.has-fancybox .main-navigation,
+    body.has-fancybox .artist-section-cta-fixed,
+    body.has-fancybox .global-slider-dots-wrapper,
+    body.compensate-for-scrollbar .logo_wrap,
+    body.compensate-for-scrollbar .main-navigation,
+    body.compensate-for-scrollbar .artist-section-cta-fixed {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+        pointer-events: none !important;
     }
 
     /* Responsive */
@@ -956,6 +1028,20 @@ if (locate_template('template-parts/booking-modal.php')) {
                         right: ["iterateZoom", "close"],
                     },
                 },
+                on: {
+                    "init": () => {
+                        document.body.classList.add('has-fancybox');
+                    },
+                    "ready": () => {
+                        document.body.classList.add('has-fancybox');
+                    },
+                    "destroy": () => {
+                        document.body.classList.remove('has-fancybox');
+                    },
+                    "close": () => {
+                        document.body.classList.remove('has-fancybox');
+                    }
+                }
             });
         }
 

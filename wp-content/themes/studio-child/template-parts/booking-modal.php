@@ -1485,37 +1485,32 @@ if (!empty($args['artist_slug'])) {
         width: 100vw !important;
         height: 100vh !important;
         height: 100dvh !important;
-        background: rgba(0, 0, 0, 0.94) !important;
+        background: rgba(0, 0, 0, 0.92) !important;
         backdrop-filter: blur(16px) !important;
         -webkit-backdrop-filter: blur(16px) !important;
         z-index: 99999999 !important;
-        align-items: center !important;
+        align-items: flex-start !important;
         justify-content: center !important;
-        padding: 16px !important;
-        padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
-        padding-bottom: max(16px, env(safe-area-inset-bottom, 16px)) !important;
-        overflow: hidden !important;
+        padding: 30px 16px 60px !important;
+        padding-top: max(24px, env(safe-area-inset-top, 24px)) !important;
+        padding-bottom: max(30px, env(safe-area-inset-bottom, 30px)) !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
         box-sizing: border-box !important;
     }
 
     /* ========================================
-       MODAL CONTAINER (Fixed Frame with internal scroll)
+       MODAL CONTAINER
        ======================================== */
     .pt-modal-container {
         width: 100% !important;
-        max-width: 680px !important;
-        height: 88vh !important;
-        height: 88dvh !important;
-        max-height: 840px !important;
+        max-width: 640px !important;
         margin: auto !important;
         background: #0d0d0d !important;
         border: 1px solid rgba(255, 255, 255, 0.15) !important;
         color: #ffffff !important;
         border-radius: 20px !important;
         position: relative !important;
-        display: flex !important;
-        flex-direction: column !important;
-        overflow: hidden !important;
         box-sizing: border-box !important;
         box-shadow: 0 24px 70px rgba(0, 0, 0, 0.95) !important;
         z-index: 100 !important;
@@ -1525,22 +1520,8 @@ if (!empty($args['artist_slug'])) {
     .pt-modal-right,
     .pt-modal-form {
         width: 100% !important;
-        height: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        overflow: hidden !important;
-        min-height: 0 !important;
         position: relative !important;
-    }
-
-    /* Step Wrappers */
-    .pt-modal-form > div[x-show] {
-        width: 100% !important;
-        height: 100% !important;
-        display: flex !important;
-        flex-direction: column !important;
-        overflow: hidden !important;
-        min-height: 0 !important;
+        box-sizing: border-box !important;
     }
 
     /* Prevent body scroll when modal is open */
@@ -1555,16 +1536,16 @@ if (!empty($args['artist_slug'])) {
        ======================================== */
     .pt-close-btn {
         position: absolute;
-        top: 14px;
-        right: 14px;
-        background: rgba(255, 255, 255, 0.1);
+        top: 16px;
+        right: 16px;
+        background: rgba(255, 255, 255, 0.12);
         color: #ffffff;
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.25);
         font-size: 18px;
         cursor: pointer;
         z-index: 50;
-        width: 34px;
-        height: 34px;
+        width: 36px;
+        height: 36px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1574,25 +1555,20 @@ if (!empty($args['artist_slug'])) {
     }
 
     .pt-close-btn:hover {
-        background: rgba(255, 255, 255, 0.25);
-        transform: scale(1.1);
+        background: rgba(255, 255, 255, 0.3);
+        transform: scale(1.08);
     }
 
     /* ========================================
-       FORM FIELDS & SCROLLABLE BODY
+       FORM FIELDS & BODY
        ======================================== */
     .pt-form-fields,
     .pt-form-fields-step1 {
-        flex: 1 1 auto !important;
         width: 100% !important;
         max-width: 100% !important;
         margin: 0 !important;
-        padding: 24px 20px 20px !important;
-        overflow-y: auto !important;
-        overflow-x: hidden !important;
-        -webkit-overflow-scrolling: touch !important;
+        padding: 32px 24px 28px !important;
         box-sizing: border-box !important;
-        min-height: 0 !important;
     }
 
     .pt-input-group {
@@ -2126,23 +2102,15 @@ if (!empty($args['artist_slug'])) {
     }
 
     /* ========================================
-       STICKY FORM ACTIONS (FOOTER)
+       FORM ACTIONS
        ======================================== */
     .pt-form-actions {
-        flex-shrink: 0 !important;
-        position: sticky !important;
-        bottom: 0 !important;
-        width: 100% !important;
-        background: #0d0d0d !important;
-        border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
-        padding: 14px 20px !important;
-        margin-top: 0 !important;
-        z-index: 40 !important;
         display: flex !important;
         justify-content: space-between !important;
         gap: 12px !important;
+        margin-top: 28px !important;
+        width: 100% !important;
         box-sizing: border-box !important;
-        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.7) !important;
     }
 
     .pt-form-actions-centered {
@@ -2250,22 +2218,20 @@ if (!empty($args['artist_slug'])) {
        ======================================== */
     @media (max-width: 768px) {
         .pt-modal-overlay.pt-modal-open {
-            padding: 10px !important;
-            padding-top: max(12px, env(safe-area-inset-top, 12px)) !important;
-            padding-bottom: max(12px, env(safe-area-inset-bottom, 12px)) !important;
+            padding: 20px 12px 40px !important;
+            padding-top: max(16px, env(safe-area-inset-top, 16px)) !important;
+            padding-bottom: max(24px, env(safe-area-inset-bottom, 24px)) !important;
         }
 
         .pt-modal-container {
             max-width: 100% !important;
-            height: 94vh !important;
-            height: 94dvh !important;
-            max-height: 94dvh !important;
             border-radius: 16px !important;
+            margin: auto !important;
         }
 
         .pt-form-fields,
         .pt-form-fields-step1 {
-            padding: 20px 16px !important;
+            padding: 24px 16px 20px !important;
         }
 
         /* Style grid becomes 2 columns on mobile/tablet */
@@ -2288,7 +2254,8 @@ if (!empty($args['artist_slug'])) {
         }
 
         .pt-form-actions {
-            padding: 12px 16px !important;
+            padding: 0 !important;
+            margin-top: 20px !important;
         }
     }
 
