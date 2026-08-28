@@ -59,21 +59,16 @@ if (!empty($args['artist_slug'])) {
 
             init() {
                 this.$watch('step', (value) => {
-                    // Use $nextTick to ensure DOM is updated before scrolling
                     this.$nextTick(() => {
-                        // Scroll to top when step changes
-                        window.scrollTo({ top: 0, behavior: 'auto' });
-
-                        // Find and scroll the appropriate container
-                        const modalContainer = this.$el.querySelector('.pt-modal-container');
-                        const modalRight = this.$el.querySelector('.pt-modal-right');
-
-                        if (modalContainer) {
-                            modalContainer.scrollTop = 0;
-                        }
-                        if (modalRight) {
-                            modalRight.scrollTop = 0;
-                        }
+                        // Smoothly scroll all step form containers and modal containers to top
+                        const scrollContainers = this.$el.querySelectorAll(
+                            '.pt-form-fields, .pt-form-fields-step1, .pt-modal-right, .pt-modal-form, .pt-modal-container'
+                        );
+                        scrollContainers.forEach((el) => {
+                            el.scrollTo({ top: 0, behavior: 'smooth' });
+                            el.scrollTop = 0;
+                        });
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
 
                         // Focus management for accessibility
                         const stepHeader = this.$el.querySelector('.pt-step-header h2, .pt-step-title');
@@ -1317,7 +1312,7 @@ if (!empty($args['artist_slug'])) {
                                     </div>
 
                                 </div>
-                                <div class="pt-form-actions">
+                                <div class="pt-form-actions" x-show="!isImageView">
                                     <button type="button" @click="step = 1"
                                         class="pt-btn pt-btn-secondary">BACK</button>
                                     <button type="button" @click="if(validateStep('step2')) step = 3"
@@ -1551,6 +1546,9 @@ if (!empty($args['artist_slug'])) {
     /* ========================================
        CLOSE BUTTON (Fixed at Top Right of Modal)
        ======================================== */
+    .pt-close-btn[style*="display: none"], [x-cloak].pt-close-btn {
+        display: none !important;
+    }
     .pt-close-btn {
         position: absolute !important;
         top: 14px !important;
@@ -1568,7 +1566,7 @@ if (!empty($args['artist_slug'])) {
         max-width: 36px !important;
         max-height: 36px !important;
         aspect-ratio: 1 / 1 !important;
-        display: flex !important;
+        display: flex;
         align-items: center !important;
         justify-content: center !important;
         border-radius: 50% !important;
@@ -2449,6 +2447,9 @@ if (!empty($args['artist_slug'])) {
     /* ========================================
        STICKY FORM ACTIONS (FOOTER)
        ======================================== */
+    .pt-form-actions[style*="display: none"], [x-cloak].pt-form-actions {
+        display: none !important;
+    }
     .pt-form-actions {
         margin-top: auto !important;
         position: sticky !important;
@@ -2608,7 +2609,10 @@ if (!empty($args['artist_slug'])) {
             font-size: 12px;
         }
 
-        .pt-form-actions {
+        .pt-form-actions[style*="display: none"], [x-cloak].pt-form-actions {
+        display: none !important;
+    }
+    .pt-form-actions {
             padding: 12px 0 2px !important;
             margin-top: auto !important;
         }
