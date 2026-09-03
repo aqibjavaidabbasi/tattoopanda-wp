@@ -2247,8 +2247,34 @@ get_header();
                             <p>Located in the vibrant heart of Miami’s Wynwood Arts District. Consultations by appointment and select walk-ins welcome.</p>
                         </div>
 
-                        <!-- Contact Details Below Logo -->
-                        <div class="hd-final-contact-wrap">
+                        <!-- Mobile Studio & Social Channels Info Card (Exact Contact Info) -->
+                        <div class="hd-contact-main-card hd-mobile-only">
+                            <div class="hd-card-header">
+                                <span class="hd-card-tag">Studio & Social Channels</span>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
+                            </div>
+
+                            <div class="hd-custom-contact-info">
+                                <p>Panda Tattoo 254 NW 36th St, Miami, FL 33127 <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-maps-link">Open in Google Maps</a></p>
+                                <p>Phone : <a href="tel:7869199998">(786) 919-9998</a></p>
+                                <p>Follow on Social:</p>
+                                <ul>
+                                    <li><a href="https://instagram.com/tatu_panda" target="_blank" rel="noopener noreferrer">&ndash; @tatu_panda</a></li>
+                                    <li><a href="https://instagram.com/pandatattoomia" target="_blank" rel="noopener noreferrer">&ndash; @pandatattoomia</a></li>
+                                    <li><a href="https://instagram.com/pandatattooacademy" target="_blank" rel="noopener noreferrer">&ndash; @pandatattooacademy</a></li>
+                                </ul>
+                            </div>
+
+                            <!-- One Liner Studio Hours -->
+                            <div class="hd-contact-hours-line">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                                <span><strong>Hours:</strong> Mon &ndash; Sun 11:00 AM &ndash; 9:00 PM</span>
+                                <span class="hd-badge-open">Open Daily</span>
+                            </div>
+                        </div>
+
+                        <!-- Desktop Contact Details Below Logo -->
+                        <div class="hd-final-contact-wrap hd-desktop-only">
                             <!-- Location (Address) -> Opens Google Maps (Full Width Single Line) -->
                             <div class="hd-final-contact-item hd-final-address-item">
                                 <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-final-contact-link" aria-label="Open Google Maps for 254 NW 36th St, Miami, FL 33127">
