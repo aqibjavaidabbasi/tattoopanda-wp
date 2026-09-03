@@ -27,6 +27,11 @@ do_action( 'studio_after_content' );
 	        $('#offcanvas-menu').removeClass('active');
 	        $('#menu-overlay').removeClass('active');
 	    });
+
+	    $(document).on('click', '.ghl-booking-btn, .hd-header-booking-btn', function (e) {
+	        e.preventDefault();
+	        window.dispatchEvent(new CustomEvent('open-booking-modal'));
+	    });
 	});
 </script>
 
