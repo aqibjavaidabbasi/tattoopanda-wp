@@ -77,6 +77,11 @@
 		       ));
 		     ?>
 		   </nav>
+		   <div class="header-desktop-cta hd-desktop-only" x-data>
+		       <button @click="$dispatch('open-booking-modal')" onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="ghl-booking-btn hd-header-booking-btn button" aria-label="Book Appointment">
+		           <span>Book Now</span>
+		       </button>
+		   </div>
 		   <div class="bullet"></div>
 	</header>
 	<?php
