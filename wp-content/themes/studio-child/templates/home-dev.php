@@ -1543,28 +1543,30 @@ get_header();
             font-size: 10.5px !important;
         }
 
-        /* Section 2 mobile */
+        /* Section 2 mobile - Vertical Cards */
         .section_2.think_making {
             position: relative !important;
-            padding: 76px 16px 85px !important;
+            padding: 85px 16px 110px !important;
             height: 100% !important;
             height: 100dvh !important;
             max-height: 100dvh !important;
-            overflow: hidden !important;
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: flex-start !important;
+            overflow-y: auto !important;
+            overflow-x: hidden !important;
+            -webkit-overflow-scrolling: touch !important;
+            display: block !important;
             box-sizing: border-box !important;
         }
 
         .section_2.think_making .cmn_container {
             display: flex !important;
             flex-direction: column !important;
-            gap: 12px !important;
-            height: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
+            gap: 16px !important;
             width: 100% !important;
+            max-width: 420px !important;
+            margin: 0 auto !important;
+            padding: 0 !important;
+            height: auto !important;
+            min-height: auto !important;
         }
 
         .section_2.think_making .content_wrap {
@@ -1577,10 +1579,10 @@ get_header();
 
         .section_2.think_making .content_wrap h3.section-header-title {
             color: #ffffff !important;
-            font-size: 13px !important;
+            font-size: 14px !important;
             letter-spacing: 0.14em !important;
             text-transform: uppercase !important;
-            margin: 0 0 6px 0 !important;
+            margin: 0 0 12px 0 !important;
             padding: 0 !important;
             font-weight: 700 !important;
             text-align: center !important;
@@ -1588,41 +1590,25 @@ get_header();
 
         .artist-vertical-cards-wrap {
             display: flex !important;
-            flex-direction: row !important;
-            gap: 16px !important;
-            overflow-x: auto !important;
-            overflow-y: hidden !important;
-            scroll-snap-type: x mandatory !important;
-            -webkit-overflow-scrolling: touch !important;
-            scrollbar-width: none !important;
-            -ms-overflow-style: none !important;
+            flex-direction: column !important;
+            gap: 20px !important;
             width: 100% !important;
             max-width: 100% !important;
-            flex: 1 1 auto !important;
-            height: auto !important;
-            max-height: calc(100dvh - 190px) !important;
-            padding: 4px 6px 14px !important;
             margin: 0 auto !important;
+            padding: 0 0 30px 0 !important;
+            overflow: visible !important;
             box-sizing: border-box !important;
-        }
-
-        .artist-vertical-cards-wrap::-webkit-scrollbar {
-            display: none !important;
         }
 
         .artist-vertical-card-link {
             display: block !important;
             text-decoration: none !important;
-            flex: 0 0 72vw !important;
-            max-width: 270px !important;
-            min-width: 210px !important;
-            height: 100% !important;
-            scroll-snap-align: center !important;
+            width: 100% !important;
+            flex: 0 0 auto !important;
         }
 
         .artist-vertical-card {
             width: 100% !important;
-            height: 100% !important;
             border-radius: 18px !important;
             overflow: hidden !important;
             background: #141414 !important;
@@ -1635,7 +1621,7 @@ get_header();
 
         .artist-vertical-image {
             width: 100% !important;
-            height: 100% !important;
+            height: 380px !important;
             overflow: hidden !important;
             position: relative !important;
         }
@@ -1652,14 +1638,14 @@ get_header();
             bottom: 0 !important;
             left: 0 !important;
             right: 0 !important;
-            padding: 24px 14px 14px !important;
+            padding: 28px 16px 16px !important;
             text-align: center !important;
-            font-size: 15px !important;
+            font-size: 16px !important;
             font-weight: 700 !important;
             color: #ffffff !important;
             letter-spacing: 0.04em !important;
             text-transform: capitalize !important;
-            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 65%, transparent 100%) !important;
+            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 60%, transparent 100%) !important;
             z-index: 2 !important;
         }
 
