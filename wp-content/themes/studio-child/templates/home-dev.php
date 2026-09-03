@@ -1546,8 +1546,14 @@ get_header();
         /* Section 2 mobile */
         .section_2.think_making {
             position: relative !important;
-            padding: 56px 20px 90px !important;
-            min-height: 100dvh !important;
+            padding: 76px 16px 85px !important;
+            height: 100% !important;
+            height: 100dvh !important;
+            max-height: 100dvh !important;
+            overflow: hidden !important;
+            display: flex !important;
+            flex-direction: column !important;
+            justify-content: flex-start !important;
             box-sizing: border-box !important;
         }
 
@@ -1555,7 +1561,7 @@ get_header();
             display: flex !important;
             flex-direction: column !important;
             gap: 12px !important;
-            height: auto !important;
+            height: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
             width: 100% !important;
@@ -1566,6 +1572,7 @@ get_header();
             width: 100% !important;
             margin: 0 !important;
             padding: 0 !important;
+            flex: 0 0 auto !important;
         }
 
         .section_2.think_making .content_wrap h3.section-header-title {
@@ -1573,32 +1580,87 @@ get_header();
             font-size: 13px !important;
             letter-spacing: 0.14em !important;
             text-transform: uppercase !important;
-            margin: 0 0 8px 0 !important;
+            margin: 0 0 6px 0 !important;
             padding: 0 !important;
             font-weight: 700 !important;
+            text-align: center !important;
         }
 
         .artist-vertical-cards-wrap {
-            max-height: none !important;
-            overflow-y: visible !important;
+            display: flex !important;
+            flex-direction: row !important;
+            gap: 16px !important;
+            overflow-x: auto !important;
+            overflow-y: hidden !important;
+            scroll-snap-type: x mandatory !important;
+            -webkit-overflow-scrolling: touch !important;
+            scrollbar-width: none !important;
+            -ms-overflow-style: none !important;
             width: 100% !important;
             max-width: 100% !important;
-            padding: 0 0 40px 0 !important;
-            gap: 20px !important;
-            margin: 0 !important;
+            flex: 1 1 auto !important;
+            height: auto !important;
+            max-height: calc(100dvh - 190px) !important;
+            padding: 4px 6px 14px !important;
+            margin: 0 auto !important;
+            box-sizing: border-box !important;
+        }
+
+        .artist-vertical-cards-wrap::-webkit-scrollbar {
+            display: none !important;
+        }
+
+        .artist-vertical-card-link {
+            display: block !important;
+            text-decoration: none !important;
+            flex: 0 0 72vw !important;
+            max-width: 270px !important;
+            min-width: 210px !important;
+            height: 100% !important;
+            scroll-snap-align: center !important;
         }
 
         .artist-vertical-card {
-            border-radius: 14px !important;
+            width: 100% !important;
+            height: 100% !important;
+            border-radius: 18px !important;
+            overflow: hidden !important;
+            background: #141414 !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5) !important;
+            position: relative !important;
+            display: flex !important;
+            flex-direction: column !important;
         }
 
         .artist-vertical-image {
-            height: 320px !important;
+            width: 100% !important;
+            height: 100% !important;
+            overflow: hidden !important;
+            position: relative !important;
+        }
+
+        .artist-vertical-image img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover !important;
+            display: block !important;
         }
 
         .artist-vertical-name {
-            font-size: 16px !important;
-            padding: 16px !important;
+            position: absolute !important;
+            bottom: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            padding: 24px 14px 14px !important;
+            text-align: center !important;
+            font-size: 15px !important;
+            font-weight: 700 !important;
+            color: #ffffff !important;
+            letter-spacing: 0.04em !important;
+            text-transform: capitalize !important;
+            background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.6) 65%, transparent 100%) !important;
+            z-index: 2 !important;
         }
 
         .artist-section-cta-fixed {
