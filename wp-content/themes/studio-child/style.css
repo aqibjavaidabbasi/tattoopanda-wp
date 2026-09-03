@@ -3803,6 +3803,14 @@ body.compensate-for-scrollbar .artist-section-cta-fixed {
         align-items: center !important;
     }
 
+    .hd-final-contact-row {
+        width: 100% !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        align-items: center !important;
+    }
+
     .hd-final-contact-link {
         color: #ffffff !important;
         text-decoration: none !important;
@@ -3845,7 +3853,7 @@ body.compensate-for-scrollbar .artist-section-cta-fixed {
         align-items: center !important;
         justify-content: center !important;
         gap: 9px !important;
-        margin-top: 6px !important;
+        margin-top: 4px !important;
         padding: 6px 12px !important;
     }
 

@@ -1749,44 +1749,55 @@ get_header();
             flex-direction: column !important;
             justify-content: flex-start !important;
             align-items: center !important;
-            padding: 56px 20px 85px !important;
+            padding: 72px 20px 100px !important;
             min-height: 100dvh !important;
             height: 100dvh !important;
             box-sizing: border-box !important;
             background: #000000 !important;
             overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch !important;
         }
 
         .hd-final-container {
             width: 100% !important;
-            max-width: 360px !important;
+            max-width: 380px !important;
             display: flex !important;
             flex-direction: column !important;
             align-items: center !important;
             padding: 0 !important;
             margin: 0 auto !important;
             flex: 1 !important;
-            justify-content: space-between !important;
+            justify-content: flex-start !important;
+        }
+
+        .hd-final-content-wrap {
+            display: flex !important;
+            flex-direction: column !important;
+            align-items: center !important;
+            width: 100% !important;
+            gap: 0 !important;
         }
 
         .hd-final-image-wrap {
             width: 100% !important;
-            max-height: 28vh !important;
-            border-radius: 14px !important;
+            height: clamp(200px, 30vh, 260px) !important;
+            max-height: 260px !important;
+            border-radius: 16px !important;
             overflow: hidden !important;
-            margin-bottom: 16px !important;
+            margin-bottom: 18px !important;
             flex: 0 0 auto !important;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
+            border: 1px solid rgba(255, 255, 255, 0.12) !important;
         }
 
         .hd-final-image {
             width: 100% !important;
             height: 100% !important;
-            max-height: 28vh !important;
             object-fit: cover !important;
         }
 
         .hd-final-logo-wrap {
-            margin: 12px 0 22px 0 !important;
+            margin: 0 0 20px 0 !important;
             width: 100% !important;
             display: flex !important;
             justify-content: center !important;
@@ -1794,7 +1805,7 @@ get_header();
 
         .hd-final-logo-img {
             height: clamp(28px, 7vw, 36px) !important;
-            max-width: 80% !important;
+            max-width: 220px !important;
         }
 
         .hd-final-contact-wrap {
@@ -1802,7 +1813,7 @@ get_header();
             display: flex !important;
             flex-direction: column !important;
             gap: 14px !important;
-            padding: 0 0 80px 0 !important;
+            padding: 0 !important;
             align-items: center !important;
         }
 
@@ -1823,6 +1834,7 @@ get_header();
             flex-direction: column !important;
             gap: 14px !important;
             align-items: center !important;
+            width: 100% !important;
         }
 
         .hd-final-contact-link {
@@ -1866,7 +1878,7 @@ get_header();
             align-items: center !important;
             justify-content: center !important;
             gap: 9px !important;
-            margin-top: 6px !important;
+            margin-top: 4px !important;
             padding: 6px 12px !important;
             width: 100% !important;
             box-sizing: border-box !important;
@@ -2247,34 +2259,8 @@ get_header();
                             <p>Located in the vibrant heart of Miami’s Wynwood Arts District. Consultations by appointment and select walk-ins welcome.</p>
                         </div>
 
-                        <!-- Mobile Studio & Social Channels Info Card (Exact Contact Info) -->
-                        <div class="hd-contact-main-card hd-mobile-only">
-                            <div class="hd-card-header">
-                                <span class="hd-card-tag">Studio & Social Channels</span>
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line></svg>
-                            </div>
-
-                            <div class="hd-custom-contact-info">
-                                <p>Panda Tattoo 254 NW 36th St, Miami, FL 33127 <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-maps-link">Open in Google Maps</a></p>
-                                <p>Phone : <a href="tel:7869199998">(786) 919-9998</a></p>
-                                <p>Follow on Social:</p>
-                                <ul>
-                                    <li><a href="https://instagram.com/tatu_panda" target="_blank" rel="noopener noreferrer">&ndash; @tatu_panda</a></li>
-                                    <li><a href="https://instagram.com/pandatattoomia" target="_blank" rel="noopener noreferrer">&ndash; @pandatattoomia</a></li>
-                                    <li><a href="https://instagram.com/pandatattooacademy" target="_blank" rel="noopener noreferrer">&ndash; @pandatattooacademy</a></li>
-                                </ul>
-                            </div>
-
-                            <!-- One Liner Studio Hours -->
-                            <div class="hd-contact-hours-line">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hd-card-icon"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                                <span><strong>Hours:</strong> Mon &ndash; Sun 11:00 AM &ndash; 9:00 PM</span>
-                                <span class="hd-badge-open">Open Daily</span>
-                            </div>
-                        </div>
-
-                        <!-- Desktop Contact Details Below Logo -->
-                        <div class="hd-final-contact-wrap hd-desktop-only">
+                        <!-- Contact Details Below Logo (Clean, simple like desktop) -->
+                        <div class="hd-final-contact-wrap">
                             <!-- Location (Address) -> Opens Google Maps (Full Width Single Line) -->
                             <div class="hd-final-contact-item hd-final-address-item">
                                 <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" class="hd-final-contact-link" aria-label="Open Google Maps for 254 NW 36th St, Miami, FL 33127">
