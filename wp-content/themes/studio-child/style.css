@@ -246,10 +246,10 @@ svg{
     width: auto;
 }
 .site-content {
-    padding: 0px 50px;
+    padding: 0;
     margin-bottom: 0;
-    height: 100vh;
-    padding-top: calc(20vh + 150px);
+    height: auto;
+    min-height: 100vh;
 }
 .fs_20{
     font-size: 36px;
@@ -295,7 +295,7 @@ svg{
     width: 100%;
 }
 /* ===============================================================
-   Header - Luxury Modern Atelier Global Header
+   Header - Luxury Modern Global Header
    =============================================================== */
 
 @media (min-width: 992px) {
@@ -435,7 +435,16 @@ svg{
     .hd-header-booking-btn {
         display: inline-flex !important;
         align-items: center !important;
-        padding: 9px 24px !important;
+        justify-content: center !important;
+        padding: 10px 24px !important;
+        margin: 0 !important;
+        height: auto !important;
+        min-height: 38px !important;
+        width: auto !important;
+        min-width: max-content !important;
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        flex-shrink: 0 !important;
         background: #ffffff !important;
         color: #000000 !important;
         border: 1px solid #ffffff !important;
@@ -445,20 +454,33 @@ svg{
         letter-spacing: 0.12em !important;
         text-transform: uppercase !important;
         text-decoration: none !important;
+        line-height: 1 !important;
         box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
         transition: all 0.25s ease !important;
         cursor: pointer !important;
     }
 
+    .hd-header-booking-btn::before {
+        display: none !important;
+    }
+
     .hd-header-booking-btn span {
         color: #000000 !important;
         font-weight: 700 !important;
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        line-height: 1 !important;
+        display: inline-block !important;
     }
 
     .hd-header-booking-btn:hover {
         background: #ece8e1 !important;
         transform: translateY(-1px) !important;
         box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .hd-header-booking-btn:hover span {
+        color: #000000 !important;
     }
 
     #menu-toggle {
@@ -1747,23 +1769,28 @@ input[type="checkbox"][name="acceptance-138"]:checked {
     overflow: hidden;
     height: 3rem;
     padding: 0 2rem;
-    background: #090d11 ;
+    background: #090d11;
     background-size: 400%;
-    color: #f6f2ee;
+    color: #ffffff;
     border: none;
     cursor: pointer;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background 0.3s ease;
     font-size: 1rem;
     font-family: inherit;
-	 margin-bottom: 15px;
-  }
-  
-  .button-content {
-    position: relative;
-    z-index: 1;
-  }
-  
-  .button::before {
+    margin-bottom: 15px;
+}
+
+.button-content,
+.button span,
+.button a {
+    position: relative !important;
+    z-index: 3 !important;
+    display: inline-block !important;
+    color: #ffffff !important;
+    transition: color 0.25s ease !important;
+}
+
+.button::before {
     content: "";
     position: absolute;
     top: 0;
@@ -1775,16 +1802,23 @@ input[type="checkbox"][name="acceptance-138"]:checked {
     border-radius: inherit;
     background: #ff4800;
     transition: transform 0.475s ease;
-    z-index: 0;
-  }
-  
-  .button:hover::before {
+    z-index: 1;
+}
+
+.button:hover::before {
     transform: scaleX(1);
-  }
-  
-  .button:hover {
-    color: #f6f2ee;;
-  }
+}
+
+.button:hover {
+    color: #ffffff !important;
+}
+
+.button:hover span,
+.button:hover a,
+.button:hover .button-content {
+    color: #ffffff !important;
+    z-index: 4 !important;
+}
 
 /* Acuity */
 .acuity-container {
@@ -3641,6 +3675,57 @@ body.compensate-for-scrollbar .artist-section-cta-fixed {
         line-height: 1 !important;
         text-decoration: none !important;
         transition: opacity 0.2s ease, transform 0.2s ease !important;
+    }
+
+    .hd-header-booking-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        padding: 10px 24px !important;
+        margin: 0 !important;
+        height: auto !important;
+        min-height: 38px !important;
+        width: auto !important;
+        min-width: max-content !important;
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        flex-shrink: 0 !important;
+        background: #ffffff !important;
+        color: #000000 !important;
+        border: 1px solid #ffffff !important;
+        border-radius: 999px !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.12em !important;
+        text-transform: uppercase !important;
+        text-decoration: none !important;
+        line-height: 1 !important;
+        box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
+        transition: all 0.25s ease !important;
+        cursor: pointer !important;
+    }
+
+    .hd-header-booking-btn::before {
+        display: none !important;
+    }
+
+    .hd-header-booking-btn span {
+        color: #000000 !important;
+        font-weight: 700 !important;
+        white-space: nowrap !important;
+        word-break: keep-all !important;
+        line-height: 1 !important;
+        display: inline-block !important;
+    }
+
+    .hd-header-booking-btn:hover {
+        background: #ece8e1 !important;
+        transform: translateY(-1px) !important;
+        box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .hd-header-booking-btn:hover span {
+        color: #000000 !important;
     }
 
     .button.hd-hero-cta .button-content,

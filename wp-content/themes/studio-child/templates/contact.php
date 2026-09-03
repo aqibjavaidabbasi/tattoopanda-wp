@@ -21,6 +21,15 @@ get_header();
         background-color: #000000 !important;
     }
 
+    .site-content {
+        padding-top: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        padding-bottom: 0 !important;
+        margin: 0 !important;
+        height: auto !important;
+    }
+
     /* ========================================
        CONTACT PAGE - TATU PANDA DESIGN SYSTEM
        ======================================== */
@@ -29,7 +38,7 @@ get_header();
         color: #ffffff;
         min-height: 100vh;
         height: auto !important;
-        padding: 110px 24px 120px;
+        padding: 94px 24px 80px;
         box-sizing: border-box;
         font-family: inherit;
         position: relative;
@@ -46,11 +55,12 @@ get_header();
     /* Top Hero Header */
     .hd-contact-hero {
         text-align: center;
-        margin-bottom: 48px;
+        margin-top: 0 !important;
+        margin-bottom: 36px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 14px;
+        gap: 12px;
     }
 
     .hd-contact-eyebrow {

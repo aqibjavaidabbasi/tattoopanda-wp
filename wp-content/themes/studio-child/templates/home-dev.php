@@ -5,8 +5,8 @@ get_header();
 
 <style>
     /* ===============================================================
-       DESKTOP LUXURY EXPERIENCE (min-width: 992px)
-       Panda Tattoo Atelier — World-Class Desktop Showcase
+       DESKTOP LUXURY VERTICAL LAYOUT & MODERN STUDIO EXPERIENCE
+       Panda Tattoo Studio — World-Class Desktop Showcase
        =============================================================== */
     @media (min-width: 992px) {
         /* Base & Canvas - Vertical Luxury Scroll */
@@ -218,7 +218,16 @@ get_header();
         .hd-header-booking-btn {
             display: inline-flex !important;
             align-items: center !important;
-            padding: 9px 24px !important;
+            justify-content: center !important;
+            padding: 10px 24px !important;
+            margin: 0 !important;
+            height: auto !important;
+            min-height: 38px !important;
+            width: auto !important;
+            min-width: max-content !important;
+            white-space: nowrap !important;
+            word-break: keep-all !important;
+            flex-shrink: 0 !important;
             background: #ffffff !important;
             color: #000000 !important;
             border: 1px solid #ffffff !important;
@@ -228,20 +237,33 @@ get_header();
             letter-spacing: 0.12em !important;
             text-transform: uppercase !important;
             text-decoration: none !important;
+            line-height: 1 !important;
             box-shadow: 0 4px 16px rgba(255, 255, 255, 0.2) !important;
             transition: all 0.25s ease !important;
             cursor: pointer !important;
         }
 
+        .hd-header-booking-btn::before {
+            display: none !important;
+        }
+
         .hd-header-booking-btn span {
             color: #000000 !important;
             font-weight: 700 !important;
+            white-space: nowrap !important;
+            word-break: keep-all !important;
+            line-height: 1 !important;
+            display: inline-block !important;
         }
 
         .hd-header-booking-btn:hover {
             background: #ece8e1 !important;
             transform: translateY(-1px) !important;
             box-shadow: 0 6px 22px rgba(255, 255, 255, 0.3) !important;
+        }
+
+        .hd-header-booking-btn:hover span {
+            color: #000000 !important;
         }
 
         #menu-toggle {
@@ -441,52 +463,11 @@ get_header();
         }
 
         .hd-hero-explore-btn {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 10px !important;
-            padding: 12px 24px !important;
-            background: rgba(255, 255, 255, 0.06) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
-            border-radius: 999px !important;
-            color: #ffffff !important;
-            font-size: 11.5px !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.12em !important;
-            text-transform: uppercase !important;
-            text-decoration: none !important;
-            cursor: pointer !important;
-            transition: all 0.25s ease !important;
-        }
-
-        .hd-hero-explore-btn:hover {
-            background: rgba(255, 255, 255, 0.14) !important;
-            border-color: #ff4500 !important;
-            transform: translateY(2px) !important;
-            color: #ffffff !important;
+            display: none !important;
         }
 
         .hd-hero-scroll-cue {
-            display: inline-flex !important;
-            align-items: center !important;
-            gap: 10px !important;
-            padding: 11px 22px !important;
-            background: rgba(255, 255, 255, 0.06) !important;
-            border: 1px solid rgba(255, 255, 255, 0.18) !important;
-            border-radius: 999px !important;
-            cursor: pointer !important;
-            color: #ffffff !important;
-            font-size: 11px !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.12em !important;
-            text-transform: uppercase !important;
-            margin: 0 !important;
-            transition: all 0.25s ease !important;
-        }
-
-        .hd-hero-scroll-cue:hover {
-            background: rgba(255, 255, 255, 0.14) !important;
-            border-color: #ff4500 !important;
-            transform: translateY(3px) !important;
+            display: none !important;
         }
 
         /* Right Column Showcase on Desktop */
@@ -1001,7 +982,43 @@ get_header();
 
         .hd-ps-cta-btn {
             width: 100% !important;
-            padding: 13px 28px !important;
+            padding: 14px 28px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 999px !important;
+            background: #0e0e0e !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            color: #ffffff !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.12em !important;
+            text-transform: uppercase !important;
+            cursor: pointer !important;
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .hd-ps-cta-btn span {
+            position: relative !important;
+            z-index: 5 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            display: inline-block !important;
+            transition: color 0.25s ease !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .hd-ps-cta-btn:hover {
+            border-color: #ff4800 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 24px rgba(255, 72, 0, 0.35) !important;
+        }
+
+        .hd-ps-cta-btn:hover span {
+            color: #ffffff !important;
+            z-index: 6 !important;
         }
 
         /* SECTION 6: INK FOR ICONS (Vertical Section, Zero Overlap) */
@@ -1146,7 +1163,7 @@ get_header();
             width: auto !important;
         }
 
-        /* SECTION 7: VISIT ATELIER (Vertical Section, Zero Overlap) */
+        /* SECTION 7: VISIT OUR STUDIO (Vertical Section, Zero Overlap) */
         section.section_7.hd-final-section {
             position: relative !important;
             width: 100% !important;
@@ -1348,7 +1365,43 @@ get_header();
         }
 
         .hd-final-cta-btn {
-            padding: 13px 36px !important;
+            padding: 14px 36px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            border-radius: 999px !important;
+            background: #0e0e0e !important;
+            border: 1px solid rgba(255, 255, 255, 0.18) !important;
+            color: #ffffff !important;
+            font-size: 11.5px !important;
+            font-weight: 700 !important;
+            letter-spacing: 0.12em !important;
+            text-transform: uppercase !important;
+            cursor: pointer !important;
+            position: relative !important;
+            overflow: hidden !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+
+        .hd-final-cta-btn span {
+            position: relative !important;
+            z-index: 5 !important;
+            color: #ffffff !important;
+            font-weight: 700 !important;
+            display: inline-block !important;
+            transition: color 0.25s ease !important;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
+        }
+
+        .hd-final-cta-btn:hover {
+            border-color: #ff4800 !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 8px 24px rgba(255, 72, 0, 0.35) !important;
+        }
+
+        .hd-final-cta-btn:hover span {
+            color: #ffffff !important;
+            z-index: 6 !important;
         }
 
         /* Hide horizontal floating slide navigation arrows on vertical desktop */
@@ -1737,7 +1790,7 @@ get_header();
 
                                 <!-- Desktop Editorial Description -->
                                 <p class="hd-hero-desktop-desc hd-desktop-only">
-                                    Miami's premier luxury tattoo atelier in the Wynwood Arts District. Curated by master artist Tatu Panda, dedicated to world-class bespoke body art for high-profile collectors and tastemakers.
+                                    Miami's premier luxury tattoo studio in the Wynwood Arts District. Curated by master artist Tatu Panda, dedicated to world-class bespoke body art for high-profile collectors and tastemakers.
                                 </p>
 
                                 <!-- Desktop Action CTAs -->
@@ -1745,10 +1798,6 @@ get_header();
                                     <button type="button" @click="$dispatch('open-booking-modal')" onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="ghl-booking-btn hd-hero-cta" aria-label="Book Consultation">
                                         <span>Book Consultation</span>
                                     </button>
-                                    <a href="#section_2" class="hd-hero-explore-btn hd-desktop-only" onclick="event.preventDefault(); const sec2 = document.querySelector('.section_2'); if(sec2){ window.scrollTo({ top: sec2.offsetTop - 74, behavior: 'smooth' }); }" aria-label="Explore Atelier">
-                                        <span>Explore Atelier</span>
-                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-                                    </a>
                                 </div>
 
                                 <!-- Logotype (Mobile) -->
@@ -1772,7 +1821,7 @@ get_header();
                                 </div>
                             </div>
 
-                            <!-- Desktop Right Column: Atelier Video & Presentation -->
+                            <!-- Desktop Right Column: Studio Video & Presentation -->
                             <div class="hd-hero-col-right hd-desktop-only">
                                 <div class="hd-hero-video-card">
                                     <video class="hd-hero-video" autoplay muted loop playsinline poster="https://pandatattoo.com/wp-content/uploads/2025/05/Tattoo-Artist-Tatu-Panda-3-1.jpg">
@@ -2030,7 +2079,7 @@ get_header();
                     <!-- Top Image (Desktop Left Column) -->
                     <div class="hd-final-image-wrap">
                         <img src="https://pandatattoo.com/wp-content/uploads/2025/05/Tattoo-Artist-Tatu-Panda-3-1.jpg" alt="Panda Tattoo Studio" class="hd-final-image" loading="lazy">
-                        <div class="hd-final-image-tag hd-desktop-only">Wynwood Atelier · Miami</div>
+                        <div class="hd-final-image-tag hd-desktop-only">Wynwood · Miami</div>
                     </div>
 
                     <!-- Details (Desktop Right Column, wrapped in hd-final-details-wrap) -->
@@ -2042,7 +2091,7 @@ get_header();
 
                         <!-- Desktop Header / Title -->
                         <div class="hd-final-title hd-desktop-only">
-                            <h2>Visit Our Atelier</h2>
+                            <h2>Visit Our Studio</h2>
                             <p>Located in the vibrant heart of Miami’s Wynwood Arts District. Consultations by appointment and select walk-ins welcome.</p>
                         </div>
 
@@ -2073,8 +2122,8 @@ get_header();
 
                             <!-- Desktop Appointment Action -->
                             <div class="hd-final-action-wrap hd-desktop-only" x-data>
-                                <button type="button" @click="$dispatch('open-booking-modal')" onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="ghl-booking-btn button hd-final-cta-btn" aria-label="Book Atelier Appointment">
-                                    <span>Book Atelier Appointment</span>
+                                <button type="button" @click="$dispatch('open-booking-modal')" onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="ghl-booking-btn button hd-final-cta-btn" aria-label="Book Appointment">
+                                    <span>Book Appointment</span>
                                 </button>
                             </div>
                         </div>
