@@ -428,15 +428,24 @@ get_header();
         }
 
         .artist-section-cta-fixed {
-            bottom: 16px !important;
+            bottom: 20px !important;
+            left: 0 !important;
+            right: 0 !important;
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            text-align: center !important;
         }
 
         .artist-section-cta-fixed .ghl-booking-btn,
         .artist-section-cta-fixed .button {
-            padding: 13px 24px !important;
-            font-size: 12px !important;
+            margin: 0 auto !important;
+            padding: 12px 28px !important;
+            font-size: 11.5px !important;
             width: auto !important;
-            max-width: 320px !important;
+            max-width: 88vw !important;
+            white-space: nowrap !important;
         }
     }
 </style>
