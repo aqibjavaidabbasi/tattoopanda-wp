@@ -939,27 +939,31 @@ get_header();
         }
 
         .hd-ps-tags-list {
-            display: flex !important;
-            flex-wrap: wrap !important;
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
             gap: 10px !important;
-            align-items: center !important;
+            width: 100% !important;
         }
 
         .hd-ps-tag-item {
             display: inline-flex !important;
             align-items: center !important;
-            gap: 8px !important;
+            justify-content: center !important;
+            gap: 6px !important;
             background: rgba(255, 255, 255, 0.05) !important;
             border: 1px solid rgba(255, 255, 255, 0.14) !important;
             border-radius: 999px !important;
-            padding: 7px 18px !important;
-            font-size: 12px !important;
+            padding: 8px 10px !important;
+            font-size: 11.5px !important;
             font-weight: 600 !important;
-            letter-spacing: 0.08em !important;
+            letter-spacing: 0.06em !important;
             text-transform: uppercase !important;
             color: #ffffff !important;
             transition: all 0.25s ease !important;
             white-space: nowrap !important;
+            text-align: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
         }
 
         .hd-ps-tag-item:hover {
@@ -1730,12 +1734,30 @@ get_header();
 
         .hd-ps-ingredients {
             padding-top: 14px !important;
-            gap: 8px !important;
+            gap: 10px !important;
+            width: 100% !important;
+        }
+
+        .hd-ps-tags-list {
+            display: grid !important;
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 8px 6px !important;
+            width: 100% !important;
         }
 
         .hd-ps-tag-item {
-            font-size: 10.5px !important;
-            padding: 5px 12px !important;
+            font-size: 10px !important;
+            padding: 6px 4px !important;
+            gap: 4px !important;
+            justify-content: center !important;
+            letter-spacing: 0.04em !important;
+            text-align: center !important;
+            width: 100% !important;
+            box-sizing: border-box !important;
+        }
+
+        .hd-ps-tag-bullet {
+            font-size: 7.5px !important;
         }
 
         .hd-ps-action-wrap {
@@ -1788,6 +1810,25 @@ get_header();
             flex: 0 0 auto !important;
             box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6) !important;
             border: 1px solid rgba(255, 255, 255, 0.12) !important;
+            position: relative !important;
+        }
+
+        .hd-final-image-tag {
+            position: absolute !important;
+            bottom: 14px !important;
+            left: 14px !important;
+            background: rgba(0, 0, 0, 0.72) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border: 1px solid rgba(255, 255, 255, 0.2) !important;
+            padding: 6px 14px !important;
+            border-radius: 999px !important;
+            color: #ffffff !important;
+            font-size: 10.5px !important;
+            font-weight: 600 !important;
+            letter-spacing: 0.08em !important;
+            text-transform: uppercase !important;
+            z-index: 2 !important;
         }
 
         .hd-final-image {
@@ -1954,7 +1995,7 @@ get_header();
 
                                 <!-- Desktop Editorial Description -->
                                 <p class="hd-hero-desktop-desc hd-desktop-only">
-                                    Miami's premier luxury tattoo studio in the Wynwood Arts District. Curated by master artist Tatu Panda, dedicated to world-class bespoke body art for high-profile collectors and tastemakers.
+                                    Panda Tattoo is a Miami tattoo studio built around detail, realism, and work that actually holds weight. Led by Tatu Panda, our artists create clean, high-level tattoos for clients who care about the art, the process, and getting it done right.
                                 </p>
 
                                 <!-- Desktop Action CTAs -->
@@ -1992,16 +2033,17 @@ get_header();
                                         <source src="https://pandatattoo.com/wp-content/uploads/2025/05/lv-0-20250516033811_ri6iFCJ4.mp4" type="video/mp4">
                                     </video>
                                     <div class="hd-hero-video-overlay">
-                                        <span class="hd-hero-video-badge">Wynwood Arts District</span>
+                                        <span class="hd-hero-video-badge">Miami Creative Corridor</span>
                                         <div class="hd-hero-video-logo">
                                             <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="PANDA">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="hd-hero-highlights">
-                                    <span class="hd-highlight-chip">✦ Private Suites</span>
-                                    <span class="hd-highlight-chip">✦ Master Resident Artists</span>
-                                    <span class="hd-highlight-chip">✦ Celebrity Clientele</span>
+                                    <span class="hd-highlight-chip">✦ Custom Tattoo Work</span>
+                                    <span class="hd-highlight-chip">✦ Tattoo Specialist</span>
+                                    <span class="hd-highlight-chip">✦ Renowned</span>
+                                    
                                 </div>
                             </div>
 
@@ -2026,10 +2068,10 @@ get_header();
                         <div class="content_wrap">
                             <div class="hd-artists-header-info">
                                 <div>
-                                    <div class="hd-kicker hd-desktop-only">Resident Masters</div>
+                                    <div class="hd-kicker hd-desktop-only">Featured Artists</div>
                                     <h3 class="fs_14 section-header-title">Artists</h3>
                                     <p class="hd-artists-desc hd-desktop-only">
-                                        Each tattoo artist at Panda brings a distinct visual mastery, from ultra-fine micro-realism to bold neo-traditional ink craft.
+                                        Panda Tattoo brings together a selected group of artists known for clean work, strong technique, and a serious commitment to the craft. Each artist has their own style, but the standard stays the same: high-level tattoos done with precision.
                                     </p>
                                 </div>
                                 <div class="hd-artists-desktop-nav hd-desktop-only">
@@ -2048,7 +2090,9 @@ get_header();
                         <!-- Artist Cards - Vertical Scroll Cards -->
                         <?php
                         // Fetch artists from Contentful
-                        $artists = get_contentful_artists(['limit' => 20, 'order' => 'fields.artistName']);
+                        $artists = function_exists('get_contentful_artists') 
+                            ? get_contentful_artists(['limit' => 50, 'order' => 'fields.artistName']) 
+                            : [];
                         // Only show artists that have images (profile picture or portfolio images)
                         $active_artists = array_filter($artists, function($artist) {
                             return !empty($artist['profile_picture']) || !empty($artist['portfolio_images']);
@@ -2152,21 +2196,40 @@ get_header();
                                             <h4 class="hd-ps-subtitle"><?php echo esc_html($sub_title); ?></h4>
                                         <?php endif; ?>
 
-                                        <?php if (have_rows('data_list')): ?>
-                                            <div class="hd-ps-tags-list">
-                                                <?php while (have_rows('data_list')):
-                                                    the_row();
-                                                    $list_item = get_sub_field('list_item');
-                                                    if ($list_item):
-                                                    ?>
-                                                    <span class="hd-ps-tag-item">
-                                                        <span class="hd-ps-tag-bullet">✦</span>
-                                                        <?php echo esc_html($list_item); ?>
-                                                    </span>
-                                                    <?php endif; ?>
-                                                <?php endwhile; ?>
-                                            </div>
-                                        <?php endif; ?>
+                                        <?php 
+                                        // Approved ingredients: 6 tags arranged in two even rows of three
+                                        $approved_ingredients = ['Truth', 'Precision', 'Story', 'Soul', 'Detail', 'Discipline'];
+                                        $display_ingredients = [];
+
+                                        if (have_rows('data_list')) {
+                                            while (have_rows('data_list')) {
+                                                the_row();
+                                                $item = trim((string) get_sub_field('list_item'));
+                                                if (!empty($item)) {
+                                                    $display_ingredients[] = $item;
+                                                }
+                                            }
+                                        }
+
+                                        // Ensure all 6 approved ingredients are present
+                                        foreach ($approved_ingredients as $approved_item) {
+                                            if (!in_array($approved_item, $display_ingredients, true)) {
+                                                $display_ingredients[] = $approved_item;
+                                            }
+                                        }
+
+                                        if (empty($display_ingredients)) {
+                                            $display_ingredients = $approved_ingredients;
+                                        }
+                                        ?>
+                                        <div class="hd-ps-tags-list">
+                                            <?php foreach ($display_ingredients as $item): ?>
+                                                <span class="hd-ps-tag-item">
+                                                    <span class="hd-ps-tag-bullet">✦</span>
+                                                    <?php echo esc_html($item); ?>
+                                                </span>
+                                            <?php endforeach; ?>
+                                        </div>
                                     </div>
                                 <?php endif; ?>
 
@@ -2243,7 +2306,7 @@ get_header();
                     <!-- Top Image (Desktop Left Column) -->
                     <div class="hd-final-image-wrap">
                         <img src="https://pandatattoo.com/wp-content/uploads/2025/05/Tattoo-Artist-Tatu-Panda-3-1.jpg" alt="Panda Tattoo Studio" class="hd-final-image" loading="lazy">
-                        <div class="hd-final-image-tag hd-desktop-only">Wynwood · Miami</div>
+                        <div class="hd-final-image-tag">Start Your Next Piece</div>
                     </div>
 
                     <!-- Details (Desktop Right Column, wrapped in hd-final-details-wrap) -->
@@ -2256,7 +2319,7 @@ get_header();
                         <!-- Desktop Header / Title -->
                         <div class="hd-final-title hd-desktop-only">
                             <h2>Visit Our Studio</h2>
-                            <p>Located in the vibrant heart of Miami’s Wynwood Arts District. Consultations by appointment and select walk-ins welcome.</p>
+                            <p>Located in Miami’s creative corridor. Consultations are available by appointment, with select walk-ins welcome.</p>
                         </div>
 
                         <!-- Contact Details Below Logo (Clean, simple like desktop) -->

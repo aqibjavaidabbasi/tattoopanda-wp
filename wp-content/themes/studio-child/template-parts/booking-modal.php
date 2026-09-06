@@ -29,6 +29,40 @@ if (!empty($args['artist_slug'])) {
 
 // Note: Artist add-ons removed as they don't exist in current Contentful model
 // If needed in future, add 'artistAddOns' field to Contentful artist content type
+
+// Fetch active published artists dynamically from Contentful for the modal
+$modal_artists = [];
+if (function_exists('get_contentful_artists')) {
+    $cf_artists = get_contentful_artists(['limit' => 50, 'order' => 'fields.artistName']);
+    if (!empty($cf_artists) && is_array($cf_artists)) {
+        foreach ($cf_artists as $ca) {
+            $slug = sanitize_title($ca['slug'] ?? $ca['name'] ?? '');
+            $name = trim($ca['name'] ?? '');
+            if (!empty($slug) && !empty($name)) {
+                $modal_artists[] = [
+                    'slug' => $slug,
+                    'name' => $name,
+                ];
+            }
+        }
+    }
+}
+
+// Fallback in case Contentful API is unreachable
+if (empty($modal_artists)) {
+    $modal_artists = [
+        ['slug' => 'alex',     'name' => 'Alex'],
+        ['slug' => 'ashley',   'name' => 'Ashley'],
+        ['slug' => 'dani-luz', 'name' => 'Dani Luz'],
+        ['slug' => 'edwin',    'name' => 'Edwin'],
+        ['slug' => 'ilay',     'name' => 'Ilay'],
+        ['slug' => 'isabela',  'name' => 'Isabela'],
+        ['slug' => 'nicole',   'name' => 'Nicole'],
+        ['slug' => 'onyx',     'name' => 'Onyx'],
+        ['slug' => 'panda',    'name' => 'Panda'],
+        ['slug' => 'sophie',   'name' => 'Sophie'],
+    ];
+}
 ?>
 
 <script>
@@ -45,17 +79,7 @@ if (!empty($args['artist_slug'])) {
             selectedPositions: [],
 			artistSlug: '<?php echo esc_js($artist_slug_for_js); ?>',
             artistLocked: <?php echo $artist_id ? 'true' : 'false'; ?>,
-            artists: [
-                { slug: 'ashley',      name: 'Ashley'     },
-                { slug: 'alex',        name: 'Alex'       },
-                { slug: 'panda',       name: 'Panda'      },
-                { slug: 'onyx',        name: 'Onyx'       },
-                { slug: 'chris-nunez', name: 'Chris Nuñez'},
-                { slug: 'ilay',        name: 'Ilay'       },
-                { slug: 'edwin',       name: 'Edwin'      },
-                { slug: 'dani-luz',    name: 'Dani Luz'   },
-                { slug: 'sophie',      name: 'Sophie'     },
-            ],
+            artists: <?php echo json_encode($modal_artists, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP); ?>,
 
             init() {
                 this.$watch('step', (value) => {
@@ -1394,22 +1418,10 @@ if (!empty($args['artist_slug'])) {
                                                 style="width: 100%; display: block;"
                                             >
                                                 <option value="">— Select an artist —</option>
-                                                <?php
-                                                $all_artists_list = [
-                                                    'ashley'      => 'Ashley',
-                                                    'alex'        => 'Alex',
-                                                    'panda'       => 'Panda',
-                                                    'onyx'        => 'Onyx',
-                                                    'chris-nunez' => 'Chris Nuñez',
-                                                    'ilay'        => 'Ilay',
-                                                    'edwin'       => 'Edwin',
-                                                    'dani-luz'    => 'Dani Luz',
-                                                    'sophie'      => 'Sophie',
-                                                ];
-                                                foreach ($all_artists_list as $a_slug => $a_name):
-                                                    $is_selected = ($artist_slug_for_js === $a_slug) ? 'selected' : '';
+                                                <?php foreach ($modal_artists as $ma): 
+                                                    $is_selected = ($artist_slug_for_js === $ma['slug']) ? 'selected' : '';
                                                 ?>
-                                                    <option value="<?php echo esc_attr($a_slug); ?>" <?php echo $is_selected; ?>><?php echo esc_html($a_name); ?></option>
+                                                    <option value="<?php echo esc_attr($ma['slug']); ?>" <?php echo $is_selected; ?>><?php echo esc_html($ma['name']); ?></option>
                                                 <?php endforeach; ?>
                                                 <option value="no-preference" <?php echo ($artist_slug_for_js === 'no-preference') ? 'selected' : ''; ?>>No Preference</option>
                                             </select>

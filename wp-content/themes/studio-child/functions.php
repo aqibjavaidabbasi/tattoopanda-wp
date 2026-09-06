@@ -529,11 +529,12 @@ function get_artist_contentful_map() {
         'alex'        => '4cLACT6oSvUnR7fBdr3EUI',
         'panda'       => '1UCE5riOhbyXo9TSf7K9vH',
         'onyx'        => '6L3zJOoVqFSJfOoJYsmuuQ',
-        'chris-nunez' => '5kYApkY63VRoKWYI191tx9',
         'ilay'        => '5fbaDqOJYbSBydlzOOThFV',
         'edwin'       => '5NHcTTLn7bYS4v4yFWIEtf',
         'dani-luz'    => '1zLMKzw2gImumAgh3oZCUh',
         'sophie'      => '1rOSDfszUKQklCNUj6UZ5E',
+        'nicole'      => '1Pk0S4ngOCop0Og3XikaQH',
+        'isabela'     => '7miXQaRZAR4uIFyMsX0eJ',
     ];
 }
 
