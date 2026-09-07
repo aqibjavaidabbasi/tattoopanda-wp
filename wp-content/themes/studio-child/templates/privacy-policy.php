@@ -36,31 +36,33 @@ get_header();
        LEGAL PAGE - PANDA TATTOO DESIGN SYSTEM
        ======================================== */
     .hd-legal-page {
-        padding: 120px 24px 120px;
+        padding: 100px 24px 120px;
         box-sizing: border-box;
         font-family: inherit;
         background: #000000;
-        position: relative;
-        z-index: 1;
+        position: static !important;
+        width: 100%;
     }
 
     .hd-legal-container {
         max-width: 1040px;
         margin: 0 auto;
         width: 100%;
+        position: static !important;
     }
 
-    /* Top Hero Header */
+    /* Top Hero Header (Using Div to avoid global <header> styling) */
     .hd-legal-hero {
         text-align: center;
-        margin-top: 10px;
-        margin-bottom: 40px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-        position: relative;
-        z-index: 2;
+        margin: 0 0 36px 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 12px !important;
+        position: static !important;
+        width: 100% !important;
+        height: auto !important;
     }
 
     .hd-legal-eyebrow {
@@ -74,31 +76,32 @@ get_header();
         color: rgba(255, 255, 255, 0.7);
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 6px 16px;
+        padding: 5px 16px;
         border-radius: 999px;
         text-decoration: none !important;
     }
 
     .hd-legal-title {
-        font-size: clamp(32px, 5.5vw, 56px);
-        font-weight: 800;
-        letter-spacing: -0.02em;
-        line-height: 1.1;
-        margin: 0;
-        text-transform: uppercase;
-        color: #ffffff;
-        position: relative;
-        z-index: 2;
+        font-size: clamp(28px, 5vw, 48px) !important;
+        font-weight: 800 !important;
+        letter-spacing: -0.02em !important;
+        line-height: 1.15 !important;
+        margin: 0 !important;
+        text-transform: uppercase !important;
+        color: #ffffff !important;
+        text-align: center !important;
+        position: static !important;
     }
 
     .hd-legal-meta {
         display: inline-flex;
         align-items: center;
-        gap: 10px;
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.55);
+        gap: 8px;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.6);
         letter-spacing: 0.05em;
         text-transform: uppercase;
+        margin-top: 2px;
     }
 
     .hd-legal-meta-dot {
@@ -131,7 +134,7 @@ get_header();
 
     /* Table of Contents Quick Nav */
     .hd-legal-toc-wrap {
-        margin-bottom: 44px;
+        margin-bottom: 40px;
         background: rgba(255, 255, 255, 0.02);
         border: 1px solid rgba(255, 255, 255, 0.08);
         border-radius: 20px;
@@ -199,20 +202,20 @@ get_header();
     .hd-legal-content {
         display: flex;
         flex-direction: column;
-        gap: 28px;
+        gap: 24px;
     }
 
     .hd-legal-section {
         background: rgba(255, 255, 255, 0.025);
         border: 1px solid rgba(255, 255, 255, 0.1);
         border-radius: 20px;
-        padding: 32px;
+        padding: 30px;
         box-sizing: border-box;
         backdrop-filter: blur(14px);
         -webkit-backdrop-filter: blur(14px);
         transition: border-color 0.25s ease;
         position: relative;
-        scroll-margin-top: 100px;
+        scroll-margin-top: 90px;
     }
 
     .hd-legal-section:hover {
@@ -223,19 +226,19 @@ get_header();
         display: flex;
         align-items: center;
         gap: 14px;
-        margin-bottom: 20px;
+        margin-bottom: 18px;
     }
 
     .hd-section-badge {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 36px;
-        height: 36px;
+        width: 34px;
+        height: 34px;
         border-radius: 10px;
         background: rgba(255, 255, 255, 0.08);
         border: 1px solid rgba(255, 255, 255, 0.15);
-        font-size: 14px;
+        font-size: 13px;
         font-weight: 800;
         color: #ffffff;
         font-family: monospace;
@@ -243,7 +246,7 @@ get_header();
     }
 
     .hd-section-title {
-        font-size: clamp(20px, 2.5vw, 24px);
+        font-size: clamp(19px, 2.2vw, 23px);
         font-weight: 700;
         letter-spacing: -0.01em;
         margin: 0;
@@ -258,7 +261,7 @@ get_header();
     }
 
     .hd-section-body p {
-        margin: 0 0 16px 0;
+        margin: 0 0 14px 0;
     }
 
     .hd-section-body p:last-child {
@@ -269,15 +272,15 @@ get_header();
     .hd-legal-list {
         list-style: none;
         padding: 0;
-        margin: 16px 0;
+        margin: 14px 0;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
     }
 
     .hd-legal-list-item {
         position: relative;
-        padding-left: 22px;
+        padding-left: 20px;
         font-size: 15px;
         line-height: 1.65;
         color: rgba(255, 255, 255, 0.82);
@@ -288,8 +291,8 @@ get_header();
         position: absolute;
         left: 0;
         top: 9px;
-        width: 6px;
-        height: 6px;
+        width: 5px;
+        height: 5px;
         border-radius: 50%;
         background: rgba(255, 255, 255, 0.5);
     }
@@ -362,27 +365,30 @@ get_header();
     .hd-back-top,
     .hd-contact-action-btn,
     .hd-legal-eyebrow,
-    .hd-contact-link-row a {
+    .hd-contact-info-pill {
         text-decoration: none !important;
     }
 
-    /* Studio Contact Card at Bottom */
+    /* Studio Contact Card at Bottom (Using Div to avoid global <footer> styling) */
     .hd-legal-contact-card {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 24px;
-        padding: 40px 32px;
-        margin-top: 48px;
+        padding: 38px 28px;
+        margin-top: 44px;
         text-align: center;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 22px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        gap: 20px;
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+        position: static !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
 
     .hd-legal-contact-logo {
-        max-width: 140px;
+        max-width: 130px;
         height: auto;
         opacity: 0.95;
     }
@@ -410,7 +416,7 @@ get_header();
         align-items: center;
         justify-content: center;
         gap: 12px;
-        margin-top: 6px;
+        margin-top: 4px;
     }
 
     .hd-contact-info-pill {
@@ -441,7 +447,7 @@ get_header();
         margin-top: 4px;
     }
 
-    /* Fixed Button Styling - Ensures Black Text on White Button */
+    /* Fixed Button Styling - Explicit Contrast */
     .hd-contact-btn-group a.hd-contact-action-btn,
     .hd-contact-btn-group button.hd-contact-action-btn,
     .hd-contact-action-btn {
@@ -537,21 +543,21 @@ get_header();
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .hd-legal-page {
-            padding: 95px 16px 90px;
+            padding: 85px 16px 80px;
         }
 
         .hd-legal-section {
-            padding: 24px 18px;
+            padding: 22px 16px;
             border-radius: 16px;
         }
 
         .hd-legal-intro-card {
-            padding: 22px 18px;
+            padding: 20px 16px;
             border-radius: 16px;
         }
 
         .hd-legal-toc-wrap {
-            padding: 18px 14px;
+            padding: 16px 12px;
         }
 
         .hd-legal-toc-grid {
@@ -559,7 +565,7 @@ get_header();
         }
 
         .hd-legal-contact-card {
-            padding: 28px 18px;
+            padding: 26px 16px;
             border-radius: 18px;
         }
 
@@ -585,10 +591,10 @@ get_header();
 <div class="hd-legal-page">
     <div class="hd-legal-container">
 
-        <!-- Top Hero Section -->
-        <header class="hd-legal-hero">
+        <!-- Top Hero Section (Div instead of header tag to prevent global theme CSS interference) -->
+        <div class="hd-legal-hero">
             <div class="hd-legal-eyebrow">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
                 <span>Legal &amp; Privacy</span>
             </div>
             <h1 class="hd-legal-title">Privacy Policy</h1>
@@ -596,7 +602,7 @@ get_header();
                 <span class="hd-legal-meta-dot"></span>
                 <span>Last updated: September 3, 2026</span>
             </div>
-        </header>
+        </div>
 
         <!-- Introductory Card -->
         <div class="hd-legal-intro-card">
@@ -813,8 +819,8 @@ get_header();
 
         </main>
 
-        <!-- Studio Contact Footer Card -->
-        <footer class="hd-legal-contact-card">
+        <!-- Studio Contact Card at Bottom (Div instead of footer tag to prevent global theme CSS interference) -->
+        <div class="hd-legal-contact-card">
             <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Panda Tattoo Miami" class="hd-legal-contact-logo" loading="lazy">
             <div class="hd-legal-contact-address">
                 <strong>Panda Tattoo Studio</strong>
@@ -840,7 +846,7 @@ get_header();
                     <span>Book Consultation</span>
                 </button>
             </div>
-        </footer>
+        </div>
 
     </div>
 </div>
@@ -879,7 +885,7 @@ if (locate_template('template-parts/booking-modal.php')) {
                     const targetEl = document.querySelector(targetId);
                     if (targetEl) {
                         e.preventDefault();
-                        const headerOffset = 100;
+                        const headerOffset = 90;
                         const elementPosition = targetEl.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         window.scrollTo({
