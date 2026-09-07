@@ -507,37 +507,76 @@ get_header();
     }
 
     /* Floating Back to Top Button */
-    .hd-back-top {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        background: rgba(20, 20, 20, 0.85);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+    .hd-back-top,
+    #hdBackToTop {
+        position: fixed !important;
+        bottom: 30px !important;
+        right: 30px !important;
+        width: 46px !important;
+        height: 46px !important;
+        border-radius: 50% !important;
+        background: #111111 !important;
+        border: 1px solid rgba(255, 255, 255, 0.25) !important;
         color: #ffffff !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
         opacity: 0;
         visibility: hidden;
-        transition: all 0.3s ease;
-        z-index: 999;
-        backdrop-filter: blur(8px);
+        transition: all 0.3s ease !important;
+        z-index: 99999 !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+        padding: 0 !important;
+        outline: none !important;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5) !important;
     }
 
-    .hd-back-top.is-visible {
-        opacity: 1;
-        visibility: visible;
+    .hd-back-top.is-visible,
+    #hdBackToTop.is-visible {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
-    .hd-back-top:hover {
-        background: #ffffff;
+    .hd-back-top:hover,
+    #hdBackToTop:hover {
+        background: #ffffff !important;
         color: #000000 !important;
-        transform: translateY(-3px);
-        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.25);
+        border-color: #ffffff !important;
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px rgba(255, 255, 255, 0.3) !important;
+    }
+
+    .hd-back-top svg,
+    #hdBackToTop svg {
+        width: 20px !important;
+        height: 20px !important;
+        display: block !important;
+        stroke: #ffffff !important;
+        stroke-width: 2.5px !important;
+        fill: none !important;
+        margin: auto !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        pointer-events: none !important;
+        transition: stroke 0.2s ease !important;
+    }
+
+    .hd-back-top svg *,
+    #hdBackToTop svg * {
+        stroke: #ffffff !important;
+        stroke-width: 2.5px !important;
+        fill: none !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .hd-back-top:hover svg,
+    #hdBackToTop:hover svg,
+    .hd-back-top:hover svg *,
+    #hdBackToTop:hover svg * {
+        stroke: #000000 !important;
     }
 
     /* Responsive adjustments */
@@ -853,7 +892,7 @@ get_header();
 
 <!-- Floating Back to Top Button -->
 <button type="button" class="hd-back-top" id="hdBackToTop" aria-label="Back to Top">
-    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"></polyline></svg>
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;display:block;margin:auto;stroke:#ffffff;fill:none;"><polyline points="18 15 12 9 6 15" style="stroke:#ffffff;fill:none;stroke-width:2.5px;"></polyline></svg>
 </button>
 
 <!-- Modal Structure -->
