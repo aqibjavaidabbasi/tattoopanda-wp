@@ -49,11 +49,14 @@ do_action( 'studio_after_content' );
 				?>
 			</span>
 			<span class="sep"><?php echo esc_attr( '&nbsp;&bull;&nbsp;' ); ?></span>
-			<?php if ( function_exists( 'get_the_privacy_policy_link' ) ) : ?>
-				<span class="privacy-policy">
-					<?php echo get_the_privacy_policy_link(); ?>
-				</span>
-			<?php endif; ?>
+			<span class="privacy-policy">
+				<a href="<?php echo esc_url( home_url( '/privacy-policy/' ) ); ?>">Privacy Policy</a>
+			</span>
+			<span class="sep"><?php echo esc_attr( '&nbsp;&bull;&nbsp;' ); ?></span>
+			<span class="terms-conditions">
+				<a href="<?php echo esc_url( home_url( '/terms-and-conditions/' ) ); ?>">Terms &amp; Conditions</a>
+			</span>
+			<span class="sep"><?php echo esc_attr( '&nbsp;&bull;&nbsp;' ); ?></span>
 			<span class="theme-name">
 				<?php echo esc_attr( 'Theme: Studio' ); ?>
 			</span>
