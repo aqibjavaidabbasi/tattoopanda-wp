@@ -36,11 +36,12 @@ get_header();
        LEGAL PAGE - PANDA TATTOO DESIGN SYSTEM
        ======================================== */
     .hd-legal-page {
-        padding: 100px 24px 120px;
+        padding: 120px 24px 120px;
         box-sizing: border-box;
         font-family: inherit;
         background: #000000;
         position: relative;
+        z-index: 1;
     }
 
     .hd-legal-container {
@@ -52,11 +53,14 @@ get_header();
     /* Top Hero Header */
     .hd-legal-hero {
         text-align: center;
+        margin-top: 10px;
         margin-bottom: 40px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 14px;
+        gap: 16px;
+        position: relative;
+        z-index: 2;
     }
 
     .hd-legal-eyebrow {
@@ -72,22 +76,25 @@ get_header();
         border: 1px solid rgba(255, 255, 255, 0.12);
         padding: 6px 16px;
         border-radius: 999px;
+        text-decoration: none !important;
     }
 
     .hd-legal-title {
-        font-size: clamp(32px, 5.5vw, 54px);
+        font-size: clamp(32px, 5.5vw, 56px);
         font-weight: 800;
         letter-spacing: -0.02em;
-        line-height: 1.08;
+        line-height: 1.1;
         margin: 0;
         text-transform: uppercase;
         color: #ffffff;
+        position: relative;
+        z-index: 2;
     }
 
     .hd-legal-meta {
         display: inline-flex;
         align-items: center;
-        gap: 12px;
+        gap: 10px;
         font-size: 13px;
         color: rgba(255, 255, 255, 0.55);
         letter-spacing: 0.05em;
@@ -205,6 +212,7 @@ get_header();
         -webkit-backdrop-filter: blur(14px);
         transition: border-color 0.25s ease;
         position: relative;
+        scroll-margin-top: 100px;
     }
 
     .hd-legal-section:hover {
@@ -363,44 +371,76 @@ get_header();
     .hd-toc-link,
     .hd-back-top,
     .hd-contact-action-btn,
-    .hd-legal-eyebrow {
+    .hd-legal-eyebrow,
+    .hd-contact-info-pill {
         text-decoration: none !important;
     }
 
-    /* Contact Card at Bottom */
+    /* Studio Contact Card at Bottom */
     .hd-legal-contact-card {
         background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
         border: 1px solid rgba(255, 255, 255, 0.15);
         border-radius: 24px;
-        padding: 36px;
+        padding: 40px 32px;
         margin-top: 48px;
         text-align: center;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 20px;
+        gap: 22px;
         box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
     }
 
     .hd-legal-contact-logo {
         max-width: 140px;
         height: auto;
-        opacity: 0.9;
+        opacity: 0.95;
     }
 
     .hd-legal-contact-address {
         font-size: 15px;
         color: rgba(255, 255, 255, 0.8);
         line-height: 1.6;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
     }
 
     .hd-legal-contact-address strong {
-        display: block;
         font-size: 18px;
         color: #ffffff;
-        margin-bottom: 4px;
         text-transform: uppercase;
         letter-spacing: 0.05em;
+    }
+
+    .hd-contact-info-pills {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        margin-top: 6px;
+    }
+
+    .hd-contact-info-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none !important;
+        transition: all 0.2s ease;
+    }
+
+    .hd-contact-info-pill:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.25);
+        color: #ffffff !important;
     }
 
     .hd-contact-btn-group {
@@ -408,41 +448,66 @@ get_header();
         flex-wrap: wrap;
         gap: 14px;
         justify-content: center;
+        margin-top: 4px;
     }
 
+    /* Fixed Button Styling - Ensures Black Text on White Button */
+    .hd-contact-btn-group a.hd-contact-action-btn,
+    .hd-contact-btn-group button.hd-contact-action-btn,
     .hd-contact-action-btn {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        background: #ffffff;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        background: #ffffff !important;
         color: #000000 !important;
-        padding: 12px 26px;
-        border-radius: 999px;
-        font-size: 13px;
-        font-weight: 700;
-        letter-spacing: 0.1em;
-        text-transform: uppercase;
+        border: 1px solid #ffffff !important;
+        padding: 12px 28px !important;
+        border-radius: 999px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.1em !important;
+        text-transform: uppercase !important;
         text-decoration: none !important;
-        transition: all 0.25s ease;
-        border: 1px solid #ffffff;
-        cursor: pointer;
+        cursor: pointer !important;
+        transition: all 0.25s ease !important;
+        box-shadow: 0 4px 14px rgba(255, 255, 255, 0.15) !important;
     }
 
-    .hd-contact-action-btn:hover {
-        background: #e5e5e5;
+    .hd-contact-btn-group a.hd-contact-action-btn *,
+    .hd-contact-btn-group a.hd-contact-action-btn span,
+    .hd-contact-action-btn span {
+        color: #000000 !important;
+        -webkit-text-fill-color: #000000 !important;
+        font-weight: 700 !important;
+    }
+
+    .hd-contact-btn-group a.hd-contact-action-btn:hover {
+        background: #e2e2e2 !important;
+        border-color: #e2e2e2 !important;
+        color: #000000 !important;
         transform: translateY(-2px);
-        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 24px rgba(255, 255, 255, 0.25) !important;
     }
 
-    .hd-contact-action-btn.hd-btn-secondary {
-        background: transparent;
+    .hd-contact-btn-group .hd-contact-action-btn.hd-btn-secondary {
+        background: transparent !important;
         color: #ffffff !important;
-        border-color: rgba(255, 255, 255, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: none !important;
     }
 
-    .hd-contact-action-btn.hd-btn-secondary:hover {
-        background: rgba(255, 255, 255, 0.1);
-        border-color: #ffffff;
+    .hd-contact-btn-group .hd-contact-action-btn.hd-btn-secondary *,
+    .hd-contact-btn-group .hd-contact-action-btn.hd-btn-secondary span {
+        color: #ffffff !important;
+        -webkit-text-fill-color: #ffffff !important;
+    }
+
+    .hd-contact-btn-group .hd-contact-action-btn.hd-btn-secondary:hover {
+        background: rgba(255, 255, 255, 0.1) !important;
+        border-color: #ffffff !important;
+        color: #ffffff !important;
+        transform: translateY(-2px);
     }
 
     /* Floating Back to Top Button */
@@ -482,7 +547,7 @@ get_header();
     /* Responsive adjustments */
     @media (max-width: 768px) {
         .hd-legal-page {
-            padding: 85px 16px 90px;
+            padding: 95px 16px 90px;
         }
 
         .hd-legal-section {
@@ -506,6 +571,16 @@ get_header();
         .hd-legal-contact-card {
             padding: 28px 18px;
             border-radius: 18px;
+        }
+
+        .hd-contact-info-pills {
+            flex-direction: column;
+            width: 100%;
+        }
+
+        .hd-contact-info-pill {
+            width: 100%;
+            justify-content: center;
         }
 
         .hd-back-top {
@@ -798,9 +873,13 @@ get_header();
                 <div class="hd-section-body">
                     <p>Questions about these Terms can be sent through our contact page at <a href="https://pandatattoo.com/contact" target="_blank" rel="noopener noreferrer">https://pandatattoo.com/contact</a>.</p>
                     
-                    <div style="margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08);">
+                    <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.1);">
                         <p style="margin: 0; font-weight: 700; color: #ffffff; text-transform: uppercase; letter-spacing: 0.05em;">Panda Tattoo LLC</p>
-                        <p style="margin: 4px 0 0 0; color: rgba(255,255,255,0.75);">254 NW 36th Street<br>Miami, FL 33127</p>
+                        <p style="margin: 6px 0 0 0; color: rgba(255,255,255,0.8); line-height: 1.6;">
+                            <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" style="color: rgba(255,255,255,0.85) !important;">254 NW 36th Street, Miami, FL 33127</a><br>
+                            Direct Phone: <a href="tel:7869199998" style="color: #ffffff !important;">(786) 919-9998</a><br>
+                            Hours: Mon &ndash; Sun 11:00 AM &ndash; 9:00 PM (Open Daily)
+                        </p>
                     </div>
                 </div>
             </section>
@@ -812,10 +891,22 @@ get_header();
             <img src="https://pandatattoo.com/wp-content/uploads/2025/05/panda-logotype-bone-scaled.png" alt="Panda Tattoo Miami" class="hd-legal-contact-logo" loading="lazy">
             <div class="hd-legal-contact-address">
                 <strong>Panda Tattoo Studio</strong>
-                <span>254 NW 36th St, Miami, FL 33127 &bull; Wynwood / Midtown Arts District</span>
+                <a href="https://maps.google.com/?q=254+NW+36th+St,+Miami,+FL+33127" target="_blank" rel="noopener noreferrer" style="color: rgba(255, 255, 255, 0.85) !important; text-decoration: none !important;">
+                    <span>254 NW 36th St, Miami, FL 33127 &bull; Wynwood / Midtown Arts District</span>
+                </a>
+                <div class="hd-contact-info-pills">
+                    <a href="tel:7869199998" class="hd-contact-info-pill">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                        <span>(786) 919-9998</span>
+                    </a>
+                    <span class="hd-contact-info-pill">
+                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        <span>Mon &ndash; Sun: 11:00 AM &ndash; 9:00 PM</span>
+                    </span>
+                </div>
             </div>
             <div class="hd-contact-btn-group" x-data>
-                <a href="/contact" class="hd-contact-action-btn">
+                <a href="/contact" class="hd-contact-action-btn" aria-label="Contact Studio">
                     <span>Contact Studio</span>
                 </a>
                 <button type="button" @click="$dispatch('open-booking-modal')" onclick="window.dispatchEvent(new CustomEvent('open-booking-modal'))" class="hd-contact-action-btn hd-btn-secondary ghl-booking-btn" aria-label="Book Tattoo Consultation">
@@ -861,7 +952,7 @@ if (locate_template('template-parts/booking-modal.php')) {
                     const targetEl = document.querySelector(targetId);
                     if (targetEl) {
                         e.preventDefault();
-                        const headerOffset = 90;
+                        const headerOffset = 100;
                         const elementPosition = targetEl.getBoundingClientRect().top;
                         const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
                         window.scrollTo({

@@ -1519,3 +1519,44 @@ function get_studio_status() {
         'closing_time' => $closing_time
     ];
 }
+
+/**
+ * Automatically route /privacy-policy/ and /terms-and-conditions/ to their respective templates
+ * even if the pages have not yet been manually published in wp-admin.
+ */
+add_filter( 'template_include', 'panda_legal_pages_template_loader', 99 );
+function panda_legal_pages_template_loader( $template ) {
+    $request_uri = trim( parse_url( $_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH ), '/' );
+    
+    // Normalize path to get the last segment
+    $segments = array_filter( explode( '/', $request_uri ) );
+    $slug = end( $segments );
+
+    if ( in_array( $slug, [ 'privacy-policy', 'privacy' ], true ) ) {
+        $custom_template = get_stylesheet_directory() . '/templates/privacy-policy.php';
+        if ( file_exists( $custom_template ) ) {
+            status_header( 200 );
+            global $wp_query;
+            if ( $wp_query ) {
+                $wp_query->is_404 = false;
+                $wp_query->is_page = true;
+            }
+            return $custom_template;
+        }
+    }
+
+    if ( in_array( $slug, [ 'terms-and-conditions', 'terms-conditions', 'terms' ], true ) ) {
+        $custom_template = get_stylesheet_directory() . '/templates/terms-and-conditions.php';
+        if ( file_exists( $custom_template ) ) {
+            status_header( 200 );
+            global $wp_query;
+            if ( $wp_query ) {
+                $wp_query->is_404 = false;
+                $wp_query->is_page = true;
+            }
+            return $custom_template;
+        }
+    }
+
+    return $template;
+}
